@@ -4,6 +4,7 @@ title: Hello World
 date: 2018-10-30
 categories: article
 tags: 生活随想 
+cover : https://ws2.sinaimg.cn/large/006tNbRwly1fwsixwbjjxj31kw11xb2a.jpg
 ---
 
 # Hello World
