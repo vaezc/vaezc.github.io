@@ -29,8 +29,6 @@ search: true
 nightMode: true
 
 # Comments 评论功能
-# comments: true
-
 comments:
   disqus: true
   disqus_url: 'https://vaezc.disqus.com/embed.js'
