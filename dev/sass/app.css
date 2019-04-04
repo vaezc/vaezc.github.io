@@ -624,7 +624,7 @@ a {
   width: 720px;
   box-sizing: border-box;
   padding: 0 0 32px; }
-  .markdown-body .highlight {
+  .markdown-body {
     margin: 0 0 16px;
     overflow: scroll; }
   .markdown-body img {
