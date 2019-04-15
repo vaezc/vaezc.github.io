@@ -29,9 +29,9 @@ search: true
 nightMode: true
 
 # Comments 评论功能
-# comments:
-#   disqus: false
-# 	disqus_url: 'https://disqus_sNnRg0WaS6.disqus.com/embed.js'
+comments:
+   disqus: false
+   disqus_url: 'https://disqus_sNnRg0WaS6.disqus.com/embed.js'
 
 # MathJax 公式支持 by Ray-Eldath
 mathjax: true
@@ -68,7 +68,7 @@ kramdown:
   input: GFM
 
 # RSS
-RSS: false
+RSS: true
 
 # Permalink
 # See: https://github.com/kaeyleo/jekyll-theme-H2O/issues/35
