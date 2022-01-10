@@ -5,7 +5,7 @@ paginate: 5
 title: 摩卡的小窝
 
 # Change it to your Disqus shortname before using
-disqusShortname: mo_ka
+disqusShortname: vae
 
 # GA Tracking ID
 googleAnalytics:
@@ -178,7 +178,13 @@ menu:
               ### For demonstration purpose, the home link will be open in a new tab
               newTab: true
               icon: home
-    
+        - identifier: about
+          name: About
+          url: /
+          weight: -90
+          params:
+            newTab: false
+            icon: user
     social:
         - identifier: github
           name: GitHub
