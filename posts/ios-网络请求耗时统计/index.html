@@ -1,15 +1,15 @@
 <!doctype html><html lang=en-us>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="iOS 网络请求耗时统计 前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通"><title>iOS 网络请求耗时统计</title>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料"><title>iOS 网络请求耗时统计</title>
 <link rel=canonical href=https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/>
 <link rel=stylesheet href=/scss/style.min.775dbd4fd34fda61c5273b4bc3415f7c9666414fb6c40aab164a7ded4397da98.css><meta property="og:title" content="iOS 网络请求耗时统计">
-<meta property="og:description" content="iOS 网络请求耗时统计 前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通">
+<meta property="og:description" content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料">
 <meta property="og:url" content="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/">
 <meta property="og:site_name" content="摩卡的小窝">
 <meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="技术人生"><meta property="article:published_time" content="2019-04-04T00:00:00+00:00"><meta property="article:modified_time" content="2019-04-04T00:00:00+00:00"><meta property="og:image" content="https://vaezc.github.io/location.jpg">
 <meta name=twitter:site content="@xiaochangvae">
 <meta name=twitter:creator content="@xiaochangvae"><meta name=twitter:title content="iOS 网络请求耗时统计">
-<meta name=twitter:description content="iOS 网络请求耗时统计 前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通"><meta name=twitter:card content="summary_large_image">
+<meta name=twitter:description content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料"><meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://vaezc.github.io/location.jpg">
 </head>
 <body class="article-page has-toc">
@@ -51,7 +51,6 @@ extended">
 </div>
 </header>
 <section class=article-content>
-<h1 id=ios-网络请求耗时统计>iOS 网络请求耗时统计</h1>
 <p>前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料，初步将目标定位到<code>NSURLProtocol</code>这个类中了。</p>
 <h2 id=nsurlprotocol>NSURLProtocol</h2>
 <p><code>NSRULProtocol</code> 是<code>URL loadin System</code>中的一部分，如下图
