@@ -1,0 +1,253 @@
+<!doctype html><html lang=en-us>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="iOS 地理围栏检测 公司中有个业务是司机端的业务，司机进入到某个站点之后会上传进站的数据到服务器上，出站之后同样上传数据。现有的代码中是用坐标距离"><title>iOS 地理围栏检测</title>
+<link rel=canonical href=https://vaezc.github.io/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/>
+<link rel=stylesheet href=/scss/style.min.775dbd4fd34fda61c5273b4bc3415f7c9666414fb6c40aab164a7ded4397da98.css><meta property="og:title" content="iOS 地理围栏检测">
+<meta property="og:description" content="iOS 地理围栏检测 公司中有个业务是司机端的业务，司机进入到某个站点之后会上传进站的数据到服务器上，出站之后同样上传数据。现有的代码中是用坐标距离">
+<meta property="og:url" content="https://vaezc.github.io/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/">
+<meta property="og:site_name" content="摩卡的小窝">
+<meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="技术人生"><meta property="article:published_time" content="2019-04-19T00:00:00+00:00"><meta property="article:modified_time" content="2019-04-19T00:00:00+00:00"><meta property="og:image" content="https://vaezc.github.io/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location.jpg">
+<meta name=twitter:site content="@xiaochangvae">
+<meta name=twitter:creator content="@xiaochangvae"><meta name=twitter:title content="iOS 地理围栏检测">
+<meta name=twitter:description content="iOS 地理围栏检测 公司中有个业务是司机端的业务，司机进入到某个站点之后会上传进站的数据到服务器上，出站之后同样上传数据。现有的代码中是用坐标距离"><meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://vaezc.github.io/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location.jpg">
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class="has-image main-article">
+<header class=article-header>
+<div class=article-image>
+<a href=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/>
+<img src=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location_hu7358e48ec7fab56fb014470e607bbef7_2070633_800x0_resize_q75_box.jpg srcset="/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location_hu7358e48ec7fab56fb014470e607bbef7_2070633_800x0_resize_q75_box.jpg 800w, /posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location_hu7358e48ec7fab56fb014470e607bbef7_2070633_1600x0_resize_q75_box.jpg 1600w" width=800 height=1000 loading=lazy alt="Featured image of post iOS 地理围栏检测">
+</a>
+</div>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/article/>
+article
+</a>
+</header>
+<h2 class=article-title>
+<a href=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/>iOS 地理围栏检测</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Apr 19, 2019</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 4 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<h1 id=ios-地理围栏检测>iOS 地理围栏检测</h1>
+<p>公司中有个业务是司机端的业务，司机进入到某个站点之后会上传进站的数据到服务器上，出站之后同样上传数据。现有的代码中是用坐标距离来判断进出站的操作，从实际反馈回来的结果来看，这样存在着不准确的情况。还有可能司机将 app 放在后台，app 被系统回收的可能，那样数据都不会上传回来。</p>
+<p>经过笔者的一番调研，将目标确定在地理围栏上面。首先我们来看看什么是地理围栏。</p>
+<h2 id=地理围栏>地理围栏</h2>
+<p>在百科上面是这样解释地理围栏的</p>
+<blockquote>
+<p><strong>地理围栏</strong>（Geo-fencing）是 LBS 的一种新应用，就是用一个虚拟的栅栏围出一个虚拟<strong>地理</strong>边界。 当手机进入、离开某个特定<strong>地理</strong>区域，或在该区域内活动时，手机可以接收自动通知和警告。 有了<strong>地理围栏</strong>技术，位置社交网站就可以帮助用户在进入某一地区时自动登记。</p>
+</blockquote>
+<p><figure>
+<a href=https://ws2.sinaimg.cn/large/006tNc79ly1g27xiorjvyj30vt0gptb6.jpg>
+<img src=https://ws2.sinaimg.cn/large/006tNc79ly1g27xiorjvyj30vt0gptb6.jpg loading=lazy>
+</a>
+</figure></p>
+<blockquote>
+<p>By SpyToMobile (SpyToMobile.com). - Own work., CC BY-SA 4.0, <a class=link href="https://commons.wikimedia.org/w/index.php?curid=34557848" target=_blank rel=noopener>https://commons.wikimedia.org/w/index.php?curid=34557848</a></p>
+</blockquote>
+<p>其实说白了就是一块我们在地图上自定义的块区域，用户进入或者离开时我们都可以检测到。从原理上就初步符合我们的要求。</p>
+<h2 id=地理围栏在-ios-中的应用>地理围栏在 iOS 中的应用</h2>
+<p>可以从苹果官方文档中找到对区域检测的<a class=link href=https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/LocationAwarenessPG/RegionMonitoring/RegionMonitoring.html#//apple_ref/doc/uid/TP40009497-CH9-SW11%20---------------------%20 target=_blank rel=noopener>文档</a>。地理围栏也是区域检测中的一种，另一种是苹果在 iOS 7 中推出的 iBeacon 功能。我们将重点放在地理围栏上面。</p>
+<p>在 doc 中我们看到这样一句话：</p>
+<blockquote>
+<p>Apps can use region monitoring to be notified when a user crosses geographic boundaries or when a user enters or exits the vicinity of a beacon. While a beacon is in range of an iOS device, apps can also monitor for the relative distance to the beacon. You can use these capabilities to develop many types of innovative location-based apps. Because geographical regions and beacon regions differ, the type of region monitoring you decide to use will likely depend on the use case of your app.</p>
+<p>In iOS, regions associated with your app are tracked at all times, including when the app isn’t running. If a region boundary is crossed while an app isn’t running, that app is relaunched into the background to handle the event. Similarly, if the app is suspended when the event occurs, it’s woken up and given a short amount of time (around 10 seconds) to handle the event. When necessary, an app can request more background execution time using the <code>beginBackgroundTaskWithExpirationHandler:</code> method of the <code>UIApplication</code> class.</p>
+</blockquote>
+<p>大致的意思就是说：在 iOS 里,地理围栏会一直在监听，包括 app 不在运行的时候。当设备经过地理围栏是，app 会在后台重新启动来执行一段任务。同样的，当 app 在后台挂起的时候，会唤起 app 给一段时间（大概 10 秒左右）让 app 去处理一些任务。必要时，app 还可以通过执行后台任务的方法来获取更多的执行时间。</p>
+<p>这句话读完我们心里就有底了，想不到苹果还有这种骚操作，即使 app 被 kill 掉，还能通过触发地理围栏的事件来重新唤起 app 来执行一段操作(厉害了，我的果:laughing:)。</p>
+<h3 id=限制>限制</h3>
+<p>当使用地理围栏检测时，app 首先要检测设备是否支持，下面存在这几种情况不能使用地理围栏检测：</p>
+<ul>
+<li>硬件设备不支持地理围栏检测</li>
+<li>用户没有授权给地理围栏检测</li>
+<li>用户禁止位置服务在设置里面</li>
+<li>用户禁止 app 的后台刷新</li>
+<li>用户开启了飞行模式</li>
+</ul>
+<blockquote>
+<p><a class=link href=https://developer.apple.com/documentation/corelocation/cllocationmanager/1423654-ismonitoringavailable target=_blank rel=noopener>isMonitoringAvailableForClass:</a> 判断设备是否支持地理围栏当用户没有授权给 app 使用地理围栏的时候，可以先注册地理围栏后授权来使用。当你不希望 app 在没有授权的时候使用地理围栏，可以在 <strong>locationManager:didChangeAuthorizationStatus:</strong> 这个方法里面去监听权限的改变和当你需要的时候删除地理围栏的监听。</p>
+</blockquote>
+<h3 id=使用>使用</h3>
+<p>当需要使用地理围栏是，必需先使得用户授权。使用<code>CLLocationManager</code>来提醒用户授权，设置<code>CLLocationManager</code>的代理。</p>
+<ol>
+<li>
+<p>调用<code>- (void)startMonitoringForRegion:(CLRegion *)region;</code>方法来监听需要检测的范围。</p>
+</li>
+<li>
+<p>当用户进入到监测的地理围栏时，会触发代理方法</p>
+<p><code>-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region);</code></p>
+</li>
+<li>
+<p>当用户离开检测的地理围栏时，会触发代理方法</p>
+<p><code>-(void)locationManager:(CLLocationManager *)manager</code></p>
+<p><code>didExitRegion:(CLRegion *)region;</code></p>
+</li>
+<li>
+<p>当不需要检测这个地点时，需要调用 <code>- (void)stopMonitoringForRegion:(CLRegion *)region</code>方法来取消监听，因为监听是在 app 中是全局的，并不会随着 manager 的销毁而消失，并且 app 检测的地理围栏个数是有限制的，最大的数目是 20 个，所以当我们不需要监听时要及时的释放掉。</p>
+</li>
+</ol>
+<h3 id=测试>测试</h3>
+<p>原理研究清楚了，代码也写好了，要如何测试呢？</p>
+<p>很简单，我们使用 xcode 新建 GPX 文件：</p>
+<p><figure>
+<a href=https://ws4.sinaimg.cn/large/006tNc79ly1g27yxi3x0vj30ka0emn20.jpg>
+<img src=https://ws4.sinaimg.cn/large/006tNc79ly1g27yxi3x0vj30ka0emn20.jpg loading=lazy>
+</a>
+</figure></p>
+<p>建好之后，将里面的 lat，lon 的值替换成你想 mock 的地理位置的经纬度：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=cp>&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<span class=nt>&lt;gpx</span> <span class=na>version=</span><span class=s>&#34;1.1&#34;</span> <span class=na>creator=</span><span class=s>&#34;Xcode&#34;</span><span class=nt>&gt;</span>
+
+    <span class=c>&lt;!--
+</span><span class=c>     Provide one or more waypoints containing a latitude/longitude pair. If you provide one
+</span><span class=c>     waypoint, Xcode will simulate that specific location. If you provide multiple waypoints,
+</span><span class=c>     Xcode will simulate a route visiting each waypoint.
+</span><span class=c>     --&gt;</span>
+    <span class=nt>&lt;wpt</span> <span class=na>lat=</span><span class=s>&#34;31.230390&#34;</span> <span class=na>lon=</span><span class=s>&#34;121.473702&#34;</span><span class=nt>&gt;</span>
+        <span class=nt>&lt;name&gt;</span>shanghai<span class=nt>&lt;/name&gt;</span>
+
+        <span class=c>&lt;!--
+</span><span class=c>         Optionally provide a time element for each waypoint. Xcode will interpolate movement
+</span><span class=c>         at a rate of speed based on the time elapsed between each waypoint. If you do not provide
+</span><span class=c>         a time element, then Xcode will use a fixed rate of speed.
+</span><span class=c>
+</span><span class=c>         Waypoints must be sorted by time in ascending order.
+</span><span class=c>         --&gt;</span>
+    <span class=nt>&lt;/wpt&gt;</span>
+
+<span class=nt>&lt;/gpx&gt;</span>
+
+</code></pre></div><p>建立好多个 mock 文件之后，我们就可以在 debug 时来切换自己想要 mock 的位置。</p>
+<p><figure>
+<a href=https://ws3.sinaimg.cn/large/006tNc79ly1g27z2m6j3sj30e60cbq69.jpg>
+<img src=https://ws3.sinaimg.cn/large/006tNc79ly1g27z2m6j3sj30e60cbq69.jpg loading=lazy>
+</a>
+</figure></p>
+<p>红色标记出的位置就是刚刚我们新建的 gpx 文件的名称，点击之后手机的位置就会变成 mock 的地理位置。</p>
+<p>当然，用模拟器也可以 mock 坐标，只不过用文件的方式切换比较方便。</p>
+<p><figure>
+<a href=https://ws1.sinaimg.cn/large/006tNc79ly1g27z54bwngj30oo0cd46p.jpg>
+<img src=https://ws1.sinaimg.cn/large/006tNc79ly1g27z54bwngj30oo0cd46p.jpg loading=lazy>
+</a>
+</figure></p>
+<p>模拟器的 mock 如上图所示。</p>
+<p>当 app 被 kill 时，可以通过本地通知来检测进出地理围栏。</p>
+<h2 id=后续>后续</h2>
+<p>关于坐标位置的坑点，后面在另一篇文章继续深究下。</p>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>技术人生</a>
+</section>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+</aside>
+<div class=disqus-container>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//vae.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+<style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style>
+<script>window.addEventListener('onColorSchemeChange',a=>{DISQUS&&DISQUS.reset({reload:!0})})</script>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2020 -
+2022 摩卡的小窝
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.6.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#地理围栏>地理围栏</a></li>
+<li><a href=#地理围栏在-ios-中的应用>地理围栏在 iOS 中的应用</a>
+<ol>
+<li><a href=#限制>限制</a></li>
+<li><a href=#使用>使用</a></li>
+<li><a href=#测试>测试</a></li>
+</ol>
+</li>
+<li><a href=#后续>后续</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>
