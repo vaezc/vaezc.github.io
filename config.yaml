@@ -193,6 +193,13 @@ menu:
           params:
             icon: brand-twitter
 
+        - identifier: Rss
+          name: rss 
+          url: https://vaezc.github.io/index.xml
+          weight: -70
+          params:
+            icon: rss   
+
         - identifier: jike
           name: jike
           weight: -50
