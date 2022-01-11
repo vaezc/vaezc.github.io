@@ -4,7 +4,7 @@ date: 2019-04-04
 categories:
   - 技术人生
 tags:
-  - 技术人生
+  - iOS
 image: iOS.jpg
 ---
 

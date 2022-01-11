@@ -1,4 +1,17 @@
-# 关于我
+---
+title: "关于我"
+slug: "about"
+layout: "about"
+outputs:
+  - html
+  - json
+menu:
+  main:
+    name: About
+    weight: -20
+    params:
+      icon: user
+---
 
 高中时热爱文学，在大学选专业时被家人推荐选择了计算机，恰逢 **iPhone** 大火时机，了解到了 **Apple** 的生态，从此便入坑了，非常迷恋乔老爷子的科技与人文相结合。在大三时自学了 **iOS** 开发，实习到毕业前两年工作做的都是 iOS 开发相关工作。后面大前端之势开始火热，又自学了前端，从 vue 到 react，都有涉猎，现在是坚定的 **React hooks** 的拥趸。
 

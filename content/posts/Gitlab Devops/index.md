@@ -4,7 +4,7 @@ date: 2019-11-19
 categories:
   - 技术人生
 tags:
-  - 技术人生
+  - Devops
 image: gitlab.jpg
 ---
 

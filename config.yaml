@@ -27,7 +27,7 @@ params:
         - posts
     featuredImageField: image
     rssFullContent: true
-    favicon: assets/img/coffee-bean.jpeg
+    favicon: ./favicons/favicon.png
 
     footer:
         since: 2020
@@ -176,15 +176,8 @@ menu:
           weight: -100
           params:
               ### For demonstration purpose, the home link will be open in a new tab
-              newTab: true
-              icon: home
-        - identifier: about
-          name: About
-          url: /about
-          weight: -90
-          params:
-            newTab: false
-            icon: user
+              newTab: false
+              icon: home        
     social:
         - identifier: github
           name: GitHub

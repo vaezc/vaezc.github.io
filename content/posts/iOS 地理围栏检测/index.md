@@ -2,9 +2,9 @@
 title: iOS 地理围栏检测
 date: 2019-04-19
 categories:
-  - article
-tags:
   - 技术人生
+tags:
+  - iOS
 image: location.jpg
 ---
 
