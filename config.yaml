@@ -182,14 +182,23 @@ menu:
         - identifier: github
           name: GitHub
           url: https://github.com/vaezc
+          weight: -200
           params:
             icon: brand-github
-            
+
         - identifier: twitter
           name: Twitter
           url: https://twitter.com
+          weight: -100
           params:
             icon: brand-twitter
+
+        - identifier: jike
+          name: jike
+          weight: -50
+          url: http://m.okjike.com/users/9418827E-1393-414F-951A-F8244FE2EE8A?ref=PROFILE_CARD&utm_source=user_card 
+          params:
+           icon:  jike  
 
 related:
     includeNewer: true
