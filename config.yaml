@@ -27,7 +27,7 @@ params:
         - posts
     featuredImageField: image
     rssFullContent: true
-    favicon:
+    favicon: assets/img/coffee-bean.jpeg
 
     footer:
         since: 2020
@@ -180,7 +180,7 @@ menu:
               icon: home
         - identifier: about
           name: About
-          url: /
+          url: /about
           weight: -90
           params:
             newTab: false
