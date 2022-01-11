@@ -6,11 +6,11 @@
 <meta property="og:description" content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料">
 <meta property="og:url" content="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/">
 <meta property="og:site_name" content="摩卡的小窝">
-<meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="技术人生"><meta property="article:published_time" content="2019-04-04T00:00:00+00:00"><meta property="article:modified_time" content="2019-04-04T00:00:00+00:00"><meta property="og:image" content="https://vaezc.github.io/location.jpg">
+<meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="技术人生"><meta property="article:published_time" content="2019-04-04T00:00:00+00:00"><meta property="article:modified_time" content="2019-04-04T00:00:00+00:00"><meta property="og:image" content="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.jpg">
 <meta name=twitter:site content="@xiaochangvae">
 <meta name=twitter:creator content="@xiaochangvae"><meta name=twitter:title content="iOS 网络请求耗时统计">
 <meta name=twitter:description content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料"><meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://vaezc.github.io/location.jpg">
+<meta name=twitter:image content="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.jpg">
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
@@ -26,7 +26,7 @@ extended">
 <header class=article-header>
 <div class=article-image>
 <a href=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/>
-<img src=/location.jpg loading=lazy alt="Featured image of post iOS 网络请求耗时统计">
+<img src=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS_hudab19c6e24862988c05d34d65d6235f3_2517758_800x0_resize_q75_box.jpg srcset="/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS_hudab19c6e24862988c05d34d65d6235f3_2517758_800x0_resize_q75_box.jpg 800w, /posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS_hudab19c6e24862988c05d34d65d6235f3_2517758_1600x0_resize_q75_box.jpg 1600w" width=800 height=533 loading=lazy alt="Featured image of post iOS 网络请求耗时统计">
 </a>
 </div>
 <div class=article-details>
