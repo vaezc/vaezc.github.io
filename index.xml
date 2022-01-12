@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>摩卡的小窝</title><link>https://vaezc.github.io/</link><description>Recent content on 摩卡的小窝</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 12 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://vaezc.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Http 不完全指南</title><link>https://vaezc.github.io/posts/http-%E5%88%86%E4%BA%AB/</link><pubDate>Wed, 12 Aug 2020 00:00:00 +0000</pubDate><guid>https://vaezc.github.io/posts/http-%E5%88%86%E4%BA%AB/</guid><description>&lt;blockquote>
-&lt;p>这是一篇我之前在公司做 http 协议相关知识做的知识背景储备，期间看过《http 权威指南》 《图解 http》 都是不错的书籍，查阅了 mdn 和 不同社区博客的文章，作出了以下记录。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>摩卡的小窝</title><link>https://vaezc.github.io/</link><description>Recent content on 摩卡的小窝</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 12 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://vaezc.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Http 不完全指南</title><link>https://vaezc.github.io/posts/http-%E5%88%86%E4%BA%AB/</link><pubDate>Wed, 12 Aug 2020 00:00:00 +0000</pubDate><guid>https://vaezc.github.io/posts/http-%E5%88%86%E4%BA%AB/</guid><description>&lt;img src="https://vaezc.github.io/posts/http-%E5%88%86%E4%BA%AB/http.png" alt="Featured image of post Http 不完全指南" />&lt;blockquote>
+&lt;p>这是一篇我之前在公司做 http 协议相关知识做的知识背景储备，期间看过《http 权威指南》 《图解 http》 都是不错的书籍，查阅了 mdn 和 不同社区博客的文章，作出了以下记录。 分享的 keynote 在这里可以&lt;a class="link" href="../../keynote/http.key" >下载&lt;/a>。&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="http-是什么">http 是什么？&lt;/h2>
 &lt;p>http 全称是超文本传输协议。 负责 server 和 client 端进行通信的。http 也是一个不断迭代的一个协议，从最初的 0.9 版本开始，现在 1.1 版本使用的最为广泛。&lt;/p>
@@ -69,7 +69,8 @@ alt="多版本">
 &lt;li>多个 tcp 连接 短连接： 每次只能传输一个请求，收到响应，请求结束后关闭连接。下次请求来时，重新开启连接。 每个请求的连接都是独立的，都会有一次 tcp 的握手耗费时间。缺点：每次开启关闭连接，消耗太大，浪费性能和等待时间：&lt;/li>
 &lt;li>长连接： 保持连接。keep-Alive 会设置一个长连接保持一段时间，在此时间内发送的 http 请求都可以重复使用这个连接，减少 tcp 握手的时间。（或者是设置请求次数）。缺点是存在阻塞问题,受限于 http 请求的 &lt;strong>FIFO&lt;/strong>结构。（队列结构）&lt;/li>
 &lt;li>管线化： 将多个请求合并为一组，减少等待时间。但是还是存在阻塞问题，并且不是所有的请求都支持管线化（只有幂等的请求才支持）因为流水线的内容要被重试。存在很多问题，很多浏览器不开启以及代理不支持。&lt;/li>
-&lt;li>多路复用 ，在 HTTP2 中，相同域名下的所有通信都在一个连接上完成，这个连接中可以承载任意数量的双向流。这些流都是以消息的形式被发送的，同时消息又由一个或多个帧组成。多个帧之间可以乱序发送，最后根据帧首部的流标识重新组装。&lt;a class="link" href="https://jiaolonghuang.github.io/2015/08/16/http2/" target="_blank" rel="noopener"
+&lt;li>多路复用 ，在 HTTP2 中，相同域名下的所有通信都在一个连接上完成，这个连接中可以承载任意数量的双向流。这些流都是以消息的形式被发送的，同时消息又由一个或多个帧组成。多个帧之间可以乱序发送，最后根据帧首部的流标识重新组装。&lt;br>
+&lt;a class="link" href="https://jiaolonghuang.github.io/2015/08/16/http2/" target="_blank" rel="noopener"
 >HTTP2 学习(四)—HTTP2 的新特性 · 小路口&lt;/a>&lt;/li>
 &lt;/ol>
 &lt;hr>
