@@ -56,30 +56,40 @@ extended">
 <p><em>关于 property</em>：它是提供成员变量的访问方法的声明，控制成员变量的访问权限，控制多线程时成员变量的访问环境。property 不仅可以在 interface，在协议 protocol 中可以使用。
 @property（attribute1，attribute2,&mldr;） 是 property 的官方表达式，其中的 attribute 都是属性。下面我对属性列表做一个小的总结。</p>
 <h3 id=控制权限>控制权限</h3>
-<p>1.可读性，readonly ， readwrite
+<ol>
+<li>可读性，readonly ， readwrite
 如果一个属性中的属性列表中存在 readwrite，那么这种属性就是属性变量的默认属性，表示可读可写。也就是说如果没有显示说明属性列表中的 readwrite，那么你申请的属性变量就是
 readwrite 属性的。可以使用 get 方法和 set 方法。
-如果一个属性中的属性列表方法存在 readonly，那么这个属性变量就是只读的，也就是说你只能使用这个变量的 get 方法了。</p>
+如果一个属性中的属性列表方法存在 readonly，那么这个属性变量就是只读的，也就是说你只能使用这个变量的 get 方法了。</li>
+</ol>
 <h3 id=手动管理内存的关键字>手动管理内存的关键字</h3>
-<p>2.assign
-setter 方法直接赋值，不生成内存管理代码。当属性是一个基本数据类型的时候，使用 assign。
-3.retain
-在 setter 和 getter 方法中加入一些内存管理的代码。当属性是一个普通 OC 对象的时候，使用 retain。setter 方法对参数进行 release 旧值，在 retain 新值。
-4.copy
-复制对象，NSString 使用 copy。setter 方法进行 copy 操作，与 retain 处理流程一样，先 release 旧值，再 copy 出新对象。</p>
+<ol start=2>
+<li>assign
+setter 方法直接赋值，不生成内存管理代码。当属性是一个基本数据类型的时候，使用 assign。</li>
+<li>retain
+在 setter 和 getter 方法中加入一些内存管理的代码。当属性是一个普通 OC 对象的时候，使用 retain。setter 方法对参数进行 release 旧值，在 retain 新值。</li>
+<li>copy
+复制对象，NSString 使用 copy。setter 方法进行 copy 操作，与 retain 处理流程一样，先 release 旧值，再 copy 出新对象。</li>
+</ol>
 <h3 id=线程安全>线程安全</h3>
-<p>5.nonatomic
-非原子，不会生成线程安全的代码，速度快，iOS 通常都是这种</p>
-<p>6.atomic
-原子(默认)，会生成线程安全的代码，速度慢</p>
+<ol start=5>
+<li>nonatomic
+非原子，不会生成线程安全的代码，速度快，iOS 通常都是这种</li>
+</ol>
+<ol start=6>
+<li>atomic
+原子(默认)，会生成线程安全的代码，速度慢</li>
+</ol>
 <h3 id=arc>ARC</h3>
-<p>7.strong
-oc 对象一般使用 strong
-8.weak
+<ol start=7>
+<li>strong
+oc 对象一般使用 strong</li>
+<li>weak
 代理和控件一般使用 weak
 注意：当两个对象中的 成员变量相互引用
 非 ARC：当有循环引用的时候，其中一方必须是 assign，另一方是 retain
-ARC：一方必须使用 weak</p>
+ARC：一方必须使用 weak</li>
+</ol>
 <h2 id=强弱引用问题>强弱引用问题</h2>
 <h3 id=强变量>强变量</h3>
 <p>通常，所有对象的指针变量都是强变量。也就是说，将对象的引用赋给变量使对象自动保持。然后，旧对象的引用会再赋值前被释放。最终，强变量默认会被初始化为零。无论它是实例变量、局
@@ -103,7 +113,8 @@ l 对象发送任何消息都不会有反应，从而有效避免了崩溃的发
 <p>使用@property 和@synthesiz 可以使编译器为你自动生成 getter 和 setter 方法。</p>
 <h2 id=数据封装>数据封装</h2>
 <p>从 plist 中读取已经封装好的数据，一般采用的是懒加载法。如：</p>
-<pre tabindex=0><code>//1 懒加载
+<pre tabindex=0><code>Objective-c
+//1 懒加载
 - (NSArray *)appInfos
 {
     if (_appInfos == nil) {
