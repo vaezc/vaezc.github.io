@@ -1023,7 +1023,7 @@ _appInfos = tmpArray;
 }
 return _appInfos;
 }
-&lt;/code>&lt;/pre></description></item><item><title>iOS开发学习</title><link>https://vaezc.github.io/posts/ios%E5%9B%9B%E7%A7%8D%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/</link><pubDate>Wed, 06 Jan 2016 22:10:23 +0000</pubDate><guid>https://vaezc.github.io/posts/ios%E5%9B%9B%E7%A7%8D%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/</guid><description>&lt;p>其实早就想在博客上分享和保存自己的学习笔记了，只是一直碍于没有很好的平台，所以平时都是写在本地，得益于最近创建了自己的博客，现在准备在寒假里投注更多的时间去学习 iOS，不会
+&lt;/code>&lt;/pre></description></item><item><title>iOS四种本地存储</title><link>https://vaezc.github.io/posts/ios%E5%9B%9B%E7%A7%8D%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/</link><pubDate>Wed, 06 Jan 2016 22:10:23 +0000</pubDate><guid>https://vaezc.github.io/posts/ios%E5%9B%9B%E7%A7%8D%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/</guid><description>&lt;p>其实早就想在博客上分享和保存自己的学习笔记了，只是一直碍于没有很好的平台，所以平时都是写在本地，得益于最近创建了自己的博客，现在准备在寒假里投注更多的时间去学习 iOS，不会
 像在学校里一样，会有一些杂事分心。现在我开始在这里写下自己碰到的一些问题和记录一些重要的知识点，为自己后来回顾时也可以得到帮助。关于 oc 的一些知识和 iOS 的前面的一些基础我就
 不在这里详细记录了，等以后碰到问题时再总结。&lt;/p>
 &lt;h2 id="property-的使用">@property 的使用&lt;/h2>
