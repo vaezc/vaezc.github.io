@@ -1,337 +1,58 @@
-<!doctype html><html lang=en-us>
-<head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="从远古iOS开发过来的开发人员都经历过一段痛苦的开发过程，被苹果的证书以及缓慢的打包上传速度所折磨，这几年兴起的devops使得外国一些大佬"><title>iOS 自动化打包发布</title>
-<link rel=canonical href=https://vaezc.github.io/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/>
-<link rel=stylesheet href=/scss/style.min.775dbd4fd34fda61c5273b4bc3415f7c9666414fb6c40aab164a7ded4397da98.css><meta property="og:title" content="iOS 自动化打包发布">
-<meta property="og:description" content="从远古iOS开发过来的开发人员都经历过一段痛苦的开发过程，被苹果的证书以及缓慢的打包上传速度所折磨，这几年兴起的devops使得外国一些大佬">
-<meta property="og:url" content="https://vaezc.github.io/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/">
-<meta property="og:site_name" content="摩卡的小窝">
-<meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="iOS"><meta property="article:published_time" content="2019-04-15T00:00:00+00:00"><meta property="article:modified_time" content="2019-04-15T00:00:00+00:00"><meta property="og:image" content="https://vaezc.github.io/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS.jpg">
-<meta name=twitter:site content="@xiaochangvae">
-<meta name=twitter:creator content="@xiaochangvae"><meta name=twitter:title content="iOS 自动化打包发布">
-<meta name=twitter:description content="从远古iOS开发过来的开发人员都经历过一段痛苦的开发过程，被苹果的证书以及缓慢的打包上传速度所折磨，这几年兴起的devops使得外国一些大佬"><meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://vaezc.github.io/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS.jpg">
-<link rel="shortcut icon" href=/favicons/favicon.ico>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XN03QWREHL"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-XN03QWREHL',{anonymize_ip:!1})}</script>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
-<div class="container main-container flex
-extended">
-<div id=article-toolbar>
-<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
-<span>返回</span>
-</a>
-</div>
-<main class="main full-width">
-<article class="has-image main-article">
-<header class=article-header>
-<div class=article-image>
-<a href=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/>
-<img src=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS_hu1b1250c20efcffab4aa4d281da507795_1979685_800x0_resize_q75_box.jpg srcset="/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS_hu1b1250c20efcffab4aa4d281da507795_1979685_800x0_resize_q75_box.jpg 800w, /posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS_hu1b1250c20efcffab4aa4d281da507795_1979685_1600x0_resize_q75_box.jpg 1600w" width=800 height=1200 loading=lazy alt="Featured image of post iOS 自动化打包发布">
-</a>
-</div>
-<div class=article-details>
-<header class=article-category>
-<a href=/categories/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>
-技术人生
-</a>
-</header>
-<h2 class=article-title>
-<a href=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/>iOS 自动化打包发布</a>
-</h2>
-<footer class=article-time>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>Apr 15, 2019</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>
-阅读时长: 6 分钟
-</time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<p>从远古<code>iOS</code>开发过来的开发人员都经历过一段痛苦的开发过程，被苹果的证书以及缓慢的打包上传速度所折磨，这几年兴起的<code>devops</code>使得外国一些大佬鼓捣出一些<code>iOS</code>的<code>ci cd</code>工具。各种脚本各显神通，不过今天我想说的是其中一个比较著名的工具 <strong>[fastlane]</strong>(<a class=link href=https://github.com/fastlane/fastlane target=_blank rel=noopener>https://github.com/fastlane/fastlane</a>) 。截止到目前为止<code>github</code>上面的<code>start</code>数目已经达到 <strong>24978</strong> 个。</p>
-<p><figure>
-<a href=https://ws2.sinaimg.cn/large/006tKfTcly1g1qnxk4gm4j30o708gdfy.jpg>
-<img src=https://ws2.sinaimg.cn/large/006tKfTcly1g1qnxk4gm4j30o708gdfy.jpg loading=lazy>
-</a>
-</figure></p>
-<h2 id=fastlane-是什么>fastlane 是什么</h2>
-<blockquote>
-<p><em>fastlane</em> is a tool for iOS and Android developers to automate tedious tasks like generating screenshots， dealing with provisioning profiles， and releasing your application.</p>
-</blockquote>
-<p>官网上是这样介绍的，帮助 iOS 和安卓开发者自动化操作一些任务比如说截图，管理证书或者发布应用。</p>
-<h2 id=fastlane-如何用>fastlane 如何用</h2>
-<p>按照官网的<code>doc</code>进行<a class=link href=https://docs.fastlane.tools/getting-started/ios/setup/ target=_blank rel=noopener>操作</a>。一共分为 3 个步骤：</p>
-<h3 id=安装>安装</h3>
-<p>首先安装 xcode 命令行工具：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>xcode-select --install
-
-</code></pre></div><p>接着使用<code>gem</code> 安装 <code>fastlane</code> 或者 使用<code>homebrew</code>也都行.(题外话说两句，gem 是<code>ruby</code>的包管理工具，由于<code>fastlane</code>是使用<code>ruby</code>来编写的一个工具，所以可以使用 gem 来安装。对于 iOS 开发中大名鼎鼎的<code>Cocoapods</code>也是使用<code>ruby</code>来编写的，我们安装是也是通过<code>gem</code>来安装的)。<code>homebrew</code> 家庭酒酿这个是用来喝酒的。。 大雾。<code>homebrew</code>是<code>Mac</code>里面的一个包管理工具，它使得我们脱离各种繁琐的环境配置，只需要输入命令安装，卸载，<code>brew</code>管理包都是存放在<code>/usr/local</code>下，通过软链接的形式来使用。</p>
-<p><figure>
-<a href=https://ws2.sinaimg.cn/large/006tKfTcly1g1qoca8ypuj30l40ac0uc.jpg>
-<img src=https://ws2.sinaimg.cn/large/006tKfTcly1g1qoca8ypuj30l40ac0uc.jpg loading=lazy alt=homebrew>
-</a>
-<figcaption>homebrew</figcaption>
-</figure></p>
-<p>扯远了，使用下面的命令即可安装：</p>
-<p>如果没有安装<code>homebrew</code> (<a class=link href=https://brew.sh/ target=_blank rel=noopener>https://brew.sh/</a>) 的去官网按照步骤安装即可：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># Using RubyGems</span>
-sudo gem install fastlane -NV
-
-<span class=c1># Alternatively using Homebrew</span>
-brew cask install fastlane
-</code></pre></div><h3 id=使用>使用</h3>
-<p>用命令行<code>cd</code>到工程目录下，使用命令初始化<code>fastlane init：</code></p>
-<p><figure>
-<a href=https://ws2.sinaimg.cn/large/006tNc79ly1g23a6ecb4tj30l40glgpc.jpg>
-<img src=https://ws2.sinaimg.cn/large/006tNc79ly1g23a6ecb4tj30l40glgpc.jpg loading=lazy alt=步骤一>
-</a>
-<figcaption>步骤一</figcaption>
-</figure></p>
-<p>命令行会显示几种不同的自动化方式，我们选择上传<code>App store</code>的方式。结束之后的文件目录形式如下图：</p>
-<p><figure>
-<a href=https://ws2.sinaimg.cn/large/006tNc79ly1g23a5nid3pj30is0qeacs.jpg>
-<img src=https://ws2.sinaimg.cn/large/006tNc79ly1g23a5nid3pj30is0qeacs.jpg loading=lazy alt=步骤二>
-</a>
-<figcaption>步骤二</figcaption>
-</figure></p>
-<p>可以看到文件夹中多了一个文件和一个文件夹，<code>gemfile</code> 这个文件很简单，类似于<code>iOS</code>工程的<code>Podfile</code>一样，里面存放的是<code>ruby</code>所需要的第三方库，我们看到里面的内容，可以看到填写的是<code>fastlane</code>。再看到文件夹，文件夹里面有两个文件，我们重点关注的是<code>fastfile</code>这个文件。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-ruby data-lang=ruby><span class=n>source</span> <span class=s2>&#34;https://rubygems.org&#34;</span>
-
-<span class=n>gem</span> <span class=s2>&#34;fastlane&#34;</span>
-</code></pre></div><h3 id=appfile>Appfile</h3>
-<p><code>Appfile</code> 主要存储的是一些每一个<code>fastlane</code>脚本需要使用的通用信息，比如说 <code>Apple ID</code> 或者是 <code>APP</code> 的<code>Bundle Id</code>。更详细的配置可以参考官网的<a class=link href=https://docs.fastlane.tools/advanced/Appfile/#appfile target=_blank rel=noopener>doc</a>。</p>
-<h3 id=fastfile>FastFile</h3>
-<p>这里就是我们自定义脚本的地方，可以打开这个文件看到里面有了一段默认的代码：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-ruby data-lang=ruby>
-<span class=n>default_platform</span><span class=p>(</span><span class=ss>:ios</span><span class=p>)</span>
-
-<span class=n>platform</span> <span class=ss>:ios</span> <span class=k>do</span>
-  <span class=n>desc</span> <span class=s2>&#34;Description of what the lane does&#34;</span>
-  <span class=n>lane</span> <span class=ss>:custom_lane</span> <span class=k>do</span>
-    <span class=c1># add actions here: https://docs.fastlane.tools/actions</span>
-  <span class=k>end</span>
-<span class=k>end</span>
-
-</code></pre></div><p>这里的语言使用的是<code>ruby</code> 语言，不太了解的可以看看<code>ruby</code>的语法，也挺简单的。我这里简单的说一下。<code>default_platform(:ios)</code>调用一个函数设置默认的平台<code>iOS</code>。后面针对<code>iOS</code>的平台来写脚本，<code>lane</code> 是定义一个模块的意思，我们自定义的每个不同的操作都可以用<code>lane</code>来表示。</p>
-<p><code>fastlane</code>里面有很多已经被人写好的<a class=link href=https://docs.fastlane.tools/actions/ target=_blank rel=noopener><code>action</code></a>，<code>aciton</code>就是类似于一段别人写好的函数，我们可以在我们自定义的<code>lane</code>中调用。在官方的 doc 中已经有很多 action 了，测试，构建，截图，打包，证书管理，上传到 App Store 等等。</p>
-<p>这里我自己写了个测试的 lane，没有做测试，仅供参考，让读者大概知道这么个意思就行，具体的还是需要根据自己的实际需求进行测试和验证。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-ruby data-lang=ruby>  <span class=n>lane</span> <span class=ss>:releaseDemo</span> <span class=k>do</span>
-    <span class=n>app_identifier</span> <span class=o>=</span> <span class=s2>&#34;demo.com&#34;</span>
-    <span class=n>cocoapods</span>
-
-    <span class=n>get_certificates</span><span class=p>(</span>
-      <span class=ss>app_identifier</span><span class=p>:</span><span class=n>app_identifier</span>
-    <span class=p>)</span>
-
-    <span class=n>get_provisioning_profile</span><span class=p>(</span>
-      <span class=ss>app_identifier</span><span class=p>:</span><span class=n>app_identifier</span>
-    <span class=err>）</span>
-
-    <span class=n>build_app</span><span class=p>(</span><span class=ss>workspace</span><span class=p>:</span> <span class=s2>&#34;Project.xcworkspace&#34;</span><span class=err>，</span> <span class=ss>scheme</span><span class=p>:</span> <span class=s2>&#34;test&#34;</span><span class=p>)</span>
-    <span class=n>upload_to_app_store</span><span class=p>(</span><span class=ss>app_identifier</span><span class=p>:</span><span class=n>app_identifier</span><span class=err>，</span><span class=ss>skip_metadata</span><span class=p>:</span> <span class=kp>true</span><span class=err>，</span><span class=ss>skip_screenshots</span><span class=p>:</span><span class=kp>true</span><span class=p>)</span>
-  <span class=k>end</span>
-</code></pre></div><p>从第一行代码来看，顾名思义，这一行对下面这个 lane 的描述。这些描述在执行命令之后 fastlane 都会为用户生成一个 md 的文档，文档中显示着每个 lane 的执行方式和描述。接下来的代码使用 lane 来定义一个操作，<code>releaseDemo</code> 是这个 lane 的名称，<code>fastlane</code>定义了很多的<code>action</code>，这些我们都可以直接拿来组合使用，这和调用 api 差不多，具体的参数可以查询官方文档也可以使用命令行来查询。</p>
-<ol>
-<li><code>cocoapods</code> 这个<code>action</code> 是将当前的工程执行<code>pod install</code>命令，<code>podfile</code>默认在当前工程目录下寻找，如果说不是则需要自己指定<code>podfle</code>文件路径。</li>
-<li><code>get_certificates</code> 是获取证书的，<code>app_identifier</code>参数 是<code>app</code>的<code>bundle id</code>。</li>
-<li><code>get_provisioning_profile</code> 是获取 <code>provisioning_profile</code>的。</li>
-<li><code>build_app</code> 是用来构建<code>app</code>的，<code>workspace</code> 参数指定<code>xcworkspace</code>文件，<code>scheme</code>指定工程的<code>target</code>。</li>
-<li><code>upload_to_app_store</code> 上传构建出<code>ipa</code>文件到<code>APP store</code>，<code>skip_metadata</code>设置为<code>true</code>这个参数是用来跳过元数据的，<code>skip_screenshots</code> 设置为<code>true</code> 用来跳过上传截图。</li>
-</ol>
-<p>关于上述的<code>skip_metadata</code>和 <code>skip_screenshots</code>这两个参数有的读者会比较疑惑，其实 <code>upload_to_app_store</code> 这个<code>action</code>有个别名叫<a class=link href=https://docs.fastlane.tools/actions/deliver/ target=_blank rel=noopener><code>deliver</code></a>，这个<code>action</code>可以上<code>ipa</code> 还有 <code>APP store connect</code> 中需要的元数据和截图。在这里我并没有使用这个功能。在下面会讲到。</p>
-<p>上述的 lane 写好之后我们就可以保存，在工程目录下执行</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>fastlane releaseDemo
-</code></pre></div><p>就可以看到项目按照我们上面所定义的步骤开始自动化操作了。</p>
-<h3 id=deliver>deliver</h3>
-<p>我们在工程目录下面使用命令行执行</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>fastlane deliver init
-</code></pre></div><p>根据提示输入<code>Apple ID</code> 和 <code>Bundle Identifier</code> ，我们就得到了两个新的文件夹和一个文件.</p>
-<p><figure>
-<a href=https://ws3.sinaimg.cn/large/006tNc79ly1g23bvyuqikj30qr0rndk7.jpg>
-<img src=https://ws3.sinaimg.cn/large/006tNc79ly1g23bvyuqikj30qr0rndk7.jpg loading=lazy alt=文件夹>
-</a>
-<figcaption>文件夹</figcaption>
-</figure></p>
-<p><code>Deliverfile</code> 可以在文件中对上传到 <code>App Store</code> 的过程中的操作进行一些配置，比如说设置语言，针对不同的语言来设置不同的元数据。</p>
-<p><code>metadata</code> 里面存放的就是<code>App Store Connect</code> 中存放关于<code>app</code>的元数据，当执行 <code>fastlane deliver init</code> 时 这些信息都会从线上下载到本地，包括截图。当我们需要使用 deliver 的功能来上传截图或者修改元数据时，只需要修改这里面对应的文件即可。</p>
-<h3 id=多-target-打包>多 target 打包</h3>
-<p>想必现在的工程肯定存在多 target。使用的时候就需要建立几个不同的环境配置文件，这种文件是以.env.targetName 这种形式来命名的。下面是公司现在的项目的配置文件的截图。</p>
-<p><figure>
-<a href=https://ws1.sinaimg.cn/large/006tNc79ly1g23cdb411aj30cx0c6jsr.jpg>
-<img src=https://ws1.sinaimg.cn/large/006tNc79ly1g23cdb411aj30cx0c6jsr.jpg loading=lazy alt=配置文件>
-</a>
-<figcaption>配置文件</figcaption>
-</figure></p>
-<p>在里面设置针对不同 target 所需要的不同配置进行填写。</p>
-<p>再到 fastfile 中进行使用。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-ruby data-lang=ruby>  <span class=n>lane</span> <span class=ss>:release</span> <span class=k>do</span> <span class=o>|</span><span class=n>options</span><span class=o>|</span>
-  <span class=n>app_identifier</span> <span class=o>=</span> <span class=no>ENV</span><span class=o>[</span><span class=s1>&#39;app_identifier&#39;</span><span class=o>]</span>
-  <span class=n>scheme</span> <span class=o>=</span> <span class=no>ENV</span><span class=o>[</span><span class=s1>&#39;scheme&#39;</span><span class=o>]</span>
-  <span class=n>type</span> <span class=o>=</span> <span class=n>options</span><span class=o>[</span><span class=ss>:type</span><span class=o>]</span>
- <span class=k>if</span> <span class=n>type</span><span class=o>.</span><span class=n>eql?</span><span class=p>(</span><span class=s1>&#39;release&#39;</span><span class=p>)</span>
-        <span class=c1>#上传到app store</span>
-   <span class=n>upload_to_app_store</span><span class=p>(</span><span class=ss>app_identifier</span><span class=p>:</span><span class=n>app_identifier</span><span class=err>，</span><span class=ss>ipa</span><span class=p>:</span><span class=n>ipa_path</span><span class=err>，</span> <span class=ss>skip_metadata</span><span class=p>:</span> <span class=kp>true</span><span class=err>，</span><span class=ss>skip_screenshots</span><span class=p>:</span><span class=kp>true</span><span class=p>)</span>
-        <span class=c1>#上传dsym到 fabric</span>
-      <span class=n>upload_symbols_to_crashlytics</span><span class=p>(</span><span class=ss>dsym_path</span><span class=p>:</span> <span class=n>dsym_path</span><span class=p>)</span>
-      <span class=k>elsif</span> <span class=n>type</span><span class=o>.</span><span class=n>eql?</span><span class=p>(</span><span class=s1>&#39;beta&#39;</span><span class=p>)</span>
-        <span class=n>upload_to_testflight</span><span class=p>(</span><span class=ss>app_identifier</span><span class=p>:</span><span class=s2>&#34;com.GoToBus.app&#34;</span><span class=err>，</span><span class=ss>ipa</span><span class=p>:</span><span class=s2>&#34;outPut/GotoBus/GotoBus.ipa&#34;</span><span class=err>，</span> <span class=ss>skip_waiting_for_build_processing</span><span class=p>:</span> <span class=kp>true</span><span class=p>)</span>
-      <span class=k>end</span>
-</code></pre></div><p>上面是截取公司的一部分的代码，使用时取得 app id 和 app 的 target name。就可以针对不同的 target 进行打包。 上面代码中有个 option，这是一个可以供用户输入的东西，后面调用的时候可以使用</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>    sh <span class=s2>&#34;fastlane release type:&#39;release&#39; --env GotoBus&#34;</span>
-</code></pre></div><p>来调用这个这个 lane，option 得到的 type 类型时 release，或者还可以将 release 改成 beta 来打包测试版本的。</p>
-<p>最后还可以加上执行成功之后发送邮件或者 slack 消息进行通知。</p>
-<h2 id=more>More</h2>
-<p>fastlane 还可以执行测试，自动化截图，生成测试报告等等功能。还有官网上很多的 action，我们可以自定义组合这些东西来生成最适合自己的工作流。当然还可以结合 jekins 或者 Git lab 的 ci/cd 工具都是可行的，本质上通过调用 lane 来进行操作，这些我都进行尝试过。行文比较粗糙。如果对于文章中存在什么问题或者疑问，可以发邮件来和我进行讨论。</p>
-</section>
-<footer class=article-footer>
-<section class=article-tags>
-<a href=/tags/ios/>iOS</a>
-</section>
-<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
-<span>Licensed under CC BY-NC-SA 4.0</span>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
-<div class="flex article-list--tile">
-<article class=has-image>
-<a href=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/>
-<div class=article-image>
-<img src=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location.f9081d31606c3167b99e20f35f5c45b8_hu7358e48ec7fab56fb014470e607bbef7_2070633_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 地理围栏检测" data-hash="md5-+QgdMWBsMWe5niDzX1xFuA==">
-</div>
-<div class=article-details>
-<h2 class=article-title>iOS 地理围栏检测</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/>
-<div class=article-image>
-<img src=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.02bedbea798127d998225a1071d112f4_hudab19c6e24862988c05d34d65d6235f3_2517758_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 网络请求耗时统计" data-hash="md5-Ar7b6nmBJ9mYIloQcdES9A==">
-</div>
-<div class=article-details>
-<h2 class=article-title>iOS 网络请求耗时统计</h2>
-</div>
-</a>
-</article>
-<article>
-<a href=/posts/ios%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/>
-<div class=article-details>
-<h2 class=article-title>iOS 开发学习</h2>
-</div>
-</a>
-</article>
-<article>
-<a href=/posts/ios%E5%9B%9B%E7%A7%8D%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/>
-<div class=article-details>
-<h2 class=article-title>iOS四种本地存储</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/posts/http-%E5%88%86%E4%BA%AB/>
-<div class=article-image>
-<img src=/posts/http-%E5%88%86%E4%BA%AB/http.795f402cf482b4d368f3a387e4a861d5_huf55f4c848f32680b02046e5b16dd77de_210597_250x150_fill_box_smart1_3.png width=250 height=150 loading=lazy alt="Featured image of post Http 不完全指南" data-hash="md5-eV9ALPSCtNNo86OH5Khh1Q==">
-</div>
-<div class=article-details>
-<h2 class=article-title>Http 不完全指南</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<div class=disqus-container>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//vae.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-<style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style>
-<script>window.addEventListener('onColorSchemeChange',a=>{DISQUS&&DISQUS.reset({reload:!0})})</script>
-<footer class=site-footer>
-<section class=copyright>
-&copy;
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="从远古iOS开发过来的开发人员都经历过一段痛苦的开发过程，被苹果的证书以及缓慢的打包上传速度所折磨，这几年兴起的devops使得外国一些大佬"><title>iOS 自动化打包发布</title><link rel=canonical href=https://vaezc.github.io/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/><link rel=stylesheet href=/scss/style.min.775dbd4fd34fda61c5273b4bc3415f7c9666414fb6c40aab164a7ded4397da98.css><meta property="og:title" content="iOS 自动化打包发布"><meta property="og:description" content="从远古iOS开发过来的开发人员都经历过一段痛苦的开发过程，被苹果的证书以及缓慢的打包上传速度所折磨，这几年兴起的devops使得外国一些大佬"><meta property="og:url" content="https://vaezc.github.io/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/"><meta property="og:site_name" content="摩卡的小窝"><meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="iOS"><meta property="article:published_time" content="2019-04-15T00:00:00+00:00"><meta property="article:modified_time" content="2019-04-15T00:00:00+00:00"><meta property="og:image" content="https://vaezc.github.io/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS.jpg"><meta name=twitter:site content="@xiaochangvae"><meta name=twitter:creator content="@xiaochangvae"><meta name=twitter:title content="iOS 自动化打包发布"><meta name=twitter:description content="从远古iOS开发过来的开发人员都经历过一段痛苦的开发过程，被苹果的证书以及缓慢的打包上传速度所折磨，这几年兴起的devops使得外国一些大佬"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://vaezc.github.io/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS.jpg"><link rel="shortcut icon" href=/favicons/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-XN03QWREHL"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XN03QWREHL",{anonymize_ip:!1})}</script></head><body class="article-page has-toc"><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex
+extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>返回</span></a></div><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/><img src=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS_hu1b1250c20efcffab4aa4d281da507795_1979685_800x0_resize_q75_box.jpg srcset="/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS_hu1b1250c20efcffab4aa4d281da507795_1979685_800x0_resize_q75_box.jpg 800w, /posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS_hu1b1250c20efcffab4aa4d281da507795_1979685_1600x0_resize_q75_box.jpg 1600w" width=800 height=1200 loading=lazy alt="Featured image of post iOS 自动化打包发布"></a></div><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>技术人生</a></header><h2 class=article-title><a href=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/>iOS 自动化打包发布</a></h2><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Apr 15, 2019</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 6 分钟</time></div></footer></div></header><section class=article-content><p>从远古<code>iOS</code>开发过来的开发人员都经历过一段痛苦的开发过程，被苹果的证书以及缓慢的打包上传速度所折磨，这几年兴起的<code>devops</code>使得外国一些大佬鼓捣出一些<code>iOS</code>的<code>ci cd</code>工具。各种脚本各显神通，不过今天我想说的是其中一个比较著名的工具 <strong>[fastlane]</strong>(<a class=link href=https://github.com/fastlane/fastlane target=_blank rel=noopener>https://github.com/fastlane/fastlane</a>) 。截止到目前为止<code>github</code>上面的<code>start</code>数目已经达到 <strong>24978</strong> 个。</p><p><figure><a href=https://ws2.sinaimg.cn/large/006tKfTcly1g1qnxk4gm4j30o708gdfy.jpg><img src=https://ws2.sinaimg.cn/large/006tKfTcly1g1qnxk4gm4j30o708gdfy.jpg loading=lazy></a></figure></p><h2 id=fastlane-是什么>fastlane 是什么</h2><blockquote><p><em>fastlane</em> is a tool for iOS and Android developers to automate tedious tasks like generating screenshots， dealing with provisioning profiles， and releasing your application.</p></blockquote><p>官网上是这样介绍的，帮助 iOS 和安卓开发者自动化操作一些任务比如说截图，管理证书或者发布应用。</p><h2 id=fastlane-如何用>fastlane 如何用</h2><p>按照官网的<code>doc</code>进行<a class=link href=https://docs.fastlane.tools/getting-started/ios/setup/ target=_blank rel=noopener>操作</a>。一共分为 3 个步骤：</p><h3 id=安装>安装</h3><p>首先安装 xcode 命令行工具：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>xcode-select --install
+</span></span></code></pre></div><p>接着使用<code>gem</code> 安装 <code>fastlane</code> 或者 使用<code>homebrew</code>也都行.(题外话说两句，gem 是<code>ruby</code>的包管理工具，由于<code>fastlane</code>是使用<code>ruby</code>来编写的一个工具，所以可以使用 gem 来安装。对于 iOS 开发中大名鼎鼎的<code>Cocoapods</code>也是使用<code>ruby</code>来编写的，我们安装是也是通过<code>gem</code>来安装的)。<code>homebrew</code> 家庭酒酿这个是用来喝酒的。。 大雾。<code>homebrew</code>是<code>Mac</code>里面的一个包管理工具，它使得我们脱离各种繁琐的环境配置，只需要输入命令安装，卸载，<code>brew</code>管理包都是存放在<code>/usr/local</code>下，通过软链接的形式来使用。</p><p><figure><a href=https://ws2.sinaimg.cn/large/006tKfTcly1g1qoca8ypuj30l40ac0uc.jpg><img src=https://ws2.sinaimg.cn/large/006tKfTcly1g1qoca8ypuj30l40ac0uc.jpg loading=lazy alt=homebrew></a><figcaption>homebrew</figcaption></figure></p><p>扯远了，使用下面的命令即可安装：</p><p>如果没有安装<code>homebrew</code> (<a class=link href=https://brew.sh/ target=_blank rel=noopener>https://brew.sh/</a>) 的去官网按照步骤安装即可：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># Using RubyGems</span>
+</span></span><span class=line><span class=cl>sudo gem install fastlane -NV
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Alternatively using Homebrew</span>
+</span></span><span class=line><span class=cl>brew cask install fastlane
+</span></span></code></pre></div><h3 id=使用>使用</h3><p>用命令行<code>cd</code>到工程目录下，使用命令初始化<code>fastlane init：</code></p><p><figure><a href=https://ws2.sinaimg.cn/large/006tNc79ly1g23a6ecb4tj30l40glgpc.jpg><img src=https://ws2.sinaimg.cn/large/006tNc79ly1g23a6ecb4tj30l40glgpc.jpg loading=lazy alt=步骤一></a><figcaption>步骤一</figcaption></figure></p><p>命令行会显示几种不同的自动化方式，我们选择上传<code>App store</code>的方式。结束之后的文件目录形式如下图：</p><p><figure><a href=https://ws2.sinaimg.cn/large/006tNc79ly1g23a5nid3pj30is0qeacs.jpg><img src=https://ws2.sinaimg.cn/large/006tNc79ly1g23a5nid3pj30is0qeacs.jpg loading=lazy alt=步骤二></a><figcaption>步骤二</figcaption></figure></p><p>可以看到文件夹中多了一个文件和一个文件夹，<code>gemfile</code> 这个文件很简单，类似于<code>iOS</code>工程的<code>Podfile</code>一样，里面存放的是<code>ruby</code>所需要的第三方库，我们看到里面的内容，可以看到填写的是<code>fastlane</code>。再看到文件夹，文件夹里面有两个文件，我们重点关注的是<code>fastfile</code>这个文件。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ruby data-lang=ruby><span class=line><span class=cl><span class=n>source</span> <span class=s2>&#34;https://rubygems.org&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>gem</span> <span class=s2>&#34;fastlane&#34;</span>
+</span></span></code></pre></div><h3 id=appfile>Appfile</h3><p><code>Appfile</code> 主要存储的是一些每一个<code>fastlane</code>脚本需要使用的通用信息，比如说 <code>Apple ID</code> 或者是 <code>APP</code> 的<code>Bundle Id</code>。更详细的配置可以参考官网的<a class=link href=https://docs.fastlane.tools/advanced/Appfile/#appfile target=_blank rel=noopener>doc</a>。</p><h3 id=fastfile>FastFile</h3><p>这里就是我们自定义脚本的地方，可以打开这个文件看到里面有了一段默认的代码：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ruby data-lang=ruby><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>default_platform</span><span class=p>(</span><span class=ss>:ios</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>platform</span> <span class=ss>:ios</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>  <span class=n>desc</span> <span class=s2>&#34;Description of what the lane does&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=n>lane</span> <span class=ss>:custom_lane</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>    <span class=c1># add actions here: https://docs.fastlane.tools/actions</span>
+</span></span><span class=line><span class=cl>  <span class=k>end</span>
+</span></span><span class=line><span class=cl><span class=k>end</span>
+</span></span></code></pre></div><p>这里的语言使用的是<code>ruby</code> 语言，不太了解的可以看看<code>ruby</code>的语法，也挺简单的。我这里简单的说一下。<code>default_platform(:ios)</code>调用一个函数设置默认的平台<code>iOS</code>。后面针对<code>iOS</code>的平台来写脚本，<code>lane</code> 是定义一个模块的意思，我们自定义的每个不同的操作都可以用<code>lane</code>来表示。</p><p><code>fastlane</code>里面有很多已经被人写好的<a class=link href=https://docs.fastlane.tools/actions/ target=_blank rel=noopener><code>action</code></a>，<code>aciton</code>就是类似于一段别人写好的函数，我们可以在我们自定义的<code>lane</code>中调用。在官方的 doc 中已经有很多 action 了，测试，构建，截图，打包，证书管理，上传到 App Store 等等。</p><p>这里我自己写了个测试的 lane，没有做测试，仅供参考，让读者大概知道这么个意思就行，具体的还是需要根据自己的实际需求进行测试和验证。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ruby data-lang=ruby><span class=line><span class=cl>  <span class=n>lane</span> <span class=ss>:releaseDemo</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>    <span class=n>app_identifier</span> <span class=o>=</span> <span class=s2>&#34;demo.com&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>cocoapods</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>get_certificates</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>      <span class=ss>app_identifier</span><span class=p>:</span><span class=n>app_identifier</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>get_provisioning_profile</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>      <span class=ss>app_identifier</span><span class=p>:</span><span class=n>app_identifier</span>
+</span></span><span class=line><span class=cl>    <span class=err>）</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>build_app</span><span class=p>(</span><span class=ss>workspace</span><span class=p>:</span> <span class=s2>&#34;Project.xcworkspace&#34;</span><span class=err>，</span> <span class=ss>scheme</span><span class=p>:</span> <span class=s2>&#34;test&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>upload_to_app_store</span><span class=p>(</span><span class=ss>app_identifier</span><span class=p>:</span><span class=n>app_identifier</span><span class=err>，</span><span class=ss>skip_metadata</span><span class=p>:</span> <span class=kp>true</span><span class=err>，</span><span class=ss>skip_screenshots</span><span class=p>:</span><span class=kp>true</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=k>end</span>
+</span></span></code></pre></div><p>从第一行代码来看，顾名思义，这一行对下面这个 lane 的描述。这些描述在执行命令之后 fastlane 都会为用户生成一个 md 的文档，文档中显示着每个 lane 的执行方式和描述。接下来的代码使用 lane 来定义一个操作，<code>releaseDemo</code> 是这个 lane 的名称，<code>fastlane</code>定义了很多的<code>action</code>，这些我们都可以直接拿来组合使用，这和调用 api 差不多，具体的参数可以查询官方文档也可以使用命令行来查询。</p><ol><li><code>cocoapods</code> 这个<code>action</code> 是将当前的工程执行<code>pod install</code>命令，<code>podfile</code>默认在当前工程目录下寻找，如果说不是则需要自己指定<code>podfle</code>文件路径。</li><li><code>get_certificates</code> 是获取证书的，<code>app_identifier</code>参数 是<code>app</code>的<code>bundle id</code>。</li><li><code>get_provisioning_profile</code> 是获取 <code>provisioning_profile</code>的。</li><li><code>build_app</code> 是用来构建<code>app</code>的，<code>workspace</code> 参数指定<code>xcworkspace</code>文件，<code>scheme</code>指定工程的<code>target</code>。</li><li><code>upload_to_app_store</code> 上传构建出<code>ipa</code>文件到<code>APP store</code>，<code>skip_metadata</code>设置为<code>true</code>这个参数是用来跳过元数据的，<code>skip_screenshots</code> 设置为<code>true</code> 用来跳过上传截图。</li></ol><p>关于上述的<code>skip_metadata</code>和 <code>skip_screenshots</code>这两个参数有的读者会比较疑惑，其实 <code>upload_to_app_store</code> 这个<code>action</code>有个别名叫<a class=link href=https://docs.fastlane.tools/actions/deliver/ target=_blank rel=noopener><code>deliver</code></a>，这个<code>action</code>可以上<code>ipa</code> 还有 <code>APP store connect</code> 中需要的元数据和截图。在这里我并没有使用这个功能。在下面会讲到。</p><p>上述的 lane 写好之后我们就可以保存，在工程目录下执行</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>fastlane releaseDemo
+</span></span></code></pre></div><p>就可以看到项目按照我们上面所定义的步骤开始自动化操作了。</p><h3 id=deliver>deliver</h3><p>我们在工程目录下面使用命令行执行</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>fastlane deliver init
+</span></span></code></pre></div><p>根据提示输入<code>Apple ID</code> 和 <code>Bundle Identifier</code> ，我们就得到了两个新的文件夹和一个文件.</p><p><figure><a href=https://ws3.sinaimg.cn/large/006tNc79ly1g23bvyuqikj30qr0rndk7.jpg><img src=https://ws3.sinaimg.cn/large/006tNc79ly1g23bvyuqikj30qr0rndk7.jpg loading=lazy alt=文件夹></a><figcaption>文件夹</figcaption></figure></p><p><code>Deliverfile</code> 可以在文件中对上传到 <code>App Store</code> 的过程中的操作进行一些配置，比如说设置语言，针对不同的语言来设置不同的元数据。</p><p><code>metadata</code> 里面存放的就是<code>App Store Connect</code> 中存放关于<code>app</code>的元数据，当执行 <code>fastlane deliver init</code> 时 这些信息都会从线上下载到本地，包括截图。当我们需要使用 deliver 的功能来上传截图或者修改元数据时，只需要修改这里面对应的文件即可。</p><h3 id=多-target-打包>多 target 打包</h3><p>想必现在的工程肯定存在多 target。使用的时候就需要建立几个不同的环境配置文件，这种文件是以.env.targetName 这种形式来命名的。下面是公司现在的项目的配置文件的截图。</p><p><figure><a href=https://ws1.sinaimg.cn/large/006tNc79ly1g23cdb411aj30cx0c6jsr.jpg><img src=https://ws1.sinaimg.cn/large/006tNc79ly1g23cdb411aj30cx0c6jsr.jpg loading=lazy alt=配置文件></a><figcaption>配置文件</figcaption></figure></p><p>在里面设置针对不同 target 所需要的不同配置进行填写。</p><p>再到 fastfile 中进行使用。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ruby data-lang=ruby><span class=line><span class=cl>  <span class=n>lane</span> <span class=ss>:release</span> <span class=k>do</span> <span class=o>|</span><span class=n>options</span><span class=o>|</span>
+</span></span><span class=line><span class=cl>  <span class=n>app_identifier</span> <span class=o>=</span> <span class=no>ENV</span><span class=o>[</span><span class=s1>&#39;app_identifier&#39;</span><span class=o>]</span>
+</span></span><span class=line><span class=cl>  <span class=n>scheme</span> <span class=o>=</span> <span class=no>ENV</span><span class=o>[</span><span class=s1>&#39;scheme&#39;</span><span class=o>]</span>
+</span></span><span class=line><span class=cl>  <span class=n>type</span> <span class=o>=</span> <span class=n>options</span><span class=o>[</span><span class=ss>:type</span><span class=o>]</span>
+</span></span><span class=line><span class=cl> <span class=k>if</span> <span class=n>type</span><span class=o>.</span><span class=n>eql?</span><span class=p>(</span><span class=s1>&#39;release&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#上传到app store</span>
+</span></span><span class=line><span class=cl>   <span class=n>upload_to_app_store</span><span class=p>(</span><span class=ss>app_identifier</span><span class=p>:</span><span class=n>app_identifier</span><span class=err>，</span><span class=ss>ipa</span><span class=p>:</span><span class=n>ipa_path</span><span class=err>，</span> <span class=ss>skip_metadata</span><span class=p>:</span> <span class=kp>true</span><span class=err>，</span><span class=ss>skip_screenshots</span><span class=p>:</span><span class=kp>true</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#上传dsym到 fabric</span>
+</span></span><span class=line><span class=cl>      <span class=n>upload_symbols_to_crashlytics</span><span class=p>(</span><span class=ss>dsym_path</span><span class=p>:</span> <span class=n>dsym_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=k>elsif</span> <span class=n>type</span><span class=o>.</span><span class=n>eql?</span><span class=p>(</span><span class=s1>&#39;beta&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>upload_to_testflight</span><span class=p>(</span><span class=ss>app_identifier</span><span class=p>:</span><span class=s2>&#34;com.GoToBus.app&#34;</span><span class=err>，</span><span class=ss>ipa</span><span class=p>:</span><span class=s2>&#34;outPut/GotoBus/GotoBus.ipa&#34;</span><span class=err>，</span> <span class=ss>skip_waiting_for_build_processing</span><span class=p>:</span> <span class=kp>true</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=k>end</span>
+</span></span></code></pre></div><p>上面是截取公司的一部分的代码，使用时取得 app id 和 app 的 target name。就可以针对不同的 target 进行打包。 上面代码中有个 option，这是一个可以供用户输入的东西，后面调用的时候可以使用</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>    sh <span class=s2>&#34;fastlane release type:&#39;release&#39; --env GotoBus&#34;</span>
+</span></span></code></pre></div><p>来调用这个这个 lane，option 得到的 type 类型时 release，或者还可以将 release 改成 beta 来打包测试版本的。</p><p>最后还可以加上执行成功之后发送邮件或者 slack 消息进行通知。</p><h2 id=more>More</h2><p>fastlane 还可以执行测试，自动化截图，生成测试报告等等功能。还有官网上很多的 action，我们可以自定义组合这些东西来生成最适合自己的工作流。当然还可以结合 jekins 或者 Git lab 的 ci/cd 工具都是可行的，本质上通过调用 lane 来进行操作，这些我都进行尝试过。行文比较粗糙。如果对于文章中存在什么问题或者疑问，可以发邮件来和我进行讨论。</p></section><footer class=article-footer><section class=article-tags><a href=/tags/ios/>iOS</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>相关文章</h2><div class=related-contents><div class="flex article-list--tile"><article class=has-image><a href=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/><div class=article-image><img src=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location.f9081d31606c3167b99e20f35f5c45b8_hu7358e48ec7fab56fb014470e607bbef7_2070633_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 地理围栏检测" data-hash="md5-+QgdMWBsMWe5niDzX1xFuA=="></div><div class=article-details><h2 class=article-title>iOS 地理围栏检测</h2></div></a></article><article class=has-image><a href=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/><div class=article-image><img src=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.02bedbea798127d998225a1071d112f4_hudab19c6e24862988c05d34d65d6235f3_2517758_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 网络请求耗时统计" data-hash="md5-Ar7b6nmBJ9mYIloQcdES9A=="></div><div class=article-details><h2 class=article-title>iOS 网络请求耗时统计</h2></div></a></article><article><a href=/posts/ios%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/><div class=article-details><h2 class=article-title>iOS 开发学习</h2></div></a></article><article><a href=/posts/ios%E5%9B%9B%E7%A7%8D%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/><div class=article-details><h2 class=article-title>iOS四种本地存储</h2></div></a></article><article class=has-image><a href=/posts/http-%E5%88%86%E4%BA%AB/><div class=article-image><img src=/posts/http-%E5%88%86%E4%BA%AB/http.795f402cf482b4d368f3a387e4a861d5_huf55f4c848f32680b02046e5b16dd77de_210597_250x150_fill_box_smart1_3.png width=250 height=150 loading=lazy alt="Featured image of post Http 不完全指南" data-hash="md5-eV9ALPSCtNNo86OH5Khh1Q=="></div><div class=article-details><h2 class=article-title>Http 不完全指南</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//vae.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{DISQUS&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
 2020 -
-2022 摩卡的小窝
-</section>
-<section class=powerby>
-Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.6.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
-<div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
-<div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2022 摩卡的小窝</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.6.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-<div class=pswp__preloader>
-<div class=pswp__preloader__icn>
-<div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-</button>
-<div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
-<section class="widget archives">
-<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
-<nav id=TableOfContents>
-<ol>
-<li><a href=#fastlane-是什么>fastlane 是什么</a></li>
-<li><a href=#fastlane-如何用>fastlane 如何用</a>
-<ol>
-<li><a href=#安装>安装</a></li>
-<li><a href=#使用>使用</a></li>
-<li><a href=#appfile>Appfile</a></li>
-<li><a href=#fastfile>FastFile</a></li>
-<li><a href=#deliver>deliver</a></li>
-<li><a href=#多-target-打包>多 target 打包</a></li>
-</ol>
-</li>
-<li><a href=#more>More</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#fastlane-是什么>fastlane 是什么</a></li><li><a href=#fastlane-如何用>fastlane 如何用</a><ol><li><a href=#安装>安装</a></li><li><a href=#使用>使用</a></li><li><a href=#appfile>Appfile</a></li><li><a href=#fastfile>FastFile</a></li><li><a href=#deliver>deliver</a></li><li><a href=#多-target-打包>多 target 打包</a></li></ol></li><li><a href=#more>More</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

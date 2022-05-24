@@ -1,314 +1,45 @@
-<!doctype html><html lang=en-us>
-<head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="概念 在这一篇文章中我主要把工作中碰到的 devops 的问题记录下来，公司现有采用的是用 git 来管理代码，所以顺理成章的使用了 gitlab 来做公司的仓库管理。所以对于放"><title>Gitlab Devops</title>
-<link rel=canonical href=https://vaezc.github.io/posts/gitlab-devops/>
-<link rel=stylesheet href=/scss/style.min.775dbd4fd34fda61c5273b4bc3415f7c9666414fb6c40aab164a7ded4397da98.css><meta property="og:title" content="Gitlab Devops">
-<meta property="og:description" content="概念 在这一篇文章中我主要把工作中碰到的 devops 的问题记录下来，公司现有采用的是用 git 来管理代码，所以顺理成章的使用了 gitlab 来做公司的仓库管理。所以对于放">
-<meta property="og:url" content="https://vaezc.github.io/posts/gitlab-devops/">
-<meta property="og:site_name" content="摩卡的小窝">
-<meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="Devops"><meta property="article:published_time" content="2019-11-19T00:00:00+00:00"><meta property="article:modified_time" content="2019-11-19T00:00:00+00:00"><meta property="og:image" content="https://vaezc.github.io/posts/gitlab-devops/gitlab.jpg">
-<meta name=twitter:site content="@xiaochangvae">
-<meta name=twitter:creator content="@xiaochangvae"><meta name=twitter:title content="Gitlab Devops">
-<meta name=twitter:description content="概念 在这一篇文章中我主要把工作中碰到的 devops 的问题记录下来，公司现有采用的是用 git 来管理代码，所以顺理成章的使用了 gitlab 来做公司的仓库管理。所以对于放"><meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://vaezc.github.io/posts/gitlab-devops/gitlab.jpg">
-<link rel="shortcut icon" href=/favicons/favicon.ico>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XN03QWREHL"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-XN03QWREHL',{anonymize_ip:!1})}</script>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
-<div class="container main-container flex
-extended">
-<div id=article-toolbar>
-<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
-<span>返回</span>
-</a>
-</div>
-<main class="main full-width">
-<article class="has-image main-article">
-<header class=article-header>
-<div class=article-image>
-<a href=/posts/gitlab-devops/>
-<img src=/posts/gitlab-devops/gitlab_hu3b5b7c0939bce5576518b366a3c5026d_1922109_800x0_resize_q75_box.jpg srcset="/posts/gitlab-devops/gitlab_hu3b5b7c0939bce5576518b366a3c5026d_1922109_800x0_resize_q75_box.jpg 800w, /posts/gitlab-devops/gitlab_hu3b5b7c0939bce5576518b366a3c5026d_1922109_1600x0_resize_q75_box.jpg 1600w" width=800 height=533 loading=lazy alt="Featured image of post Gitlab Devops">
-</a>
-</div>
-<div class=article-details>
-<header class=article-category>
-<a href=/categories/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>
-技术人生
-</a>
-</header>
-<h2 class=article-title>
-<a href=/posts/gitlab-devops/>Gitlab Devops</a>
-</h2>
-<footer class=article-time>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>Nov 19, 2019</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>
-阅读时长: 3 分钟
-</time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<h2 id=概念>概念</h2>
-<p>在这一篇文章中我主要把工作中碰到的 devops 的问题记录下来，公司现有采用的是用 git 来管理代码，所以顺理成章的使用了 gitlab 来做公司的仓库管理。所以对于放代码的流程，我这里使用了 gitlab 自带的 ci cd 工具来做，但是大体上使用任何其他工具都是差不多的，思维上都是相通的。</p>
-<h3 id=什么是-ci-cd>什么是 ci cd？</h3>
-<p>对于这个话题，网上有很多的讨论，这里我仅仅是根据我工作中碰到的问题做一个简单的总结。
-Ci 全称是持续集成，因为每个项目可能是由很多的小的模块组成的，而我们做的开发任务是把大的任务给分解掉来做小的任务开发。对于这一个理念在 git_flow 上面具体的体现就是使用分支来管理，每一次有一个新的需求过来的时候，我们都会从 dev 分支上面来开一个新的特性分支。当新的特性分支我们做好之后就会对这个分支进行测试，就需要把分支上的改动和现有系统集成起来，这个操作就可以交给自动化集成来做了。</p>
-<p>至于 cd 的话全称是 持续交付，简单理解就是我们做的东西需要放在服务器上或者是交付给用户使用，这个过程往往涉及到编译打包部署这些过程，这些重复性的工作就可以交给 cd 来做。</p>
-<h3 id=gitlab-的-ci-cd>gitlab 的 ci cd</h3>
-<p>Gitlab 提供了 ci 和 cd 的服务。具体的步骤可以大概分为以下几个步骤。</p>
-<ol>
-<li>服务器中注册 runner</li>
-<li>Runner 中添加指定项目，每个项目都有个 token</li>
-<li>在工程目录下建立.gitlab.yml 文件，按照语法编写自动化流程</li>
-<li>推送这个文件，runner 会自动读取这个文件，执行自动化。</li>
-<li>每一次推送代码都会触发自动化流程。</li>
-</ol>
-<h4 id=基本的-ci-cd-流程>基本的 ci cd 流程</h4>
-<p><figure>
-<a href=https://tva1.sinaimg.cn/large/006y8mN6ly1g9dux2owfjj31i60u0dhg.jpg>
-<img src=https://tva1.sinaimg.cn/large/006y8mN6ly1g9dux2owfjj31i60u0dhg.jpg loading=lazy alt="gitlab 定义的自动化流程">
-</a>
-<figcaption>gitlab 定义的自动化流程</figcaption>
-</figure></p>
-<ol>
-<li>本地开发建立新的功能分支</li>
-<li>推送代码变更</li>
-<li>自动构建和测试</li>
-<li>修复问题推送代码</li>
-<li>自动构建和自动测试</li>
-<li>部署测试环境</li>
-<li>review 和 提交 mr</li>
-<li>同意合并</li>
-<li>自动构建，测试， 部署到生产环境</li>
-</ol>
-<h4 id=深层次的-ci-cd-流程>深层次的 ci cd 流程</h4>
-<p><figure>
-<a href=https://tva1.sinaimg.cn/large/006y8mN6ly1g9duxsr9j5j31b00tojt8.jpg>
-<img src=https://tva1.sinaimg.cn/large/006y8mN6ly1g9duxsr9j5j31b00tojt8.jpg loading=lazy alt=深层次的流程>
-</a>
-<figcaption>深层次的流程</figcaption>
-</figure></p>
-<h3 id=caching>Caching</h3>
-<p>缓存，在做 gitlab 中有几个概念提前了解一下，对于后面编写自动化流程上还是很有好处的。</p>
-<h4 id=cache>cache</h4>
-<p>在自动化集成过程中，每次都要重新安装第三方库依赖，可以通过使用 cache 将安装的依赖库文件缓存起来，避免了每次下载。</p>
-<h4 id=artifacts>artifacts</h4>
-<p>Artifacts 也是一种 cache，不同的是它是构建之后的产物的缓存，不是依赖的。比如我们每次要将前端工程打包之后产生 dist 文件。可以将 dist 文件缓存起来，方便之后去还原。设置了 artifacts 之后 web gui 里就会显示下载 artifacts 的选项。</p>
-<h3 id=stage-vs-job-vs-pipelines>stage vs job vs pipelines</h3>
-<p>总的来说 pipelines 就是流水线的意思，每个流水线中都是按照 stage 的顺序来执行的，stage 中可以定义多个 job，每个 job 之间都是并行的，而 stage 之间是串行的。只有当前的 stage 执行完毕才会执行下一个 stage。</p>
-<p>下面是一个最基础的 yaml 文件模版。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>node:&lt;版本号&gt;</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span>- <span class=l>mongo:&lt;版本&gt;</span><span class=w>
-</span><span class=w>    </span>- <span class=l>redis:&lt;版本号&gt;</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>cache</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>&lt;KEY&gt;</span><span class=w>
-</span><span class=w>    </span><span class=nt>paths</span><span class=p>:</span><span class=w>
-</span><span class=w>        </span>- <span class=l>&lt;需要缓存的路径&gt;</span><span class=w>
-</span><span class=w>        </span>- <span class=l>node_modules</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>before_script</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span>- <span class=l>&lt;执行job之前的命令&gt;</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>after_script</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span>- <span class=l>&lt;build完之后运行的命令&gt;</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>stages</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span>- <span class=l>test</span><span class=w>
-</span><span class=w>    </span>- <span class=l>build</span><span class=w>
-</span><span class=w>    </span>- <span class=l>deploy</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>&lt;job_name&gt;</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span><span class=nt>script</span><span class=p>:</span><span class=w>
-</span><span class=w>        </span>- <span class=l>&lt;job执行的指令或脚本&gt;</span><span class=w>
-</span><span class=w>    </span><span class=nt>tags</span><span class=p>:</span><span class=w>
-</span><span class=w>        </span>- <span class=l>ssr</span><span class=w>
-</span><span class=w>    </span><span class=l>only：</span><span class=w>
-</span><span class=w>        </span>- <span class=l>&lt;只应用在某个分支&gt;</span><span class=w>
-</span><span class=w>    </span><span class=nt>except</span><span class=p>:</span><span class=w>
-</span><span class=w>        </span>- <span class=l>&lt;不应用到某个分支&gt;</span><span class=w>
-</span><span class=w>    </span><span class=nt>variables</span><span class=p>:</span><span class=w>
-</span><span class=w>
-</span></code></pre></div><p>上面例子中还有几个东西值得说下：</p>
-<ul>
-<li>tag 指的是你在 gitlabrunner 上面所注册的 tag 名，也就是这个自动化是使用那台机器去执行。</li>
-<li>before_script 指的是在每个 job 执行前所执行的命令</li>
-<li>after_script 指的是每个 job 执行后所执行的命令</li>
-</ul>
-<h2 id=完整的流程>完整的流程</h2>
-<p><figure>
-<a href=https://tva1.sinaimg.cn/large/006y8mN6ly1g9dy6oiatsj30pv0493ye.jpg>
-<img src=https://tva1.sinaimg.cn/large/006y8mN6ly1g9dy6oiatsj30pv0493ye.jpg loading=lazy alt=完整的流程>
-</a>
-<figcaption>完整的流程</figcaption>
-</figure>
-上图算是一个完整的流程了，包含 build，测试，预生产，生产。
-按照现在项目的复杂程度只是用到了上述将的，还有些东西会在后面继续补充。</p>
-<p>说到最后，最好自己能动手操作一下，真正部署一遍，这样更好能理解到每个配置的作用。</p>
-<h1 id=引用>引用</h1>
-<p><a class=link href=https://docs.gitlab.com/runner/ target=_blank rel=noopener>gitlab 文档</a></p>
-</section>
-<footer class=article-footer>
-<section class=article-tags>
-<a href=/tags/devops/>Devops</a>
-</section>
-<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
-<span>Licensed under CC BY-NC-SA 4.0</span>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
-<div class="flex article-list--tile">
-<article class=has-image>
-<a href=/posts/http-%E5%88%86%E4%BA%AB/>
-<div class=article-image>
-<img src=/posts/http-%E5%88%86%E4%BA%AB/http.795f402cf482b4d368f3a387e4a861d5_huf55f4c848f32680b02046e5b16dd77de_210597_250x150_fill_box_smart1_3.png width=250 height=150 loading=lazy alt="Featured image of post Http 不完全指南" data-hash="md5-eV9ALPSCtNNo86OH5Khh1Q==">
-</div>
-<div class=article-details>
-<h2 class=article-title>Http 不完全指南</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/>
-<div class=article-image>
-<img src=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location.f9081d31606c3167b99e20f35f5c45b8_hu7358e48ec7fab56fb014470e607bbef7_2070633_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 地理围栏检测" data-hash="md5-+QgdMWBsMWe5niDzX1xFuA==">
-</div>
-<div class=article-details>
-<h2 class=article-title>iOS 地理围栏检测</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/>
-<div class=article-image>
-<img src=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS.00d7ed117accc12ab2c99bcadc3e8c35_hu1b1250c20efcffab4aa4d281da507795_1979685_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 自动化打包发布" data-hash="md5-ANftEXrMwSqyyZvK3D6MNQ==">
-</div>
-<div class=article-details>
-<h2 class=article-title>iOS 自动化打包发布</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/>
-<div class=article-image>
-<img src=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.02bedbea798127d998225a1071d112f4_hudab19c6e24862988c05d34d65d6235f3_2517758_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 网络请求耗时统计" data-hash="md5-Ar7b6nmBJ9mYIloQcdES9A==">
-</div>
-<div class=article-details>
-<h2 class=article-title>iOS 网络请求耗时统计</h2>
-</div>
-</a>
-</article>
-<article>
-<a href=/posts/ios%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/>
-<div class=article-details>
-<h2 class=article-title>iOS 开发学习</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<div class=disqus-container>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//vae.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-<style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style>
-<script>window.addEventListener('onColorSchemeChange',a=>{DISQUS&&DISQUS.reset({reload:!0})})</script>
-<footer class=site-footer>
-<section class=copyright>
-&copy;
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="概念 在这一篇文章中我主要把工作中碰到的 devops 的问题记录下来，公司现有采用的是用 git 来管理代码，所以顺理成章的使用了 gitlab 来做公司的仓库管理。所以对于放"><title>Gitlab Devops</title><link rel=canonical href=https://vaezc.github.io/posts/gitlab-devops/><link rel=stylesheet href=/scss/style.min.775dbd4fd34fda61c5273b4bc3415f7c9666414fb6c40aab164a7ded4397da98.css><meta property="og:title" content="Gitlab Devops"><meta property="og:description" content="概念 在这一篇文章中我主要把工作中碰到的 devops 的问题记录下来，公司现有采用的是用 git 来管理代码，所以顺理成章的使用了 gitlab 来做公司的仓库管理。所以对于放"><meta property="og:url" content="https://vaezc.github.io/posts/gitlab-devops/"><meta property="og:site_name" content="摩卡的小窝"><meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="Devops"><meta property="article:published_time" content="2019-11-19T00:00:00+00:00"><meta property="article:modified_time" content="2019-11-19T00:00:00+00:00"><meta property="og:image" content="https://vaezc.github.io/posts/gitlab-devops/gitlab.jpg"><meta name=twitter:site content="@xiaochangvae"><meta name=twitter:creator content="@xiaochangvae"><meta name=twitter:title content="Gitlab Devops"><meta name=twitter:description content="概念 在这一篇文章中我主要把工作中碰到的 devops 的问题记录下来，公司现有采用的是用 git 来管理代码，所以顺理成章的使用了 gitlab 来做公司的仓库管理。所以对于放"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://vaezc.github.io/posts/gitlab-devops/gitlab.jpg"><link rel="shortcut icon" href=/favicons/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-XN03QWREHL"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XN03QWREHL",{anonymize_ip:!1})}</script></head><body class="article-page has-toc"><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex
+extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>返回</span></a></div><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/posts/gitlab-devops/><img src=/posts/gitlab-devops/gitlab_hu3b5b7c0939bce5576518b366a3c5026d_1922109_800x0_resize_q75_box.jpg srcset="/posts/gitlab-devops/gitlab_hu3b5b7c0939bce5576518b366a3c5026d_1922109_800x0_resize_q75_box.jpg 800w, /posts/gitlab-devops/gitlab_hu3b5b7c0939bce5576518b366a3c5026d_1922109_1600x0_resize_q75_box.jpg 1600w" width=800 height=533 loading=lazy alt="Featured image of post Gitlab Devops"></a></div><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>技术人生</a></header><h2 class=article-title><a href=/posts/gitlab-devops/>Gitlab Devops</a></h2><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Nov 19, 2019</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 3 分钟</time></div></footer></div></header><section class=article-content><h2 id=概念>概念</h2><p>在这一篇文章中我主要把工作中碰到的 devops 的问题记录下来，公司现有采用的是用 git 来管理代码，所以顺理成章的使用了 gitlab 来做公司的仓库管理。所以对于放代码的流程，我这里使用了 gitlab 自带的 ci cd 工具来做，但是大体上使用任何其他工具都是差不多的，思维上都是相通的。</p><h3 id=什么是-ci-cd>什么是 ci cd？</h3><p>对于这个话题，网上有很多的讨论，这里我仅仅是根据我工作中碰到的问题做一个简单的总结。
+Ci 全称是持续集成，因为每个项目可能是由很多的小的模块组成的，而我们做的开发任务是把大的任务给分解掉来做小的任务开发。对于这一个理念在 git_flow 上面具体的体现就是使用分支来管理，每一次有一个新的需求过来的时候，我们都会从 dev 分支上面来开一个新的特性分支。当新的特性分支我们做好之后就会对这个分支进行测试，就需要把分支上的改动和现有系统集成起来，这个操作就可以交给自动化集成来做了。</p><p>至于 cd 的话全称是 持续交付，简单理解就是我们做的东西需要放在服务器上或者是交付给用户使用，这个过程往往涉及到编译打包部署这些过程，这些重复性的工作就可以交给 cd 来做。</p><h3 id=gitlab-的-ci-cd>gitlab 的 ci cd</h3><p>Gitlab 提供了 ci 和 cd 的服务。具体的步骤可以大概分为以下几个步骤。</p><ol><li>服务器中注册 runner</li><li>Runner 中添加指定项目，每个项目都有个 token</li><li>在工程目录下建立.gitlab.yml 文件，按照语法编写自动化流程</li><li>推送这个文件，runner 会自动读取这个文件，执行自动化。</li><li>每一次推送代码都会触发自动化流程。</li></ol><h4 id=基本的-ci-cd-流程>基本的 ci cd 流程</h4><p><figure><a href=https://tva1.sinaimg.cn/large/006y8mN6ly1g9dux2owfjj31i60u0dhg.jpg><img src=https://tva1.sinaimg.cn/large/006y8mN6ly1g9dux2owfjj31i60u0dhg.jpg loading=lazy alt="gitlab 定义的自动化流程"></a><figcaption>gitlab 定义的自动化流程</figcaption></figure></p><ol><li>本地开发建立新的功能分支</li><li>推送代码变更</li><li>自动构建和测试</li><li>修复问题推送代码</li><li>自动构建和自动测试</li><li>部署测试环境</li><li>review 和 提交 mr</li><li>同意合并</li><li>自动构建，测试， 部署到生产环境</li></ol><h4 id=深层次的-ci-cd-流程>深层次的 ci cd 流程</h4><p><figure><a href=https://tva1.sinaimg.cn/large/006y8mN6ly1g9duxsr9j5j31b00tojt8.jpg><img src=https://tva1.sinaimg.cn/large/006y8mN6ly1g9duxsr9j5j31b00tojt8.jpg loading=lazy alt=深层次的流程></a><figcaption>深层次的流程</figcaption></figure></p><h3 id=caching>Caching</h3><p>缓存，在做 gitlab 中有几个概念提前了解一下，对于后面编写自动化流程上还是很有好处的。</p><h4 id=cache>cache</h4><p>在自动化集成过程中，每次都要重新安装第三方库依赖，可以通过使用 cache 将安装的依赖库文件缓存起来，避免了每次下载。</p><h4 id=artifacts>artifacts</h4><p>Artifacts 也是一种 cache，不同的是它是构建之后的产物的缓存，不是依赖的。比如我们每次要将前端工程打包之后产生 dist 文件。可以将 dist 文件缓存起来，方便之后去还原。设置了 artifacts 之后 web gui 里就会显示下载 artifacts 的选项。</p><h3 id=stage-vs-job-vs-pipelines>stage vs job vs pipelines</h3><p>总的来说 pipelines 就是流水线的意思，每个流水线中都是按照 stage 的顺序来执行的，stage 中可以定义多个 job，每个 job 之间都是并行的，而 stage 之间是串行的。只有当前的 stage 执行完毕才会执行下一个 stage。</p><p>下面是一个最基础的 yaml 文件模版。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>node:&lt;版本号&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>mongo:&lt;版本&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>redis:&lt;版本号&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>cache</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>&lt;KEY&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>paths</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>&lt;需要缓存的路径&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>node_modules</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>before_script</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>&lt;执行job之前的命令&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>after_script</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>&lt;build完之后运行的命令&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>stages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>deploy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>&lt;job_name&gt;</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>script</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>&lt;job执行的指令或脚本&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>tags</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>ssr</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>only：</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>&lt;只应用在某个分支&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>except</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>&lt;不应用到某个分支&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>variables</span><span class=p>:</span><span class=w>
+</span></span></span></code></pre></div><p>上面例子中还有几个东西值得说下：</p><ul><li>tag 指的是你在 gitlabrunner 上面所注册的 tag 名，也就是这个自动化是使用那台机器去执行。</li><li>before_script 指的是在每个 job 执行前所执行的命令</li><li>after_script 指的是每个 job 执行后所执行的命令</li></ul><h2 id=完整的流程>完整的流程</h2><p><figure><a href=https://tva1.sinaimg.cn/large/006y8mN6ly1g9dy6oiatsj30pv0493ye.jpg><img src=https://tva1.sinaimg.cn/large/006y8mN6ly1g9dy6oiatsj30pv0493ye.jpg loading=lazy alt=完整的流程></a><figcaption>完整的流程</figcaption></figure>上图算是一个完整的流程了，包含 build，测试，预生产，生产。
+按照现在项目的复杂程度只是用到了上述将的，还有些东西会在后面继续补充。</p><p>说到最后，最好自己能动手操作一下，真正部署一遍，这样更好能理解到每个配置的作用。</p><h1 id=引用>引用</h1><p><a class=link href=https://docs.gitlab.com/runner/ target=_blank rel=noopener>gitlab 文档</a></p></section><footer class=article-footer><section class=article-tags><a href=/tags/devops/>Devops</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>相关文章</h2><div class=related-contents><div class="flex article-list--tile"><article class=has-image><a href=/posts/http-%E5%88%86%E4%BA%AB/><div class=article-image><img src=/posts/http-%E5%88%86%E4%BA%AB/http.795f402cf482b4d368f3a387e4a861d5_huf55f4c848f32680b02046e5b16dd77de_210597_250x150_fill_box_smart1_3.png width=250 height=150 loading=lazy alt="Featured image of post Http 不完全指南" data-hash="md5-eV9ALPSCtNNo86OH5Khh1Q=="></div><div class=article-details><h2 class=article-title>Http 不完全指南</h2></div></a></article><article class=has-image><a href=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/><div class=article-image><img src=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location.f9081d31606c3167b99e20f35f5c45b8_hu7358e48ec7fab56fb014470e607bbef7_2070633_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 地理围栏检测" data-hash="md5-+QgdMWBsMWe5niDzX1xFuA=="></div><div class=article-details><h2 class=article-title>iOS 地理围栏检测</h2></div></a></article><article class=has-image><a href=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/><div class=article-image><img src=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS.00d7ed117accc12ab2c99bcadc3e8c35_hu1b1250c20efcffab4aa4d281da507795_1979685_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 自动化打包发布" data-hash="md5-ANftEXrMwSqyyZvK3D6MNQ=="></div><div class=article-details><h2 class=article-title>iOS 自动化打包发布</h2></div></a></article><article class=has-image><a href=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/><div class=article-image><img src=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.02bedbea798127d998225a1071d112f4_hudab19c6e24862988c05d34d65d6235f3_2517758_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 网络请求耗时统计" data-hash="md5-Ar7b6nmBJ9mYIloQcdES9A=="></div><div class=article-details><h2 class=article-title>iOS 网络请求耗时统计</h2></div></a></article><article><a href=/posts/ios%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/><div class=article-details><h2 class=article-title>iOS 开发学习</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//vae.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{DISQUS&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
 2020 -
-2022 摩卡的小窝
-</section>
-<section class=powerby>
-Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.6.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
-<div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
-<div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2022 摩卡的小窝</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.6.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-<div class=pswp__preloader>
-<div class=pswp__preloader__icn>
-<div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-</button>
-<div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
-<section class="widget archives">
-<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
-<nav id=TableOfContents>
-<ol>
-<li><a href=#概念>概念</a>
-<ol>
-<li><a href=#什么是-ci-cd>什么是 ci cd？</a></li>
-<li><a href=#gitlab-的-ci-cd>gitlab 的 ci cd</a>
-<ol>
-<li><a href=#基本的-ci-cd-流程>基本的 ci cd 流程</a></li>
-<li><a href=#深层次的-ci-cd-流程>深层次的 ci cd 流程</a></li>
-</ol>
-</li>
-<li><a href=#caching>Caching</a>
-<ol>
-<li><a href=#cache>cache</a></li>
-<li><a href=#artifacts>artifacts</a></li>
-</ol>
-</li>
-<li><a href=#stage-vs-job-vs-pipelines>stage vs job vs pipelines</a></li>
-</ol>
-</li>
-<li><a href=#完整的流程>完整的流程</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#概念>概念</a><ol><li><a href=#什么是-ci-cd>什么是 ci cd？</a></li><li><a href=#gitlab-的-ci-cd>gitlab 的 ci cd</a><ol><li><a href=#基本的-ci-cd-流程>基本的 ci cd 流程</a></li><li><a href=#深层次的-ci-cd-流程>深层次的 ci cd 流程</a></li></ol></li><li><a href=#caching>Caching</a><ol><li><a href=#cache>cache</a></li><li><a href=#artifacts>artifacts</a></li></ol></li><li><a href=#stage-vs-job-vs-pipelines>stage vs job vs pipelines</a></li></ol></li><li><a href=#完整的流程>完整的流程</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

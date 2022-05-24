@@ -217,12 +217,12 @@ alt="http缓存">
 &lt;ol>
 &lt;li>请求部分&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&amp;gt; GET / HTTP/1.1
-&amp;gt; Host: www.baidu.com
-&amp;gt; User-Agent: curl/7.64.1
-&amp;gt; Accept: */*
-&amp;gt;
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>第一行为请求行部分， get 为请求方法，/是路径， http 1.1 是版本号
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&amp;gt; GET / HTTP/1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;gt; Host: www.baidu.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;gt; User-Agent: curl/7.64.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;gt; Accept: */*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>第一行为请求行部分， get 为请求方法，/是路径， http 1.1 是版本号
 第二行为请求头， host 为请求的 host
 第三行为用户请求的应用程序类型
 第四行为浏览器可以接受的了下
@@ -230,21 +230,21 @@ alt="http缓存">
 &lt;ol start="2">
 &lt;li>响应部分&lt;/li>
 &lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell"> HTTP/1.1 &lt;span class="m">200&lt;/span> OK
-&amp;lt; Accept-Ranges: bytes
-&amp;lt; Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform
-&amp;lt; Connection: keep-alive
-&amp;lt; Content-Length: &lt;span class="m">2443&lt;/span>
-&amp;lt; Content-Type: text/html
-&amp;lt; Date: Mon, &lt;span class="m">31&lt;/span> Aug &lt;span class="m">2020&lt;/span> 03:33:40 GMT
-&amp;lt; Etag: &lt;span class="s2">&amp;#34;58860410-98b&amp;#34;&lt;/span>
-&amp;lt; Last-Modified: Mon, &lt;span class="m">23&lt;/span> Jan &lt;span class="m">2017&lt;/span> 13:24:32 GMT
-&amp;lt; Pragma: no-cache
-&amp;lt; Server: bfe/1.0.8.18
-&amp;lt; Set-Cookie: &lt;span class="nv">BDORZ&lt;/span>&lt;span class="o">=&lt;/span>27315&lt;span class="p">;&lt;/span> max-age&lt;span class="o">=&lt;/span>86400&lt;span class="p">;&lt;/span> &lt;span class="nv">domain&lt;/span>&lt;span class="o">=&lt;/span>.baidu.com&lt;span class="p">;&lt;/span> &lt;span class="nv">path&lt;/span>&lt;span class="o">=&lt;/span>/
-&amp;lt;
-&amp;lt;!DOCTYPE html&amp;gt;
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="应用">应用&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> HTTP/1.1 &lt;span class="m">200&lt;/span> OK
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Accept-Ranges: bytes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Connection: keep-alive
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Content-Length: &lt;span class="m">2443&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Content-Type: text/html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Date: Mon, &lt;span class="m">31&lt;/span> Aug &lt;span class="m">2020&lt;/span> 03:33:40 GMT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Etag: &lt;span class="s2">&amp;#34;58860410-98b&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Last-Modified: Mon, &lt;span class="m">23&lt;/span> Jan &lt;span class="m">2017&lt;/span> 13:24:32 GMT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Pragma: no-cache
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Server: bfe/1.0.8.18
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt; Set-Cookie: &lt;span class="nv">BDORZ&lt;/span>&lt;span class="o">=&lt;/span>27315&lt;span class="p">;&lt;/span> max-age&lt;span class="o">=&lt;/span>86400&lt;span class="p">;&lt;/span> &lt;span class="nv">domain&lt;/span>&lt;span class="o">=&lt;/span>.baidu.com&lt;span class="p">;&lt;/span> &lt;span class="nv">path&lt;/span>&lt;span class="o">=&lt;/span>/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;!DOCTYPE html&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="应用">应用&lt;/h2>
 &lt;ol>
 &lt;li>chrome 查看请求&lt;/li>
 &lt;li>postman 发送请求&lt;/li>
@@ -341,41 +341,40 @@ alt="深层次的流程">
 &lt;h3 id="stage-vs-job-vs-pipelines">stage vs job vs pipelines&lt;/h3>
 &lt;p>总的来说 pipelines 就是流水线的意思，每个流水线中都是按照 stage 的顺序来执行的，stage 中可以定义多个 job，每个 job 之间都是并行的，而 stage 之间是串行的。只有当前的 stage 执行完毕才会执行下一个 stage。&lt;/p>
 &lt;p>下面是一个最基础的 yaml 文件模版。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">node:&amp;lt;版本号&amp;gt;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">mongo:&amp;lt;版本&amp;gt;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">redis:&amp;lt;版本号&amp;gt;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">cache&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">key&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">&amp;lt;KEY&amp;gt;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">paths&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;需要缓存的路径&amp;gt;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">node_modules&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">before_script&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;执行job之前的命令&amp;gt;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">after_script&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;build完之后运行的命令&amp;gt;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">stages&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">test&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">build&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">deploy&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">&amp;lt;job_name&amp;gt;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;job执行的指令或脚本&amp;gt;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">tags&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">ssr&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">only：&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;只应用在某个分支&amp;gt;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">except&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;不应用到某个分支&amp;gt;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">variables&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面例子中还有几个东西值得说下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">node:&amp;lt;版本号&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">mongo:&amp;lt;版本&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">redis:&amp;lt;版本号&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">cache&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">key&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">&amp;lt;KEY&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">paths&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;需要缓存的路径&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">node_modules&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">before_script&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;执行job之前的命令&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">after_script&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;build完之后运行的命令&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">stages&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">test&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">build&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">deploy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">&amp;lt;job_name&amp;gt;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;job执行的指令或脚本&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">tags&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">ssr&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="l">only：&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;只应用在某个分支&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">except&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">&amp;lt;不应用到某个分支&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">variables&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面例子中还有几个东西值得说下：&lt;/p>
 &lt;ul>
 &lt;li>tag 指的是你在 gitlabrunner 上面所注册的 tag 名，也就是这个自动化是使用那台机器去执行。&lt;/li>
 &lt;li>before_script 指的是在每个 job 执行前所执行的命令&lt;/li>
@@ -470,25 +469,28 @@ loading="lazy"
 &lt;/a>
 &lt;/figure>&lt;/p>
 &lt;p>建好之后，将里面的 lat，lon 的值替换成你想 mock 的地理位置的经纬度：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span>
-&lt;span class="nt">&amp;lt;gpx&lt;/span> &lt;span class="na">version=&lt;/span>&lt;span class="s">&amp;#34;1.1&amp;#34;&lt;/span> &lt;span class="na">creator=&lt;/span>&lt;span class="s">&amp;#34;Xcode&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
-&lt;span class="c">&amp;lt;!--
-&lt;/span>&lt;span class="c"> Provide one or more waypoints containing a latitude/longitude pair. If you provide one
-&lt;/span>&lt;span class="c"> waypoint, Xcode will simulate that specific location. If you provide multiple waypoints,
-&lt;/span>&lt;span class="c"> Xcode will simulate a route visiting each waypoint.
-&lt;/span>&lt;span class="c"> --&amp;gt;&lt;/span>
-&lt;span class="nt">&amp;lt;wpt&lt;/span> &lt;span class="na">lat=&lt;/span>&lt;span class="s">&amp;#34;31.230390&amp;#34;&lt;/span> &lt;span class="na">lon=&lt;/span>&lt;span class="s">&amp;#34;121.473702&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
-&lt;span class="nt">&amp;lt;name&amp;gt;&lt;/span>shanghai&lt;span class="nt">&amp;lt;/name&amp;gt;&lt;/span>
-&lt;span class="c">&amp;lt;!--
-&lt;/span>&lt;span class="c"> Optionally provide a time element for each waypoint. Xcode will interpolate movement
-&lt;/span>&lt;span class="c"> at a rate of speed based on the time elapsed between each waypoint. If you do not provide
-&lt;/span>&lt;span class="c"> a time element, then Xcode will use a fixed rate of speed.
-&lt;/span>&lt;span class="c">
-&lt;/span>&lt;span class="c"> Waypoints must be sorted by time in ascending order.
-&lt;/span>&lt;span class="c"> --&amp;gt;&lt;/span>
-&lt;span class="nt">&amp;lt;/wpt&amp;gt;&lt;/span>
-&lt;span class="nt">&amp;lt;/gpx&amp;gt;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>建立好多个 mock 文件之后，我们就可以在 debug 时来切换自己想要 mock 的位置。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;gpx&lt;/span> &lt;span class="na">version=&lt;/span>&lt;span class="s">&amp;#34;1.1&amp;#34;&lt;/span> &lt;span class="na">creator=&lt;/span>&lt;span class="s">&amp;#34;Xcode&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">&amp;lt;!--
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> Provide one or more waypoints containing a latitude/longitude pair. If you provide one
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> waypoint, Xcode will simulate that specific location. If you provide multiple waypoints,
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> Xcode will simulate a route visiting each waypoint.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;wpt&lt;/span> &lt;span class="na">lat=&lt;/span>&lt;span class="s">&amp;#34;31.230390&amp;#34;&lt;/span> &lt;span class="na">lon=&lt;/span>&lt;span class="s">&amp;#34;121.473702&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;name&amp;gt;&lt;/span>shanghai&lt;span class="nt">&amp;lt;/name&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">&amp;lt;!--
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> Optionally provide a time element for each waypoint. Xcode will interpolate movement
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> at a rate of speed based on the time elapsed between each waypoint. If you do not provide
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> a time element, then Xcode will use a fixed rate of speed.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> Waypoints must be sorted by time in ascending order.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;/wpt&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;/gpx&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>建立好多个 mock 文件之后，我们就可以在 debug 时来切换自己想要 mock 的位置。&lt;/p>
 &lt;p>&lt;figure
 >
 &lt;a href="https://ws3.sinaimg.cn/large/006tNc79ly1g27z2m6j3sj30e60cbq69.jpg" >
@@ -530,8 +532,8 @@ loading="lazy"
 >操作&lt;/a>。一共分为 3 个步骤：&lt;/p>
 &lt;h3 id="安装">安装&lt;/h3>
 &lt;p>首先安装 xcode 命令行工具：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">xcode-select --install
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>接着使用&lt;code>gem&lt;/code> 安装 &lt;code>fastlane&lt;/code> 或者 使用&lt;code>homebrew&lt;/code>也都行.(题外话说两句，gem 是&lt;code>ruby&lt;/code>的包管理工具，由于&lt;code>fastlane&lt;/code>是使用&lt;code>ruby&lt;/code>来编写的一个工具，所以可以使用 gem 来安装。对于 iOS 开发中大名鼎鼎的&lt;code>Cocoapods&lt;/code>也是使用&lt;code>ruby&lt;/code>来编写的，我们安装是也是通过&lt;code>gem&lt;/code>来安装的)。&lt;code>homebrew&lt;/code> 家庭酒酿这个是用来喝酒的。。 大雾。&lt;code>homebrew&lt;/code>是&lt;code>Mac&lt;/code>里面的一个包管理工具，它使得我们脱离各种繁琐的环境配置，只需要输入命令安装，卸载，&lt;code>brew&lt;/code>管理包都是存放在&lt;code>/usr/local&lt;/code>下，通过软链接的形式来使用。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">xcode-select --install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>接着使用&lt;code>gem&lt;/code> 安装 &lt;code>fastlane&lt;/code> 或者 使用&lt;code>homebrew&lt;/code>也都行.(题外话说两句，gem 是&lt;code>ruby&lt;/code>的包管理工具，由于&lt;code>fastlane&lt;/code>是使用&lt;code>ruby&lt;/code>来编写的一个工具，所以可以使用 gem 来安装。对于 iOS 开发中大名鼎鼎的&lt;code>Cocoapods&lt;/code>也是使用&lt;code>ruby&lt;/code>来编写的，我们安装是也是通过&lt;code>gem&lt;/code>来安装的)。&lt;code>homebrew&lt;/code> 家庭酒酿这个是用来喝酒的。。 大雾。&lt;code>homebrew&lt;/code>是&lt;code>Mac&lt;/code>里面的一个包管理工具，它使得我们脱离各种繁琐的环境配置，只需要输入命令安装，卸载，&lt;code>brew&lt;/code>管理包都是存放在&lt;code>/usr/local&lt;/code>下，通过软链接的形式来使用。&lt;/p>
 &lt;p>&lt;figure
 >
 &lt;a href="https://ws2.sinaimg.cn/large/006tKfTcly1g1qoca8ypuj30l40ac0uc.jpg" >
@@ -544,11 +546,12 @@ alt="homebrew">
 &lt;p>扯远了，使用下面的命令即可安装：&lt;/p>
 &lt;p>如果没有安装&lt;code>homebrew&lt;/code> (&lt;a class="link" href="https://brew.sh/" target="_blank" rel="noopener"
 >https://brew.sh/&lt;/a>) 的去官网按照步骤安装即可：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="c1"># Using RubyGems&lt;/span>
-sudo gem install fastlane -NV
-&lt;span class="c1"># Alternatively using Homebrew&lt;/span>
-brew cask install fastlane
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="使用">使用&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Using RubyGems&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo gem install fastlane -NV
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Alternatively using Homebrew&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew cask install fastlane
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="使用">使用&lt;/h3>
 &lt;p>用命令行&lt;code>cd&lt;/code>到工程目录下，使用命令初始化&lt;code>fastlane init：&lt;/code>&lt;/p>
 &lt;p>&lt;figure
 >
@@ -570,38 +573,43 @@ alt="步骤二">
 &lt;figcaption>步骤二&lt;/figcaption>
 &lt;/figure>&lt;/p>
 &lt;p>可以看到文件夹中多了一个文件和一个文件夹，&lt;code>gemfile&lt;/code> 这个文件很简单，类似于&lt;code>iOS&lt;/code>工程的&lt;code>Podfile&lt;/code>一样，里面存放的是&lt;code>ruby&lt;/code>所需要的第三方库，我们看到里面的内容，可以看到填写的是&lt;code>fastlane&lt;/code>。再看到文件夹，文件夹里面有两个文件，我们重点关注的是&lt;code>fastfile&lt;/code>这个文件。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ruby" data-lang="ruby">&lt;span class="n">source&lt;/span> &lt;span class="s2">&amp;#34;https://rubygems.org&amp;#34;&lt;/span>
-&lt;span class="n">gem&lt;/span> &lt;span class="s2">&amp;#34;fastlane&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="appfile">Appfile&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ruby" data-lang="ruby">&lt;span class="line">&lt;span class="cl">&lt;span class="n">source&lt;/span> &lt;span class="s2">&amp;#34;https://rubygems.org&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">gem&lt;/span> &lt;span class="s2">&amp;#34;fastlane&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="appfile">Appfile&lt;/h3>
 &lt;p>&lt;code>Appfile&lt;/code> 主要存储的是一些每一个&lt;code>fastlane&lt;/code>脚本需要使用的通用信息，比如说 &lt;code>Apple ID&lt;/code> 或者是 &lt;code>APP&lt;/code> 的&lt;code>Bundle Id&lt;/code>。更详细的配置可以参考官网的&lt;a class="link" href="https://docs.fastlane.tools/advanced/Appfile/#appfile" target="_blank" rel="noopener"
 >doc&lt;/a>。&lt;/p>
 &lt;h3 id="fastfile">FastFile&lt;/h3>
 &lt;p>这里就是我们自定义脚本的地方，可以打开这个文件看到里面有了一段默认的代码：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ruby" data-lang="ruby">
-&lt;span class="n">default_platform&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:ios&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">platform&lt;/span> &lt;span class="ss">:ios&lt;/span> &lt;span class="k">do&lt;/span>
-&lt;span class="n">desc&lt;/span> &lt;span class="s2">&amp;#34;Description of what the lane does&amp;#34;&lt;/span>
-&lt;span class="n">lane&lt;/span> &lt;span class="ss">:custom_lane&lt;/span> &lt;span class="k">do&lt;/span>
-&lt;span class="c1"># add actions here: https://docs.fastlane.tools/actions&lt;/span>
-&lt;span class="k">end&lt;/span>
-&lt;span class="k">end&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>这里的语言使用的是&lt;code>ruby&lt;/code> 语言，不太了解的可以看看&lt;code>ruby&lt;/code>的语法，也挺简单的。我这里简单的说一下。&lt;code>default_platform(:ios)&lt;/code>调用一个函数设置默认的平台&lt;code>iOS&lt;/code>。后面针对&lt;code>iOS&lt;/code>的平台来写脚本，&lt;code>lane&lt;/code> 是定义一个模块的意思，我们自定义的每个不同的操作都可以用&lt;code>lane&lt;/code>来表示。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ruby" data-lang="ruby">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">default_platform&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:ios&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">platform&lt;/span> &lt;span class="ss">:ios&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">desc&lt;/span> &lt;span class="s2">&amp;#34;Description of what the lane does&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">lane&lt;/span> &lt;span class="ss">:custom_lane&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># add actions here: https://docs.fastlane.tools/actions&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这里的语言使用的是&lt;code>ruby&lt;/code> 语言，不太了解的可以看看&lt;code>ruby&lt;/code>的语法，也挺简单的。我这里简单的说一下。&lt;code>default_platform(:ios)&lt;/code>调用一个函数设置默认的平台&lt;code>iOS&lt;/code>。后面针对&lt;code>iOS&lt;/code>的平台来写脚本，&lt;code>lane&lt;/code> 是定义一个模块的意思，我们自定义的每个不同的操作都可以用&lt;code>lane&lt;/code>来表示。&lt;/p>
 &lt;p>&lt;code>fastlane&lt;/code>里面有很多已经被人写好的&lt;a class="link" href="https://docs.fastlane.tools/actions/" target="_blank" rel="noopener"
 >&lt;code>action&lt;/code>&lt;/a>，&lt;code>aciton&lt;/code>就是类似于一段别人写好的函数，我们可以在我们自定义的&lt;code>lane&lt;/code>中调用。在官方的 doc 中已经有很多 action 了，测试，构建，截图，打包，证书管理，上传到 App Store 等等。&lt;/p>
 &lt;p>这里我自己写了个测试的 lane，没有做测试，仅供参考，让读者大概知道这么个意思就行，具体的还是需要根据自己的实际需求进行测试和验证。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ruby" data-lang="ruby"> &lt;span class="n">lane&lt;/span> &lt;span class="ss">:releaseDemo&lt;/span> &lt;span class="k">do&lt;/span>
-&lt;span class="n">app_identifier&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;demo.com&amp;#34;&lt;/span>
-&lt;span class="n">cocoapods&lt;/span>
-&lt;span class="n">get_certificates&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;span class="ss">app_identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">app_identifier&lt;/span>
-&lt;span class="p">)&lt;/span>
-&lt;span class="n">get_provisioning_profile&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;span class="ss">app_identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">app_identifier&lt;/span>
-&lt;span class="err">）&lt;/span>
-&lt;span class="n">build_app&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">workspace&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Project.xcworkspace&amp;#34;&lt;/span>&lt;span class="err">，&lt;/span> &lt;span class="ss">scheme&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;test&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">upload_to_app_store&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">app_identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">app_identifier&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="ss">skip_metadata&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="ss">skip_screenshots&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kp">true&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="k">end&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>从第一行代码来看，顾名思义，这一行对下面这个 lane 的描述。这些描述在执行命令之后 fastlane 都会为用户生成一个 md 的文档，文档中显示着每个 lane 的执行方式和描述。接下来的代码使用 lane 来定义一个操作，&lt;code>releaseDemo&lt;/code> 是这个 lane 的名称，&lt;code>fastlane&lt;/code>定义了很多的&lt;code>action&lt;/code>，这些我们都可以直接拿来组合使用，这和调用 api 差不多，具体的参数可以查询官方文档也可以使用命令行来查询。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ruby" data-lang="ruby">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">lane&lt;/span> &lt;span class="ss">:releaseDemo&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">app_identifier&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;demo.com&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cocoapods&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">get_certificates&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">app_identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">app_identifier&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">get_provisioning_profile&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">app_identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">app_identifier&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">build_app&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">workspace&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Project.xcworkspace&amp;#34;&lt;/span>&lt;span class="err">，&lt;/span> &lt;span class="ss">scheme&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;test&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">upload_to_app_store&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">app_identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">app_identifier&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="ss">skip_metadata&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="ss">skip_screenshots&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kp">true&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>从第一行代码来看，顾名思义，这一行对下面这个 lane 的描述。这些描述在执行命令之后 fastlane 都会为用户生成一个 md 的文档，文档中显示着每个 lane 的执行方式和描述。接下来的代码使用 lane 来定义一个操作，&lt;code>releaseDemo&lt;/code> 是这个 lane 的名称，&lt;code>fastlane&lt;/code>定义了很多的&lt;code>action&lt;/code>，这些我们都可以直接拿来组合使用，这和调用 api 差不多，具体的参数可以查询官方文档也可以使用命令行来查询。&lt;/p>
 &lt;ol>
 &lt;li>&lt;code>cocoapods&lt;/code> 这个&lt;code>action&lt;/code> 是将当前的工程执行&lt;code>pod install&lt;/code>命令，&lt;code>podfile&lt;/code>默认在当前工程目录下寻找，如果说不是则需要自己指定&lt;code>podfle&lt;/code>文件路径。&lt;/li>
 &lt;li>&lt;code>get_certificates&lt;/code> 是获取证书的，&lt;code>app_identifier&lt;/code>参数 是&lt;code>app&lt;/code>的&lt;code>bundle id&lt;/code>。&lt;/li>
@@ -612,12 +620,12 @@ alt="步骤二">
 &lt;p>关于上述的&lt;code>skip_metadata&lt;/code>和 &lt;code>skip_screenshots&lt;/code>这两个参数有的读者会比较疑惑，其实 &lt;code>upload_to_app_store&lt;/code> 这个&lt;code>action&lt;/code>有个别名叫&lt;a class="link" href="https://docs.fastlane.tools/actions/deliver/" target="_blank" rel="noopener"
 >&lt;code>deliver&lt;/code>&lt;/a>，这个&lt;code>action&lt;/code>可以上&lt;code>ipa&lt;/code> 还有 &lt;code>APP store connect&lt;/code> 中需要的元数据和截图。在这里我并没有使用这个功能。在下面会讲到。&lt;/p>
 &lt;p>上述的 lane 写好之后我们就可以保存，在工程目录下执行&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">fastlane releaseDemo
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>就可以看到项目按照我们上面所定义的步骤开始自动化操作了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">fastlane releaseDemo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>就可以看到项目按照我们上面所定义的步骤开始自动化操作了。&lt;/p>
 &lt;h3 id="deliver">deliver&lt;/h3>
 &lt;p>我们在工程目录下面使用命令行执行&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">fastlane deliver init
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>根据提示输入&lt;code>Apple ID&lt;/code> 和 &lt;code>Bundle Identifier&lt;/code> ，我们就得到了两个新的文件夹和一个文件.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">fastlane deliver init
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>根据提示输入&lt;code>Apple ID&lt;/code> 和 &lt;code>Bundle Identifier&lt;/code> ，我们就得到了两个新的文件夹和一个文件.&lt;/p>
 &lt;p>&lt;figure
 >
 &lt;a href="https://ws3.sinaimg.cn/large/006tNc79ly1g23bvyuqikj30qr0rndk7.jpg" >
@@ -642,21 +650,21 @@ alt="配置文件">
 &lt;/figure>&lt;/p>
 &lt;p>在里面设置针对不同 target 所需要的不同配置进行填写。&lt;/p>
 &lt;p>再到 fastfile 中进行使用。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ruby" data-lang="ruby"> &lt;span class="n">lane&lt;/span> &lt;span class="ss">:release&lt;/span> &lt;span class="k">do&lt;/span> &lt;span class="o">|&lt;/span>&lt;span class="n">options&lt;/span>&lt;span class="o">|&lt;/span>
-&lt;span class="n">app_identifier&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">ENV&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;app_identifier&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span>
-&lt;span class="n">scheme&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">ENV&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;scheme&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span>
-&lt;span class="n">type&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">options&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="ss">:type&lt;/span>&lt;span class="o">]&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="n">type&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">eql?&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;release&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="c1">#上传到app store&lt;/span>
-&lt;span class="n">upload_to_app_store&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">app_identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">app_identifier&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="ss">ipa&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">ipa_path&lt;/span>&lt;span class="err">，&lt;/span> &lt;span class="ss">skip_metadata&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="ss">skip_screenshots&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kp">true&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="c1">#上传dsym到 fabric&lt;/span>
-&lt;span class="n">upload_symbols_to_crashlytics&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">dsym_path&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">dsym_path&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="k">elsif&lt;/span> &lt;span class="n">type&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">eql?&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;beta&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">upload_to_testflight&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">app_identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;com.GoToBus.app&amp;#34;&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="ss">ipa&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;outPut/GotoBus/GotoBus.ipa&amp;#34;&lt;/span>&lt;span class="err">，&lt;/span> &lt;span class="ss">skip_waiting_for_build_processing&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="k">end&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面是截取公司的一部分的代码，使用时取得 app id 和 app 的 target name。就可以针对不同的 target 进行打包。 上面代码中有个 option，这是一个可以供用户输入的东西，后面调用的时候可以使用&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh"> sh &lt;span class="s2">&amp;#34;fastlane release type:&amp;#39;release&amp;#39; --env GotoBus&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>来调用这个这个 lane，option 得到的 type 类型时 release，或者还可以将 release 改成 beta 来打包测试版本的。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ruby" data-lang="ruby">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">lane&lt;/span> &lt;span class="ss">:release&lt;/span> &lt;span class="k">do&lt;/span> &lt;span class="o">|&lt;/span>&lt;span class="n">options&lt;/span>&lt;span class="o">|&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">app_identifier&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">ENV&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;app_identifier&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">scheme&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">ENV&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;scheme&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">type&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">options&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="ss">:type&lt;/span>&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">type&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">eql?&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;release&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">#上传到app store&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">upload_to_app_store&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">app_identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">app_identifier&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="ss">ipa&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">ipa_path&lt;/span>&lt;span class="err">，&lt;/span> &lt;span class="ss">skip_metadata&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="ss">skip_screenshots&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kp">true&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">#上传dsym到 fabric&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">upload_symbols_to_crashlytics&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">dsym_path&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">dsym_path&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elsif&lt;/span> &lt;span class="n">type&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">eql?&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;beta&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">upload_to_testflight&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">app_identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;com.GoToBus.app&amp;#34;&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="ss">ipa&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;outPut/GotoBus/GotoBus.ipa&amp;#34;&lt;/span>&lt;span class="err">，&lt;/span> &lt;span class="ss">skip_waiting_for_build_processing&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面是截取公司的一部分的代码，使用时取得 app id 和 app 的 target name。就可以针对不同的 target 进行打包。 上面代码中有个 option，这是一个可以供用户输入的东西，后面调用的时候可以使用&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl"> sh &lt;span class="s2">&amp;#34;fastlane release type:&amp;#39;release&amp;#39; --env GotoBus&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>来调用这个这个 lane，option 得到的 type 类型时 release，或者还可以将 release 改成 beta 来打包测试版本的。&lt;/p>
 &lt;p>最后还可以加上执行成功之后发送邮件或者 slack 消息进行通知。&lt;/p>
 &lt;h2 id="more">More&lt;/h2>
 &lt;p>fastlane 还可以执行测试，自动化截图，生成测试报告等等功能。还有官网上很多的 action，我们可以自定义组合这些东西来生成最适合自己的工作流。当然还可以结合 jekins 或者 Git lab 的 ci/cd 工具都是可行的，本质上通过调用 lane 来进行操作，这些我都进行尝试过。行文比较粗糙。如果对于文章中存在什么问题或者疑问，可以发邮件来和我进行讨论。&lt;/p></description></item><item><title>iOS 网络请求耗时统计</title><link>https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/</link><pubDate>Thu, 04 Apr 2019 00:00:00 +0000</pubDate><guid>https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/</guid><description>&lt;img src="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.jpg" alt="Featured image of post iOS 网络请求耗时统计" />&lt;p>前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料，初步将目标定位到&lt;code>NSURLProtocol&lt;/code>这个类中了。&lt;/p>
@@ -689,130 +697,146 @@ loading="lazy"
 &lt;p>针对这次的需求，只需要拦截住工程里面发起的 api 的网络请求，然后统计出每个请求的耗时即可。&lt;/p>
 &lt;p>具体的看下实现。&lt;/p>
 &lt;p>我们首先定义&lt;code>NSURLProtocol&lt;/code>的一个子类:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="k">static&lt;/span> &lt;span class="n">NSString&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="n">MYHTTPHandledIdentifier&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">@&amp;#34;MYHTTPHandledIdentifier&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="k">@interface&lt;/span> &lt;span class="nc">MYHTTPProtocol&lt;/span> : &lt;span class="nc">NSURLProtocol&lt;/span>
-&lt;span class="p">...&lt;/span>
-&lt;span class="k">@end&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="caninitwithrequest">canInitWithRequest&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="p">+&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">BOOL&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">canInitWithRequest:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">request&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">URL&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">scheme&lt;/span> &lt;span class="nl">isEqualToString&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s">@&amp;#34;http&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span>
-&lt;span class="o">!&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">URL&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">scheme&lt;/span> &lt;span class="nl">isEqualToString&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s">@&amp;#34;https&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="nb">NO&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">([&lt;/span>&lt;span class="n">NSURLProtocol&lt;/span> &lt;span class="nl">propertyForKey&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">MYHTTPHandledIdentifier&lt;/span> &lt;span class="nl">inRequest&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="nb">NO&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="nb">YES&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>每一个网络请求，都会走到上述方法，我们可以拿到&lt;code>request&lt;/code>的实例，这个函数的返回值代表是否处理这个请求。上述方法里面代表着我们只是监听&lt;code>http&lt;/code>和&lt;code>https&lt;/code>协议的方法。下面一个&lt;code>if&lt;/code>语句后面再讲，可以先不看。虽然说我们在这个方法里面拿到了 request 对象，但是我们最好不要在这个方法里面操作对象，因为可能存在语义上的问题。这个方法只是筛选哪些网络请求需要被拦截。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="line">&lt;span class="cl">&lt;span class="k">static&lt;/span> &lt;span class="n">NSString&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="n">MYHTTPHandledIdentifier&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">@&amp;#34;MYHTTPHandledIdentifier&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">@interface&lt;/span> &lt;span class="nc">MYHTTPProtocol&lt;/span> : &lt;span class="nc">NSURLProtocol&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">@end&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="caninitwithrequest">canInitWithRequest&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="line">&lt;span class="cl">&lt;span class="p">+&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">BOOL&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">canInitWithRequest:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">request&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">URL&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">scheme&lt;/span> &lt;span class="nl">isEqualToString&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s">@&amp;#34;http&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">!&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">URL&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">scheme&lt;/span> &lt;span class="nl">isEqualToString&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s">@&amp;#34;https&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nb">NO&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">([&lt;/span>&lt;span class="n">NSURLProtocol&lt;/span> &lt;span class="nl">propertyForKey&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">MYHTTPHandledIdentifier&lt;/span> &lt;span class="nl">inRequest&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nb">NO&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nb">YES&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>每一个网络请求，都会走到上述方法，我们可以拿到&lt;code>request&lt;/code>的实例，这个函数的返回值代表是否处理这个请求。上述方法里面代表着我们只是监听&lt;code>http&lt;/code>和&lt;code>https&lt;/code>协议的方法。下面一个&lt;code>if&lt;/code>语句后面再讲，可以先不看。虽然说我们在这个方法里面拿到了 request 对象，但是我们最好不要在这个方法里面操作对象，因为可能存在语义上的问题。这个方法只是筛选哪些网络请求需要被拦截。&lt;/p>
 &lt;h2 id="canonicalrequestforrequest">canonicalRequestForRequest&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="p">+&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">canonicalRequestForRequest:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">request&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">NSMutableURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">mutableReqeust&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">request&lt;/span> &lt;span class="n">mutableCopy&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="n">NSURLProtocol&lt;/span> &lt;span class="nl">setProperty&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">@YES&lt;/span>
-&lt;span class="nl">forKey&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">MYHTTPHandledIdentifier&lt;/span>
-&lt;span class="nl">inRequest&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">mutableReqeust&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">mutableReqeust&lt;/span> &lt;span class="k">copy&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>这个方法是针对我们筛选出来网络请求进行重新构造，&lt;code>NSURLProtocol&lt;/code>提供了一些方法让我们来操作 request 的 metadata，如代码中所示，设置了一个 bool 值为 yes 的特殊属性，将这个属性添加到 request 中去了。因为在接下来我们还要使用这个 request 发起请求，所以需要添加一个标记，表示这个请求已经被处理过了不用在&lt;code>canInitWithRequest&lt;/code>处理了，在&lt;code>canInitWithRequest&lt;/code>方法中我们对 &lt;code>request&lt;/code>中设置了特殊属性的请求不拦截，不然的话会使得这个请求在&lt;code>canInitWithRequest&lt;/code>和&lt;code>canonicalRequestForRequest&lt;/code>形成死循环。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="line">&lt;span class="cl">&lt;span class="p">+&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">canonicalRequestForRequest:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">request&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">NSMutableURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">mutableReqeust&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">request&lt;/span> &lt;span class="n">mutableCopy&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="n">NSURLProtocol&lt;/span> &lt;span class="nl">setProperty&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="m">@YES&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nl">forKey&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">MYHTTPHandledIdentifier&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nl">inRequest&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">mutableReqeust&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">mutableReqeust&lt;/span> &lt;span class="k">copy&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这个方法是针对我们筛选出来网络请求进行重新构造，&lt;code>NSURLProtocol&lt;/code>提供了一些方法让我们来操作 request 的 metadata，如代码中所示，设置了一个 bool 值为 yes 的特殊属性，将这个属性添加到 request 中去了。因为在接下来我们还要使用这个 request 发起请求，所以需要添加一个标记，表示这个请求已经被处理过了不用在&lt;code>canInitWithRequest&lt;/code>处理了，在&lt;code>canInitWithRequest&lt;/code>方法中我们对 &lt;code>request&lt;/code>中设置了特殊属性的请求不拦截，不然的话会使得这个请求在&lt;code>canInitWithRequest&lt;/code>和&lt;code>canonicalRequestForRequest&lt;/code>形成死循环。&lt;/p>
 &lt;h2 id="startloading">startLoading&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">startLoading&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">NSURLSession&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">session&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">NSURLSession&lt;/span> &lt;span class="nl">sessionWithConfiguration&lt;/span>&lt;span class="p">:[&lt;/span>&lt;span class="n">NSURLSessionConfiguration&lt;/span> &lt;span class="n">defaultSessionConfiguration&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="nl">delegate&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">delegateQueue&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">nil&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="n">NSURLSessionDataTask&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">task&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">session&lt;/span> &lt;span class="nl">dataTaskWithRequest&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dataTask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">task&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dataTask&lt;/span> &lt;span class="n">resume&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>这个是开始加载网络请求的方法，我们可以在这个方法里对协议对象持有的&lt;code>request&lt;/code>对象进行转发。我们可以使用&lt;code>NSURLSession&lt;/code>，&lt;code>NSURLConnection&lt;/code>或者第三方的网络库，这里我使用了&lt;code>NSURLsession&lt;/code>来进行转发这个请求。我们可以在这个请求里面记录当前的时间。后面再网络请求结束的时候再一次记录时间，就可以计算出网络加载的耗时了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="line">&lt;span class="cl">&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">startLoading&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">NSURLSession&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">session&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">NSURLSession&lt;/span> &lt;span class="nl">sessionWithConfiguration&lt;/span>&lt;span class="p">:[&lt;/span>&lt;span class="n">NSURLSessionConfiguration&lt;/span> &lt;span class="n">defaultSessionConfiguration&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="nl">delegate&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">delegateQueue&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">nil&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">NSURLSessionDataTask&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">task&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">session&lt;/span> &lt;span class="nl">dataTaskWithRequest&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dataTask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">task&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dataTask&lt;/span> &lt;span class="n">resume&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这个是开始加载网络请求的方法，我们可以在这个方法里对协议对象持有的&lt;code>request&lt;/code>对象进行转发。我们可以使用&lt;code>NSURLSession&lt;/code>，&lt;code>NSURLConnection&lt;/code>或者第三方的网络库，这里我使用了&lt;code>NSURLsession&lt;/code>来进行转发这个请求。我们可以在这个请求里面记录当前的时间。后面再网络请求结束的时候再一次记录时间，就可以计算出网络加载的耗时了。&lt;/p>
 &lt;h2 id="stoploading">stopLoading&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">stopLoading&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dataTask&lt;/span> &lt;span class="n">cancel&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dataTask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">nil&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="c1">// 解析 response，流量统计，网络耗时等
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="client">client&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="line">&lt;span class="cl">&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">stopLoading&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dataTask&lt;/span> &lt;span class="n">cancel&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dataTask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">nil&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 解析 response，流量统计，网络耗时等
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="client">client&lt;/h2>
 &lt;p>每个  &lt;code>NSURLProtocol&lt;/code>  的子类实例都有一个  &lt;code>client&lt;/code>  属性，该属性对 URL 加载系统进行相关操作。它不是  &lt;code>NSURLConnection&lt;/code>，但看起来和一个实现了  &lt;code>NSURLConnectionDelegate&lt;/code>  协议的对象非常相似 。你需要在合适的时期调用&lt;code>client&lt;/code>方法，将数据传回给&lt;code>client&lt;/code>就行。&lt;code>client&lt;/code>相当于这个网络的发起者，我们需要将网络中加载的情况返回给调用者。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="cp">#pragma mark - NSURLSessionTaskDelegate
-&lt;/span>&lt;span class="cp">&lt;/span>
-&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">URLSession:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSession&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">session&lt;/span> &lt;span class="nf">task:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSessionTask&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">task&lt;/span> &lt;span class="nf">didCompleteWithError:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSError&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">error&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">client&lt;/span> &lt;span class="nl">URLProtocolDidFinishLoading&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">([&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">domain&lt;/span> &lt;span class="nl">isEqualToString&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">NSURLErrorDomain&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">error&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">code&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">NSURLErrorCancelled&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">client&lt;/span> &lt;span class="nl">URLProtocol&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">didFailWithError&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dataTask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">nil&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="cp">#pragma mark - NSURLSessionDataDelegate
-&lt;/span>&lt;span class="cp">&lt;/span>
-&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">URLSession:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSession&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">session&lt;/span> &lt;span class="nf">dataTask:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSessionDataTask&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">dataTask&lt;/span>
-&lt;span class="nf">didReceiveData:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSData&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">data&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">client&lt;/span> &lt;span class="nl">URLProtocol&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">didLoadData&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">URLSession:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSession&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">session&lt;/span> &lt;span class="nf">dataTask:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSessionDataTask&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">dataTask&lt;/span> &lt;span class="nf">didReceiveResponse:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLResponse&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">response&lt;/span> &lt;span class="nf">completionHandler:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">^&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">NSURLSessionResponseDisposition&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="nv">completionHandler&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="p">[[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="n">client&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="nl">URLProtocol&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">didReceiveResponse&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">response&lt;/span> &lt;span class="nl">cacheStoragePolicy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">NSURLCacheStorageAllowed&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="n">completionHandler&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSessionResponseAllow&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">response&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">URLSession:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSession&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">session&lt;/span> &lt;span class="nf">task:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSessionTask&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">task&lt;/span> &lt;span class="nf">willPerformHTTPRedirection:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSHTTPURLResponse&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">response&lt;/span> &lt;span class="nf">newRequest:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">request&lt;/span> &lt;span class="nf">completionHandler:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">^&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">_Nullable&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="nv">completionHandler&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">response&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="nb">nil&lt;/span>&lt;span class="p">){&lt;/span>
-&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">response&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">[[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="n">client&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="nl">URLProtocol&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">wasRedirectedToRequest&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">request&lt;/span> &lt;span class="nl">redirectResponse&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">response&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="registerclass">registerClass&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#pragma mark - NSURLSessionTaskDelegate
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">URLSession:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSession&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">session&lt;/span> &lt;span class="nf">task:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSessionTask&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">task&lt;/span> &lt;span class="nf">didCompleteWithError:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSError&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">error&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">client&lt;/span> &lt;span class="nl">URLProtocolDidFinishLoading&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">([&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">domain&lt;/span> &lt;span class="nl">isEqualToString&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">NSURLErrorDomain&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">error&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">code&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">NSURLErrorCancelled&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">client&lt;/span> &lt;span class="nl">URLProtocol&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">didFailWithError&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">dataTask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">nil&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#pragma mark - NSURLSessionDataDelegate
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">URLSession:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSession&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">session&lt;/span> &lt;span class="nf">dataTask:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSessionDataTask&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">dataTask&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">didReceiveData:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSData&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">data&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">client&lt;/span> &lt;span class="nl">URLProtocol&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">didLoadData&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">URLSession:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSession&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">session&lt;/span> &lt;span class="nf">dataTask:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSessionDataTask&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">dataTask&lt;/span> &lt;span class="nf">didReceiveResponse:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLResponse&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">response&lt;/span> &lt;span class="nf">completionHandler:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">^&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">NSURLSessionResponseDisposition&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="nv">completionHandler&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="n">client&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="nl">URLProtocol&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">didReceiveResponse&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">response&lt;/span> &lt;span class="nl">cacheStoragePolicy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">NSURLCacheStorageAllowed&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">completionHandler&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSessionResponseAllow&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">response&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">URLSession:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSession&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">session&lt;/span> &lt;span class="nf">task:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLSessionTask&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">task&lt;/span> &lt;span class="nf">willPerformHTTPRedirection:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSHTTPURLResponse&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">response&lt;/span> &lt;span class="nf">newRequest:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">request&lt;/span> &lt;span class="nf">completionHandler:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">^&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">_Nullable&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="nv">completionHandler&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">response&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="nb">nil&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">response&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="n">client&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="nl">URLProtocol&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">wasRedirectedToRequest&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">request&lt;/span> &lt;span class="nl">redirectResponse&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">response&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="registerclass">registerClass&lt;/h2>
 &lt;p>当然写完这些还是不够的，需要在 app 启动的地方注册我们写好的&lt;code>NSURLProtocol&lt;/code>的子类:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="p">[&lt;/span>&lt;span class="n">NSURLProtocol&lt;/span> &lt;span class="nl">registerClass&lt;/span>&lt;span class="p">:[&lt;/span>&lt;span class="n">MyURLProtocol&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="p">]];&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>这相当于向 url 加载系统进行注册。URL protocol 会被以注册顺序的反序访问，所以当在  &lt;code>-application:didFinishLoadingWithOptions:&lt;/code>  方法中调用  &lt;code>[NSURLProtocol registerClass:[MyURLProtocol class]];&lt;/code>  时，你自己写的 protocol 比其他内建的 protocol 拥有更高的优先级。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">NSURLProtocol&lt;/span> &lt;span class="nl">registerClass&lt;/span>&lt;span class="p">:[&lt;/span>&lt;span class="n">MyURLProtocol&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="p">]];&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这相当于向 url 加载系统进行注册。URL protocol 会被以注册顺序的反序访问，所以当在  &lt;code>-application:didFinishLoadingWithOptions:&lt;/code>  方法中调用  &lt;code>[NSURLProtocol registerClass:[MyURLProtocol class]];&lt;/code>  时，你自己写的 protocol 比其他内建的 protocol 拥有更高的优先级。&lt;/p>
 &lt;h2 id="问题">问题&lt;/h2>
 &lt;h3 id="url-无法拦截">URL 无法拦截&lt;/h3>
 &lt;p>基本的使用也就上述讲的那么多了，但是在使用的时候发现即使我注册了&lt;code>NSURLProtocol&lt;/code>的子类，我还是无法拦截自己的网络请求。但是一些第三方库的请求拦截住了。在网上查找资料发现：&lt;/p>
 &lt;p>如果说需要支持自定义的&lt;code>NSURLProtocol&lt;/code>，需要将自定义的&lt;code>NSURLProtocol&lt;/code>子类赋给&lt;code>NSURLSessionConfiguration&lt;/code>的&lt;code>protocolClassess&lt;/code>属性。所以，如果需要&lt;code>NSURLProtocol&lt;/code>来截获&lt;code>NSURLSession&lt;/code>发出的请求，需要每一个&lt;code>NSURLSession&lt;/code>在创建时配置的&lt;code>NSURLSessionConfiguration&lt;/code>类的&lt;code>protocolClasses&lt;/code>属性附上自定义的&lt;code>NSURLProtocol&lt;/code>。&lt;/p>
 &lt;p>查看&lt;code>AFNetworking&lt;/code>的代码发现，它创建的&lt;code>session&lt;/code>关联的&lt;code>NSURLSessionConfiguration&lt;/code>为&lt;code>defaultSessionConfiguration&lt;/code> 。所以我们在不能直接修改第三方的源码的时候只能使用&lt;code>method swizzling&lt;/code>的方法去 hook 住&lt;code>defaultSessionConfiguration&lt;/code> 的方法，然后将我们自定义的&lt;code>NSURLProtocol&lt;/code>的子类注册到 url 加载系统里面去了。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objc" data-lang="objc">&lt;span class="k">@implementation&lt;/span> &lt;span class="nc">NSURLSessionConfiguration&lt;/span> &lt;span class="nl">(UrlProtocolSwizzling)&lt;/span>
-&lt;span class="p">+(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">load&lt;/span>&lt;span class="p">{&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">jr_swizzleClassMethod&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="k">@selector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">defaultSessionConfiguration&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nl">withClassMethod&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="k">@selector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">my_defaultSessionConfiguration&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nl">error&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">nil&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="n">NSURLProtocol&lt;/span> &lt;span class="nl">registerClass&lt;/span>&lt;span class="p">:[&lt;/span>&lt;span class="n">TrackNetWorkURLProtocol&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="p">]];&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">+(&lt;/span>&lt;span class="n">NSURLSessionConfiguration&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">my_defaultSessionConfiguration&lt;/span>&lt;span class="p">{&lt;/span>
-&lt;span class="n">NSURLSessionConfiguration&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">configuration&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="n">my_defaultSessionConfiguration&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="n">NSArray&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">protocolClasses&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="l">@[&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">TrackNetWorkURLProtocol&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="l">]&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="n">configuration&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">protocolClasses&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">protocolClasses&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">configuration&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="post-请求-body-为空">POST 请求 body 为空&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objc" data-lang="objc">&lt;span class="line">&lt;span class="cl">&lt;span class="k">@implementation&lt;/span> &lt;span class="nc">NSURLSessionConfiguration&lt;/span> &lt;span class="nl">(UrlProtocolSwizzling)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">+(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">load&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">jr_swizzleClassMethod&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="k">@selector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">defaultSessionConfiguration&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nl">withClassMethod&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="k">@selector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">my_defaultSessionConfiguration&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nl">error&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">nil&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="n">NSURLProtocol&lt;/span> &lt;span class="nl">registerClass&lt;/span>&lt;span class="p">:[&lt;/span>&lt;span class="n">TrackNetWorkURLProtocol&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="p">]];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">+(&lt;/span>&lt;span class="n">NSURLSessionConfiguration&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">my_defaultSessionConfiguration&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">NSURLSessionConfiguration&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">configuration&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="n">my_defaultSessionConfiguration&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">NSArray&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">protocolClasses&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="l">@[&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">TrackNetWorkURLProtocol&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="l">]&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">configuration&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">protocolClasses&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">protocolClasses&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">configuration&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="post-请求-body-为空">POST 请求 body 为空&lt;/h3>
 &lt;p>通过拦截请求时，在&lt;code>stoploading&lt;/code>方法里面想对请求做一些操作时发现有些&lt;code>post&lt;/code>请求的&lt;code>body&lt;/code>为空，这个时候发现网上也有人碰到这个问题，初步判断是苹果的 bug，这个时候我们只能通过将&lt;code>HTTPBodyStream&lt;/code>中得到的数据写入到&lt;code>HTTPBody&lt;/code>中了。写一个&lt;code>NSURLRequest&lt;/code>的分类，将&lt;code>HTTPBodyStream&lt;/code>的数据写入到&lt;code>HTTPBody&lt;/code>中，在&lt;code>canonicalRequestForRequest&lt;/code>方法中调用写入操作，然后返回这个&lt;code>request&lt;/code>。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">
-&lt;span class="k">@implementation&lt;/span> &lt;span class="nc">NSURLRequest&lt;/span> &lt;span class="nl">(RequestIncludeBody)&lt;/span>
-&lt;span class="p">-(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">getPostRequestIncludeBody&lt;/span>&lt;span class="p">{&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="n">getMutablePostRequestIncludeBody&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="k">copy&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">-(&lt;/span>&lt;span class="n">NSMutableURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">getMutablePostRequestIncludeBody&lt;/span>&lt;span class="p">{&lt;/span>
-&lt;span class="n">NSMutableURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">request&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="n">mutableCopy&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">([&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">HTTPMethod&lt;/span> &lt;span class="nl">isEqualToString&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s">@&amp;#34;POST&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">HTTPBody&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">NSInteger&lt;/span> &lt;span class="n">maxLength&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1024&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="n">uint8_t&lt;/span> &lt;span class="n">d&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">maxLength&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="n">NSInputStream&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">stream&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">HTTPBodyStream&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="n">NSMutableData&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="n">NSMutableData&lt;/span> &lt;span class="n">alloc&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">init&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="n">stream&lt;/span> &lt;span class="n">open&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="kt">BOOL&lt;/span> &lt;span class="n">endOfStreamReached&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">NO&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="k">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">endOfStreamReached&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">NSInteger&lt;/span> &lt;span class="n">bytesRead&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">stream&lt;/span> &lt;span class="nl">read&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="nl">maxLength&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">maxLength&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">bytesRead&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="c1">//文件读取到最后
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">endOfStreamReached&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">YES&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">bytesRead&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="c1">//文件读取错误
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">endOfStreamReached&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">YES&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">stream&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">streamError&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">nil&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="n">data&lt;/span> &lt;span class="nl">appendBytes&lt;/span>&lt;span class="p">:(&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="nl">length&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">bytesRead&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="n">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">HTTPBody&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">data&lt;/span> &lt;span class="k">copy&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">[&lt;/span>&lt;span class="n">stream&lt;/span> &lt;span class="n">close&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="k">@end&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="无法拦截-wkwebview-中的请求">无法拦截 wkwebview 中的请求&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-objectivec" data-lang="objectivec">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">@implementation&lt;/span> &lt;span class="nc">NSURLRequest&lt;/span> &lt;span class="nl">(RequestIncludeBody)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">-(&lt;/span>&lt;span class="n">NSURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">getPostRequestIncludeBody&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="n">getMutablePostRequestIncludeBody&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="k">copy&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">-(&lt;/span>&lt;span class="n">NSMutableURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">getMutablePostRequestIncludeBody&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">NSMutableURLRequest&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">request&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="n">mutableCopy&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">([&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">HTTPMethod&lt;/span> &lt;span class="nl">isEqualToString&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s">@&amp;#34;POST&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">HTTPBody&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">NSInteger&lt;/span> &lt;span class="n">maxLength&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1024&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">uint8_t&lt;/span> &lt;span class="n">d&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">maxLength&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">NSInputStream&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">stream&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">HTTPBodyStream&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">NSMutableData&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="n">NSMutableData&lt;/span> &lt;span class="n">alloc&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">init&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="n">stream&lt;/span> &lt;span class="n">open&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">BOOL&lt;/span> &lt;span class="n">endOfStreamReached&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">NO&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">endOfStreamReached&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">NSInteger&lt;/span> &lt;span class="n">bytesRead&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">stream&lt;/span> &lt;span class="nl">read&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="nl">maxLength&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">maxLength&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">bytesRead&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="c1">//文件读取到最后
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">endOfStreamReached&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">YES&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">bytesRead&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="c1">//文件读取错误
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">endOfStreamReached&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">YES&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">stream&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">streamError&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">nil&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="n">data&lt;/span> &lt;span class="nl">appendBytes&lt;/span>&lt;span class="p">:(&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="nl">length&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">bytesRead&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">HTTPBody&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">data&lt;/span> &lt;span class="k">copy&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="n">stream&lt;/span> &lt;span class="n">close&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">@end&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="无法拦截-wkwebview-中的请求">无法拦截 wkwebview 中的请求&lt;/h2>
 &lt;p>无论是  &lt;code>NSURLProtocol&lt;/code>、&lt;code>NSURLConnection&lt;/code>  还是  &lt;code>NSURLSession&lt;/code>  都会走底层的 &lt;code>socket&lt;/code>，但是  &lt;code>WKWebView&lt;/code>  可能由于基于 &lt;code>WebKit&lt;/code>，并不会执行 &lt;code>C socket&lt;/code> 相关的函数对 &lt;code>HTTP&lt;/code> 请求进行处理。所以如果要拦截&lt;code>WKWebview&lt;/code>中的请求只能通过&lt;code>WKWebview&lt;/code>对应的代理方法进行处理了。&lt;/p>
 &lt;blockquote>
 &lt;p>&lt;a class="link" href="https://github.com/aozhimin/iOS-Monitor-Platform" target="_blank" rel="noopener"
@@ -853,8 +877,8 @@ loading="lazy"
 &lt;/code>&lt;/pre>&lt;p>回车后,输入当前管理员密码.&lt;/p>
 &lt;h3 id="获取-id">获取 ID&lt;/h3>
 &lt;p>分别输入以下两个命令&lt;/p>
-&lt;pre tabindex="0">&lt;code>ioreg -l | grep &amp;quot;DisplayVendorID&amp;quot;
-ioreg -l | grep &amp;quot;DisplayProductID&amp;quot;
+&lt;pre tabindex="0">&lt;code>ioreg -l | grep &amp;#34;DisplayVendorID&amp;#34;
+ioreg -l | grep &amp;#34;DisplayProductID&amp;#34;
 &lt;/code>&lt;/pre>&lt;p>这两个命令会输出两个 10 进制的数字,一个是 DisplayVendorID,一个是 D isplayProductID.拿一个记事本记录下来.
 &lt;figure
 >
@@ -1008,15 +1032,15 @@ if (_appInfos == nil) {
 //1.1 bundle为应用所在的文件夹
 NSBundle *bundle = [NSBundle mainBundle];
 //1.2 获取plist的路径
-NSString *path = [bundle pathForResource:@&amp;quot;app&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
+NSString *path = [bundle pathForResource:@&amp;#34;app&amp;#34; ofType:@&amp;#34;plist&amp;#34;];
 //1.3 加载plist
 NSArray *dicArray = [NSArray arrayWithContentsOfFile:path];
 NSMutableArray *tmpArray = [NSMutableArray array];
 //1.4 字典转换模型
 for (NSDictionary *dic in dicArray) {
 AppInfo *appInfo = [[AppInfo alloc] init];
-appInfo.name = dic[@&amp;quot;name&amp;quot;];
-appInfo.icon = dic[@&amp;quot;icon&amp;quot;];
+appInfo.name = dic[@&amp;#34;name&amp;#34;];
+appInfo.icon = dic[@&amp;#34;icon&amp;#34;];
 [tmpArray addObject:appInfo];
 }
 _appInfos = tmpArray;
@@ -1085,15 +1109,15 @@ if (_appInfos == nil) {
 //1.1 bundle为应用所在的文件夹
 NSBundle *bundle = [NSBundle mainBundle];
 //1.2 获取plist的路径
-NSString *path = [bundle pathForResource:@&amp;quot;app&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
+NSString *path = [bundle pathForResource:@&amp;#34;app&amp;#34; ofType:@&amp;#34;plist&amp;#34;];
 //1.3 加载plist
 NSArray *dicArray = [NSArray arrayWithContentsOfFile:path];
 NSMutableArray *tmpArray = [NSMutableArray array];
 //1.4 字典转换模型
 for (NSDictionary *dic in dicArray) {
 AppInfo *appInfo = [[AppInfo alloc] init];
-appInfo.name = dic[@&amp;quot;name&amp;quot;];
-appInfo.icon = dic[@&amp;quot;icon&amp;quot;];
+appInfo.name = dic[@&amp;#34;name&amp;#34;];
+appInfo.icon = dic[@&amp;#34;icon&amp;#34;];
 [tmpArray addObject:appInfo];
 }
 _appInfos = tmpArray;

@@ -1,381 +1,130 @@
-<!doctype html><html lang=en-us>
-<head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料"><title>iOS 网络请求耗时统计</title>
-<link rel=canonical href=https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/>
-<link rel=stylesheet href=/scss/style.min.775dbd4fd34fda61c5273b4bc3415f7c9666414fb6c40aab164a7ded4397da98.css><meta property="og:title" content="iOS 网络请求耗时统计">
-<meta property="og:description" content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料">
-<meta property="og:url" content="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/">
-<meta property="og:site_name" content="摩卡的小窝">
-<meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="iOS"><meta property="article:published_time" content="2019-04-04T00:00:00+00:00"><meta property="article:modified_time" content="2019-04-04T00:00:00+00:00"><meta property="og:image" content="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.jpg">
-<meta name=twitter:site content="@xiaochangvae">
-<meta name=twitter:creator content="@xiaochangvae"><meta name=twitter:title content="iOS 网络请求耗时统计">
-<meta name=twitter:description content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料"><meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.jpg">
-<link rel="shortcut icon" href=/favicons/favicon.ico>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XN03QWREHL"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-XN03QWREHL',{anonymize_ip:!1})}</script>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
-<div class="container main-container flex
-extended">
-<div id=article-toolbar>
-<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
-<span>返回</span>
-</a>
-</div>
-<main class="main full-width">
-<article class="has-image main-article">
-<header class=article-header>
-<div class=article-image>
-<a href=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/>
-<img src=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS_hudab19c6e24862988c05d34d65d6235f3_2517758_800x0_resize_q75_box.jpg srcset="/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS_hudab19c6e24862988c05d34d65d6235f3_2517758_800x0_resize_q75_box.jpg 800w, /posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS_hudab19c6e24862988c05d34d65d6235f3_2517758_1600x0_resize_q75_box.jpg 1600w" width=800 height=533 loading=lazy alt="Featured image of post iOS 网络请求耗时统计">
-</a>
-</div>
-<div class=article-details>
-<header class=article-category>
-<a href=/categories/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>
-技术人生
-</a>
-</header>
-<h2 class=article-title>
-<a href=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/>iOS 网络请求耗时统计</a>
-</h2>
-<footer class=article-time>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>Apr 04, 2019</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>
-阅读时长: 7 分钟
-</time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<p>前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料，初步将目标定位到<code>NSURLProtocol</code>这个类中了。</p>
-<h2 id=nsurlprotocol>NSURLProtocol</h2>
-<p><code>NSRULProtocol</code> 是<code>URL loadin System</code>中的一部分，如下图
-<figure>
-<a href=https://i.loli.net/2019/04/03/5ca4b8c97c82c.png>
-<img src=https://i.loli.net/2019/04/03/5ca4b8c97c82c.png loading=lazy>
-</a>
-</figure></p>
-<p><code>NSURLProtocol</code> 是个抽象类，不能直接使用它的实例。需要我们声明一个子类来使用它。当网络请求发生时，系统会创建合适的协议对象来处理这些请求。我们自定义的子类需要在 app 启动时调用 <code>registerClass</code>方法使得系统知道我们的协议，才能使得我们自定义的协议来处理这些网络请求。</p>
-<p><code>NSURLProtocol</code>作为上层接口，它的作用就是可以检测到每个网络请求，但是由于它是属于 <code>URL Loading System</code> 体系的，所以支持的协议有限，只支持 <code>FTP， HTTP， HTTPS</code> 等几个应用层协议。具体来说<code>NSURLProtocol</code>属于一个中间层，当我们发起网络请求时，我们注册的子类的对象会接受到请求，接受到请求后再做一些处理，然后再转发请求。这个时候我们可以针对请求来记录我们需要的数据或或者对请求做一些修改。总的来说就是你不必修改在网络调用上的其他部分，就可以改变 URL 加载行为的全部细节，使得代码结构更加清爽健壮。</p>
-<p><a class=link href=https://nshipster.cn/nsurlprotocol/ target=_blank rel=noopener>NSHipster</a>列举了一些可以使用<code>NSURLProtocol</code>做的事情：</p>
-<ol>
-<li><a class=link href=https://stackoverflow.com/questions/5572258/ios-webview-remote-html-with-local-image-files target=_blank rel=noopener>拦截图片加载请求，转为本地文件加载</a></li>
-<li><a class=link href=https://github.com/AliSoftware/OHHTTPStubs target=_blank rel=noopener>为了测试对<code>HTTP</code>返回内容进行<code>mock</code>和`stub</a></li>
-<li>对发出请求的<code>header</code>进行格式化</li>
-<li>对发出的媒体请求进行签名</li>
-<li>创建本地代理服务，用于数据变化时对<code>URL</code>请求的更改</li>
-<li>故意制造畸形或者非法返回的数据来测试程序的鲁棒性</li>
-<li>过滤请求和返回中的敏感信息</li>
-<li>在既有协议举出上完成对 <code>NSURLconnection</code>的实现且与原逻辑不产生矛盾</li>
-</ol>
-<p>针对这次的需求，只需要拦截住工程里面发起的 api 的网络请求，然后统计出每个请求的耗时即可。</p>
-<p>具体的看下实现。</p>
-<p>我们首先定义<code>NSURLProtocol</code>的一个子类:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=k>static</span> <span class=n>NSString</span> <span class=o>*</span> <span class=k>const</span> <span class=n>MYHTTPHandledIdentifier</span> <span class=o>=</span> <span class=s>@&#34;MYHTTPHandledIdentifier&#34;</span><span class=p>;</span>
-
-<span class=k>@interface</span> <span class=nc>MYHTTPProtocol</span> : <span class=nc>NSURLProtocol</span>
-
-<span class=p>...</span>
-
-<span class=k>@end</span>
-</code></pre></div><h2 id=caninitwithrequest>canInitWithRequest</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=p>+</span> <span class=p>(</span><span class=kt>BOOL</span><span class=p>)</span><span class=nf>canInitWithRequest:</span><span class=p>(</span><span class=n>NSURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nv>request</span> <span class=p>{</span>
-  <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=p>[</span><span class=n>request</span><span class=p>.</span><span class=n>URL</span><span class=p>.</span><span class=n>scheme</span> <span class=nl>isEqualToString</span><span class=p>:</span><span class=s>@&#34;http&#34;</span><span class=p>]</span> <span class=o>&amp;&amp;</span>
-        <span class=o>!</span><span class=p>[</span><span class=n>request</span><span class=p>.</span><span class=n>URL</span><span class=p>.</span><span class=n>scheme</span> <span class=nl>isEqualToString</span><span class=p>:</span><span class=s>@&#34;https&#34;</span><span class=p>])</span> <span class=p>{</span>
-        <span class=k>return</span> <span class=nb>NO</span><span class=p>;</span>
-    <span class=p>}</span>
-
-    <span class=k>if</span> <span class=p>([</span><span class=n>NSURLProtocol</span> <span class=nl>propertyForKey</span><span class=p>:</span><span class=n>MYHTTPHandledIdentifier</span> <span class=nl>inRequest</span><span class=p>:</span><span class=n>request</span><span class=p>]</span> <span class=p>)</span> <span class=p>{</span>
-        <span class=k>return</span> <span class=nb>NO</span><span class=p>;</span>
-    <span class=p>}</span>
-    <span class=k>return</span> <span class=nb>YES</span><span class=p>;</span>
-<span class=p>}</span>
-</code></pre></div><p>每一个网络请求，都会走到上述方法，我们可以拿到<code>request</code>的实例，这个函数的返回值代表是否处理这个请求。上述方法里面代表着我们只是监听<code>http</code>和<code>https</code>协议的方法。下面一个<code>if</code>语句后面再讲，可以先不看。虽然说我们在这个方法里面拿到了 request 对象，但是我们最好不要在这个方法里面操作对象，因为可能存在语义上的问题。这个方法只是筛选哪些网络请求需要被拦截。</p>
-<h2 id=canonicalrequestforrequest>canonicalRequestForRequest</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=p>+</span> <span class=p>(</span><span class=n>NSURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nf>canonicalRequestForRequest:</span><span class=p>(</span><span class=n>NSURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nv>request</span> <span class=p>{</span>
-
-    <span class=n>NSMutableURLRequest</span> <span class=o>*</span><span class=n>mutableReqeust</span> <span class=o>=</span> <span class=p>[</span><span class=n>request</span> <span class=n>mutableCopy</span><span class=p>];</span>
-    <span class=p>[</span><span class=n>NSURLProtocol</span> <span class=nl>setProperty</span><span class=p>:</span><span class=m>@YES</span>
-                        <span class=nl>forKey</span><span class=p>:</span><span class=n>MYHTTPHandledIdentifier</span>
-                     <span class=nl>inRequest</span><span class=p>:</span><span class=n>mutableReqeust</span><span class=p>];</span>
-    <span class=k>return</span> <span class=p>[</span><span class=n>mutableReqeust</span> <span class=k>copy</span><span class=p>];</span>
-<span class=p>}</span>
-</code></pre></div><p>这个方法是针对我们筛选出来网络请求进行重新构造，<code>NSURLProtocol</code>提供了一些方法让我们来操作 request 的 metadata，如代码中所示，设置了一个 bool 值为 yes 的特殊属性，将这个属性添加到 request 中去了。因为在接下来我们还要使用这个 request 发起请求，所以需要添加一个标记，表示这个请求已经被处理过了不用在<code>canInitWithRequest</code>处理了，在<code>canInitWithRequest</code>方法中我们对 <code>request</code>中设置了特殊属性的请求不拦截，不然的话会使得这个请求在<code>canInitWithRequest</code>和<code>canonicalRequestForRequest</code>形成死循环。</p>
-<h2 id=startloading>startLoading</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>startLoading</span> <span class=p>{</span>
- <span class=n>NSURLSession</span> <span class=o>*</span><span class=n>session</span> <span class=o>=</span> <span class=p>[</span><span class=n>NSURLSession</span> <span class=nl>sessionWithConfiguration</span><span class=p>:[</span><span class=n>NSURLSessionConfiguration</span> <span class=n>defaultSessionConfiguration</span><span class=p>]</span> <span class=nl>delegate</span><span class=p>:</span><span class=nb>self</span> <span class=nl>delegateQueue</span><span class=p>:</span><span class=nb>nil</span><span class=p>];</span>
- <span class=n>NSURLSessionDataTask</span> <span class=o>*</span><span class=n>task</span> <span class=o>=</span> <span class=p>[</span><span class=n>session</span> <span class=nl>dataTaskWithRequest</span><span class=p>:</span><span class=nb>self</span><span class=p>.</span><span class=n>request</span><span class=p>];</span>
-    <span class=nb>self</span><span class=p>.</span><span class=n>dataTask</span>  <span class=o>=</span> <span class=n>task</span><span class=p>;</span>
- <span class=p>[</span><span class=nb>self</span><span class=p>.</span><span class=n>dataTask</span> <span class=n>resume</span><span class=p>];</span>
-<span class=p>}</span>
-</code></pre></div><p>这个是开始加载网络请求的方法，我们可以在这个方法里对协议对象持有的<code>request</code>对象进行转发。我们可以使用<code>NSURLSession</code>，<code>NSURLConnection</code>或者第三方的网络库，这里我使用了<code>NSURLsession</code>来进行转发这个请求。我们可以在这个请求里面记录当前的时间。后面再网络请求结束的时候再一次记录时间，就可以计算出网络加载的耗时了。</p>
-<h2 id=stoploading>stopLoading</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>stopLoading</span> <span class=p>{</span>
-    <span class=p>[</span><span class=nb>self</span><span class=p>.</span><span class=n>dataTask</span> <span class=n>cancel</span><span class=p>];</span>
-    <span class=nb>self</span><span class=p>.</span><span class=n>dataTask</span>           <span class=o>=</span> <span class=nb>nil</span><span class=p>;</span>
-    <span class=c1>// 解析 response，流量统计，网络耗时等
-</span><span class=c1></span><span class=p>}</span>
-</code></pre></div><h2 id=client>client</h2>
-<p>每个  <code>NSURLProtocol</code>  的子类实例都有一个  <code>client</code>  属性，该属性对 URL 加载系统进行相关操作。它不是  <code>NSURLConnection</code>，但看起来和一个实现了  <code>NSURLConnectionDelegate</code>  协议的对象非常相似 。你需要在合适的时期调用<code>client</code>方法，将数据传回给<code>client</code>就行。<code>client</code>相当于这个网络的发起者，我们需要将网络中加载的情况返回给调用者。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=cp>#pragma mark - NSURLSessionTaskDelegate
-</span><span class=cp></span>
-<span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>URLSession:</span><span class=p>(</span><span class=n>NSURLSession</span> <span class=o>*</span><span class=p>)</span><span class=nv>session</span> <span class=nf>task:</span><span class=p>(</span><span class=n>NSURLSessionTask</span> <span class=o>*</span><span class=p>)</span><span class=nv>task</span> <span class=nf>didCompleteWithError:</span><span class=p>(</span><span class=n>NSError</span> <span class=o>*</span><span class=p>)</span><span class=nv>error</span> <span class=p>{</span>
-    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>error</span><span class=p>)</span> <span class=p>{</span>
-        <span class=p>[</span><span class=nb>self</span><span class=p>.</span><span class=n>client</span> <span class=nl>URLProtocolDidFinishLoading</span><span class=p>:</span><span class=nb>self</span><span class=p>];</span>
-    <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>([</span><span class=n>error</span><span class=p>.</span><span class=n>domain</span> <span class=nl>isEqualToString</span><span class=p>:</span><span class=n>NSURLErrorDomain</span><span class=p>]</span> <span class=o>&amp;&amp;</span> <span class=n>error</span><span class=p>.</span><span class=n>code</span> <span class=o>==</span> <span class=n>NSURLErrorCancelled</span><span class=p>)</span> <span class=p>{</span>
-    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-        <span class=p>[</span><span class=nb>self</span><span class=p>.</span><span class=n>client</span> <span class=nl>URLProtocol</span><span class=p>:</span><span class=nb>self</span> <span class=nl>didFailWithError</span><span class=p>:</span><span class=n>error</span><span class=p>];</span>
-    <span class=p>}</span>
-    <span class=nb>self</span><span class=p>.</span><span class=n>dataTask</span> <span class=o>=</span> <span class=nb>nil</span><span class=p>;</span>
-<span class=p>}</span>
-
-<span class=cp>#pragma mark - NSURLSessionDataDelegate
-</span><span class=cp></span>
-<span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>URLSession:</span><span class=p>(</span><span class=n>NSURLSession</span> <span class=o>*</span><span class=p>)</span><span class=nv>session</span> <span class=nf>dataTask:</span><span class=p>(</span><span class=n>NSURLSessionDataTask</span> <span class=o>*</span><span class=p>)</span><span class=nv>dataTask</span>
-    <span class=nf>didReceiveData:</span><span class=p>(</span><span class=n>NSData</span> <span class=o>*</span><span class=p>)</span><span class=nv>data</span> <span class=p>{</span>
-    <span class=p>[</span><span class=nb>self</span><span class=p>.</span><span class=n>client</span> <span class=nl>URLProtocol</span><span class=p>:</span><span class=nb>self</span> <span class=nl>didLoadData</span><span class=p>:</span><span class=n>data</span><span class=p>];</span>
-<span class=p>}</span>
-
-<span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>URLSession:</span><span class=p>(</span><span class=n>NSURLSession</span> <span class=o>*</span><span class=p>)</span><span class=nv>session</span> <span class=nf>dataTask:</span><span class=p>(</span><span class=n>NSURLSessionDataTask</span> <span class=o>*</span><span class=p>)</span><span class=nv>dataTask</span> <span class=nf>didReceiveResponse:</span><span class=p>(</span><span class=n>NSURLResponse</span> <span class=o>*</span><span class=p>)</span><span class=nv>response</span> <span class=nf>completionHandler:</span><span class=p>(</span><span class=kt>void</span> <span class=p>(</span><span class=o>^</span><span class=p>)(</span><span class=n>NSURLSessionResponseDisposition</span><span class=p>))</span><span class=nv>completionHandler</span> <span class=p>{</span>
-    <span class=p>[[</span><span class=nb>self</span> <span class=n>client</span><span class=p>]</span> <span class=nl>URLProtocol</span><span class=p>:</span><span class=nb>self</span> <span class=nl>didReceiveResponse</span><span class=p>:</span><span class=n>response</span> <span class=nl>cacheStoragePolicy</span><span class=p>:</span><span class=n>NSURLCacheStorageAllowed</span><span class=p>];</span>
-    <span class=n>completionHandler</span><span class=p>(</span><span class=n>NSURLSessionResponseAllow</span><span class=p>);</span>
-    <span class=nb>self</span><span class=p>.</span><span class=n>response</span> <span class=o>=</span> <span class=n>response</span><span class=p>;</span>
-<span class=p>}</span>
-
-<span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>URLSession:</span><span class=p>(</span><span class=n>NSURLSession</span> <span class=o>*</span><span class=p>)</span><span class=nv>session</span> <span class=nf>task:</span><span class=p>(</span><span class=n>NSURLSessionTask</span> <span class=o>*</span><span class=p>)</span><span class=nv>task</span> <span class=nf>willPerformHTTPRedirection:</span><span class=p>(</span><span class=n>NSHTTPURLResponse</span> <span class=o>*</span><span class=p>)</span><span class=nv>response</span> <span class=nf>newRequest:</span><span class=p>(</span><span class=n>NSURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nv>request</span> <span class=nf>completionHandler:</span><span class=p>(</span><span class=kt>void</span> <span class=p>(</span><span class=o>^</span><span class=p>)(</span><span class=n>NSURLRequest</span> <span class=o>*</span> <span class=n>_Nullable</span><span class=p>))</span><span class=nv>completionHandler</span> <span class=p>{</span>
-    <span class=k>if</span> <span class=p>(</span><span class=n>response</span> <span class=o>!=</span> <span class=nb>nil</span><span class=p>){</span>
-        <span class=nb>self</span><span class=p>.</span><span class=n>response</span> <span class=o>=</span> <span class=n>response</span><span class=p>;</span>
-        <span class=p>[[</span><span class=nb>self</span> <span class=n>client</span><span class=p>]</span> <span class=nl>URLProtocol</span><span class=p>:</span><span class=nb>self</span> <span class=nl>wasRedirectedToRequest</span><span class=p>:</span><span class=n>request</span> <span class=nl>redirectResponse</span><span class=p>:</span><span class=n>response</span><span class=p>];</span>
-    <span class=p>}</span>
-<span class=p>}</span>
-</code></pre></div><h2 id=registerclass>registerClass</h2>
-<p>当然写完这些还是不够的，需要在 app 启动的地方注册我们写好的<code>NSURLProtocol</code>的子类:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=p>[</span><span class=n>NSURLProtocol</span> <span class=nl>registerClass</span><span class=p>:[</span><span class=n>MyURLProtocol</span> <span class=k>class</span><span class=p>]];</span>
-</code></pre></div><p>这相当于向 url 加载系统进行注册。URL protocol 会被以注册顺序的反序访问，所以当在  <code>-application:didFinishLoadingWithOptions:</code>  方法中调用  <code>[NSURLProtocol registerClass:[MyURLProtocol class]];</code>  时，你自己写的 protocol 比其他内建的 protocol 拥有更高的优先级。</p>
-<h2 id=问题>问题</h2>
-<h3 id=url-无法拦截>URL 无法拦截</h3>
-<p>基本的使用也就上述讲的那么多了，但是在使用的时候发现即使我注册了<code>NSURLProtocol</code>的子类，我还是无法拦截自己的网络请求。但是一些第三方库的请求拦截住了。在网上查找资料发现：</p>
-<p>如果说需要支持自定义的<code>NSURLProtocol</code>，需要将自定义的<code>NSURLProtocol</code>子类赋给<code>NSURLSessionConfiguration</code>的<code>protocolClassess</code>属性。所以，如果需要<code>NSURLProtocol</code>来截获<code>NSURLSession</code>发出的请求，需要每一个<code>NSURLSession</code>在创建时配置的<code>NSURLSessionConfiguration</code>类的<code>protocolClasses</code>属性附上自定义的<code>NSURLProtocol</code>。</p>
-<p>查看<code>AFNetworking</code>的代码发现，它创建的<code>session</code>关联的<code>NSURLSessionConfiguration</code>为<code>defaultSessionConfiguration</code> 。所以我们在不能直接修改第三方的源码的时候只能使用<code>method swizzling</code>的方法去 hook 住<code>defaultSessionConfiguration</code> 的方法，然后将我们自定义的<code>NSURLProtocol</code>的子类注册到 url 加载系统里面去了。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=k>@implementation</span> <span class=nc>NSURLSessionConfiguration</span> <span class=nl>(UrlProtocolSwizzling)</span>
-
-<span class=p>+(</span><span class=kt>void</span><span class=p>)</span><span class=nf>load</span><span class=p>{</span>
-
- <span class=p>[</span><span class=nb>self</span> <span class=nl>jr_swizzleClassMethod</span><span class=p>:</span><span class=k>@selector</span><span class=p>(</span><span class=n>defaultSessionConfiguration</span><span class=p>)</span> <span class=nl>withClassMethod</span><span class=p>:</span><span class=k>@selector</span><span class=p>(</span><span class=n>my_defaultSessionConfiguration</span><span class=p>)</span> <span class=nl>error</span><span class=p>:</span><span class=nb>nil</span><span class=p>];</span>
-
-
-
- <span class=p>[</span><span class=n>NSURLProtocol</span> <span class=nl>registerClass</span><span class=p>:[</span><span class=n>TrackNetWorkURLProtocol</span> <span class=k>class</span><span class=p>]];</span>
-<span class=p>}</span>
-
-<span class=p>+(</span><span class=n>NSURLSessionConfiguration</span> <span class=o>*</span><span class=p>)</span><span class=nf>my_defaultSessionConfiguration</span><span class=p>{</span>
- <span class=n>NSURLSessionConfiguration</span> <span class=o>*</span><span class=n>configuration</span> <span class=o>=</span> <span class=p>[</span><span class=nb>self</span> <span class=n>my_defaultSessionConfiguration</span><span class=p>];</span>
- <span class=n>NSArray</span> <span class=o>*</span><span class=n>protocolClasses</span> <span class=o>=</span> <span class=l>@[</span><span class=p>[</span><span class=n>TrackNetWorkURLProtocol</span> <span class=k>class</span><span class=p>]</span><span class=l>]</span><span class=p>;</span>
- <span class=n>configuration</span><span class=p>.</span><span class=n>protocolClasses</span> <span class=o>=</span> <span class=n>protocolClasses</span><span class=p>;</span>
- <span class=k>return</span> <span class=n>configuration</span><span class=p>;</span>
-<span class=p>}</span>
-
-</code></pre></div><h3 id=post-请求-body-为空>POST 请求 body 为空</h3>
-<p>通过拦截请求时，在<code>stoploading</code>方法里面想对请求做一些操作时发现有些<code>post</code>请求的<code>body</code>为空，这个时候发现网上也有人碰到这个问题，初步判断是苹果的 bug，这个时候我们只能通过将<code>HTTPBodyStream</code>中得到的数据写入到<code>HTTPBody</code>中了。写一个<code>NSURLRequest</code>的分类，将<code>HTTPBodyStream</code>的数据写入到<code>HTTPBody</code>中，在<code>canonicalRequestForRequest</code>方法中调用写入操作，然后返回这个<code>request</code>。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec>
-<span class=k>@implementation</span> <span class=nc>NSURLRequest</span> <span class=nl>(RequestIncludeBody)</span>
-
-<span class=p>-(</span><span class=n>NSURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nf>getPostRequestIncludeBody</span><span class=p>{</span>
- <span class=k>return</span> <span class=p>[[</span><span class=nb>self</span> <span class=n>getMutablePostRequestIncludeBody</span><span class=p>]</span> <span class=k>copy</span><span class=p>];</span>
-<span class=p>}</span>
-
-<span class=p>-(</span><span class=n>NSMutableURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nf>getMutablePostRequestIncludeBody</span><span class=p>{</span>
- <span class=n>NSMutableURLRequest</span> <span class=o>*</span><span class=n>request</span> <span class=o>=</span> <span class=p>[</span><span class=nb>self</span> <span class=n>mutableCopy</span><span class=p>];</span>
- <span class=k>if</span> <span class=p>([</span><span class=nb>self</span><span class=p>.</span><span class=n>HTTPMethod</span> <span class=nl>isEqualToString</span><span class=p>:</span><span class=s>@&#34;POST&#34;</span><span class=p>])</span> <span class=p>{</span>
-  <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nb>self</span><span class=p>.</span><span class=n>HTTPBody</span><span class=p>)</span> <span class=p>{</span>
-   <span class=n>NSInteger</span> <span class=n>maxLength</span> <span class=o>=</span> <span class=mi>1024</span><span class=p>;</span>
-   <span class=n>uint8_t</span> <span class=n>d</span><span class=p>[</span><span class=n>maxLength</span><span class=p>];</span>
-   <span class=n>NSInputStream</span> <span class=o>*</span><span class=n>stream</span> <span class=o>=</span> <span class=nb>self</span><span class=p>.</span><span class=n>HTTPBodyStream</span><span class=p>;</span>
-   <span class=n>NSMutableData</span> <span class=o>*</span><span class=n>data</span> <span class=o>=</span> <span class=p>[[</span><span class=n>NSMutableData</span> <span class=n>alloc</span><span class=p>]</span> <span class=n>init</span><span class=p>];</span>
-   <span class=p>[</span><span class=n>stream</span> <span class=n>open</span><span class=p>];</span>
-   <span class=kt>BOOL</span> <span class=n>endOfStreamReached</span> <span class=o>=</span> <span class=nb>NO</span><span class=p>;</span>
-   <span class=k>while</span> <span class=p>(</span><span class=o>!</span><span class=n>endOfStreamReached</span><span class=p>)</span> <span class=p>{</span>
-    <span class=n>NSInteger</span> <span class=n>bytesRead</span> <span class=o>=</span> <span class=p>[</span><span class=n>stream</span> <span class=nl>read</span><span class=p>:</span><span class=n>d</span> <span class=nl>maxLength</span><span class=p>:</span><span class=n>maxLength</span><span class=p>];</span>
-    <span class=k>if</span> <span class=p>(</span><span class=n>bytesRead</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span> <span class=c1>//文件读取到最后
-</span><span class=c1></span>     <span class=n>endOfStreamReached</span> <span class=o>=</span> <span class=nb>YES</span><span class=p>;</span>
-    <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>bytesRead</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span> <span class=p>{</span> <span class=c1>//文件读取错误
-</span><span class=c1></span>     <span class=n>endOfStreamReached</span> <span class=o>=</span> <span class=nb>YES</span><span class=p>;</span>
-    <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>stream</span><span class=p>.</span><span class=n>streamError</span> <span class=o>==</span> <span class=nb>nil</span><span class=p>)</span> <span class=p>{</span>
-     <span class=p>[</span><span class=n>data</span> <span class=nl>appendBytes</span><span class=p>:(</span><span class=kt>void</span> <span class=o>*</span><span class=p>)</span><span class=n>d</span> <span class=nl>length</span><span class=p>:</span><span class=n>bytesRead</span><span class=p>];</span>
-    <span class=p>}</span>
-   <span class=p>}</span>
-   <span class=n>request</span><span class=p>.</span><span class=n>HTTPBody</span> <span class=o>=</span> <span class=p>[</span><span class=n>data</span> <span class=k>copy</span><span class=p>];</span>
-   <span class=p>[</span><span class=n>stream</span> <span class=n>close</span><span class=p>];</span>
-  <span class=p>}</span>
- <span class=p>}</span>
- <span class=k>return</span> <span class=n>request</span><span class=p>;</span>
-<span class=p>}</span>
-<span class=k>@end</span>
-</code></pre></div><h2 id=无法拦截-wkwebview-中的请求>无法拦截 wkwebview 中的请求</h2>
-<p>无论是  <code>NSURLProtocol</code>、<code>NSURLConnection</code>  还是  <code>NSURLSession</code>  都会走底层的 <code>socket</code>，但是  <code>WKWebView</code>  可能由于基于 <code>WebKit</code>，并不会执行 <code>C socket</code> 相关的函数对 <code>HTTP</code> 请求进行处理。所以如果要拦截<code>WKWebview</code>中的请求只能通过<code>WKWebview</code>对应的代理方法进行处理了。</p>
-<blockquote>
-<p><a class=link href=https://github.com/aozhimin/iOS-Monitor-Platform target=_blank rel=noopener>GitHub - aozhimin/iOS-Monitor-Wedjat（华狄特）开发过程的调研和整理</a>Platform: iOS 性能监控 SDK ——</p>
-<p><a class=link href=https://segmentfault.com/a/1190000013991357 target=_blank rel=noopener>NSURLProtocol 拦截 NSURLSession 请求时 body 丢失问题解决方案探讨 - 个人文章 - SegmentFault 思否</a></p>
-<p><a class=link href=https://zhongwuzw.github.io/2016/08/31/NSURLProtocol%E6%97%A0%E6%B3%95%E6%88%AA%E8%8E%B7NSURLSession%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/ target=_blank rel=noopener>NSURLProtocol 无法截获 NSURLSession 解决方案 钟武的技术博客</a></p>
-<p><a class=link href=https://zeeyang.com/2017/09/09/debug-tool-base-on-NSURLProtocol/ target=_blank rel=noopener>https://zeeyang.com/2017/09/09/debug-tool-base-on-NSURLProtocol/</a></p>
-<p><a class=link href="https://developer.apple.com/documentation/foundation/url_loading_system?language=objc" target=_blank rel=noopener>https://developer.apple.com/documentation/foundation/url_loading_system?language=objc</a></p>
-<p><a class=link href=https://nshipster.cn/nsurlprotocol/ target=_blank rel=noopener>NSURLProtocol - NSHipster</a></p>
-<p><a class=link href=https://github.com/mattt/NSEtcHosts target=_blank rel=noopener>GitHub - mattt/NSEtcHosts: /etc/hosts with NSURLProtocol</a></p>
-<p><a class=link href=https://blog.newrelic.com/engineering/right-way-to-swizzle/ target=_blank rel=noopener>https://blog.newrelic.com/engineering/right-way-to-swizzle/</a></p>
-</blockquote>
-</section>
-<footer class=article-footer>
-<section class=article-tags>
-<a href=/tags/ios/>iOS</a>
-</section>
-<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
-<span>Licensed under CC BY-NC-SA 4.0</span>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
-<div class="flex article-list--tile">
-<article class=has-image>
-<a href=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/>
-<div class=article-image>
-<img src=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location.f9081d31606c3167b99e20f35f5c45b8_hu7358e48ec7fab56fb014470e607bbef7_2070633_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 地理围栏检测" data-hash="md5-+QgdMWBsMWe5niDzX1xFuA==">
-</div>
-<div class=article-details>
-<h2 class=article-title>iOS 地理围栏检测</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/>
-<div class=article-image>
-<img src=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS.00d7ed117accc12ab2c99bcadc3e8c35_hu1b1250c20efcffab4aa4d281da507795_1979685_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 自动化打包发布" data-hash="md5-ANftEXrMwSqyyZvK3D6MNQ==">
-</div>
-<div class=article-details>
-<h2 class=article-title>iOS 自动化打包发布</h2>
-</div>
-</a>
-</article>
-<article>
-<a href=/posts/ios%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/>
-<div class=article-details>
-<h2 class=article-title>iOS 开发学习</h2>
-</div>
-</a>
-</article>
-<article>
-<a href=/posts/ios%E5%9B%9B%E7%A7%8D%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/>
-<div class=article-details>
-<h2 class=article-title>iOS四种本地存储</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/posts/http-%E5%88%86%E4%BA%AB/>
-<div class=article-image>
-<img src=/posts/http-%E5%88%86%E4%BA%AB/http.795f402cf482b4d368f3a387e4a861d5_huf55f4c848f32680b02046e5b16dd77de_210597_250x150_fill_box_smart1_3.png width=250 height=150 loading=lazy alt="Featured image of post Http 不完全指南" data-hash="md5-eV9ALPSCtNNo86OH5Khh1Q==">
-</div>
-<div class=article-details>
-<h2 class=article-title>Http 不完全指南</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<div class=disqus-container>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//vae.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-<style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style>
-<script>window.addEventListener('onColorSchemeChange',a=>{DISQUS&&DISQUS.reset({reload:!0})})</script>
-<footer class=site-footer>
-<section class=copyright>
-&copy;
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料"><title>iOS 网络请求耗时统计</title><link rel=canonical href=https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/><link rel=stylesheet href=/scss/style.min.775dbd4fd34fda61c5273b4bc3415f7c9666414fb6c40aab164a7ded4397da98.css><meta property="og:title" content="iOS 网络请求耗时统计"><meta property="og:description" content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料"><meta property="og:url" content="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/"><meta property="og:site_name" content="摩卡的小窝"><meta property="og:type" content="article"><meta property="article:section" content="Posts"><meta property="article:tag" content="iOS"><meta property="article:published_time" content="2019-04-04T00:00:00+00:00"><meta property="article:modified_time" content="2019-04-04T00:00:00+00:00"><meta property="og:image" content="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.jpg"><meta name=twitter:site content="@xiaochangvae"><meta name=twitter:creator content="@xiaochangvae"><meta name=twitter:title content="iOS 网络请求耗时统计"><meta name=twitter:description content="前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://vaezc.github.io/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS.jpg"><link rel="shortcut icon" href=/favicons/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-XN03QWREHL"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XN03QWREHL",{anonymize_ip:!1})}</script></head><body class="article-page has-toc"><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex
+extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>返回</span></a></div><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/><img src=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS_hudab19c6e24862988c05d34d65d6235f3_2517758_800x0_resize_q75_box.jpg srcset="/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS_hudab19c6e24862988c05d34d65d6235f3_2517758_800x0_resize_q75_box.jpg 800w, /posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/iOS_hudab19c6e24862988c05d34d65d6235f3_2517758_1600x0_resize_q75_box.jpg 1600w" width=800 height=533 loading=lazy alt="Featured image of post iOS 网络请求耗时统计"></a></div><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/>技术人生</a></header><h2 class=article-title><a href=/posts/ios-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%80%97%E6%97%B6%E7%BB%9F%E8%AE%A1/>iOS 网络请求耗时统计</a></h2><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Apr 04, 2019</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 7 分钟</time></div></footer></div></header><section class=article-content><p>前言：最近的研发中，老大说需要监测一下每个接口的连接速度，针对一些接口优化一下。所以就需要 hook 到每个网络请求来进行监测了。通过网上一些查阅资料，初步将目标定位到<code>NSURLProtocol</code>这个类中了。</p><h2 id=nsurlprotocol>NSURLProtocol</h2><p><code>NSRULProtocol</code> 是<code>URL loadin System</code>中的一部分，如下图<figure><a href=https://i.loli.net/2019/04/03/5ca4b8c97c82c.png><img src=https://i.loli.net/2019/04/03/5ca4b8c97c82c.png loading=lazy></a></figure></p><p><code>NSURLProtocol</code> 是个抽象类，不能直接使用它的实例。需要我们声明一个子类来使用它。当网络请求发生时，系统会创建合适的协议对象来处理这些请求。我们自定义的子类需要在 app 启动时调用 <code>registerClass</code>方法使得系统知道我们的协议，才能使得我们自定义的协议来处理这些网络请求。</p><p><code>NSURLProtocol</code>作为上层接口，它的作用就是可以检测到每个网络请求，但是由于它是属于 <code>URL Loading System</code> 体系的，所以支持的协议有限，只支持 <code>FTP， HTTP， HTTPS</code> 等几个应用层协议。具体来说<code>NSURLProtocol</code>属于一个中间层，当我们发起网络请求时，我们注册的子类的对象会接受到请求，接受到请求后再做一些处理，然后再转发请求。这个时候我们可以针对请求来记录我们需要的数据或或者对请求做一些修改。总的来说就是你不必修改在网络调用上的其他部分，就可以改变 URL 加载行为的全部细节，使得代码结构更加清爽健壮。</p><p><a class=link href=https://nshipster.cn/nsurlprotocol/ target=_blank rel=noopener>NSHipster</a>列举了一些可以使用<code>NSURLProtocol</code>做的事情：</p><ol><li><a class=link href=https://stackoverflow.com/questions/5572258/ios-webview-remote-html-with-local-image-files target=_blank rel=noopener>拦截图片加载请求，转为本地文件加载</a></li><li><a class=link href=https://github.com/AliSoftware/OHHTTPStubs target=_blank rel=noopener>为了测试对<code>HTTP</code>返回内容进行<code>mock</code>和`stub</a></li><li>对发出请求的<code>header</code>进行格式化</li><li>对发出的媒体请求进行签名</li><li>创建本地代理服务，用于数据变化时对<code>URL</code>请求的更改</li><li>故意制造畸形或者非法返回的数据来测试程序的鲁棒性</li><li>过滤请求和返回中的敏感信息</li><li>在既有协议举出上完成对 <code>NSURLconnection</code>的实现且与原逻辑不产生矛盾</li></ol><p>针对这次的需求，只需要拦截住工程里面发起的 api 的网络请求，然后统计出每个请求的耗时即可。</p><p>具体的看下实现。</p><p>我们首先定义<code>NSURLProtocol</code>的一个子类:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=line><span class=cl><span class=k>static</span> <span class=n>NSString</span> <span class=o>*</span> <span class=k>const</span> <span class=n>MYHTTPHandledIdentifier</span> <span class=o>=</span> <span class=s>@&#34;MYHTTPHandledIdentifier&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>@interface</span> <span class=nc>MYHTTPProtocol</span> : <span class=nc>NSURLProtocol</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>...</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>@end</span>
+</span></span></code></pre></div><h2 id=caninitwithrequest>canInitWithRequest</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=line><span class=cl><span class=p>+</span> <span class=p>(</span><span class=kt>BOOL</span><span class=p>)</span><span class=nf>canInitWithRequest:</span><span class=p>(</span><span class=n>NSURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nv>request</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=p>[</span><span class=n>request</span><span class=p>.</span><span class=n>URL</span><span class=p>.</span><span class=n>scheme</span> <span class=nl>isEqualToString</span><span class=p>:</span><span class=s>@&#34;http&#34;</span><span class=p>]</span> <span class=o>&amp;&amp;</span>
+</span></span><span class=line><span class=cl>        <span class=o>!</span><span class=p>[</span><span class=n>request</span><span class=p>.</span><span class=n>URL</span><span class=p>.</span><span class=n>scheme</span> <span class=nl>isEqualToString</span><span class=p>:</span><span class=s>@&#34;https&#34;</span><span class=p>])</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nb>NO</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>([</span><span class=n>NSURLProtocol</span> <span class=nl>propertyForKey</span><span class=p>:</span><span class=n>MYHTTPHandledIdentifier</span> <span class=nl>inRequest</span><span class=p>:</span><span class=n>request</span><span class=p>]</span> <span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nb>NO</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>YES</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>每一个网络请求，都会走到上述方法，我们可以拿到<code>request</code>的实例，这个函数的返回值代表是否处理这个请求。上述方法里面代表着我们只是监听<code>http</code>和<code>https</code>协议的方法。下面一个<code>if</code>语句后面再讲，可以先不看。虽然说我们在这个方法里面拿到了 request 对象，但是我们最好不要在这个方法里面操作对象，因为可能存在语义上的问题。这个方法只是筛选哪些网络请求需要被拦截。</p><h2 id=canonicalrequestforrequest>canonicalRequestForRequest</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=line><span class=cl><span class=p>+</span> <span class=p>(</span><span class=n>NSURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nf>canonicalRequestForRequest:</span><span class=p>(</span><span class=n>NSURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nv>request</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>NSMutableURLRequest</span> <span class=o>*</span><span class=n>mutableReqeust</span> <span class=o>=</span> <span class=p>[</span><span class=n>request</span> <span class=n>mutableCopy</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=n>NSURLProtocol</span> <span class=nl>setProperty</span><span class=p>:</span><span class=m>@YES</span>
+</span></span><span class=line><span class=cl>                        <span class=nl>forKey</span><span class=p>:</span><span class=n>MYHTTPHandledIdentifier</span>
+</span></span><span class=line><span class=cl>                     <span class=nl>inRequest</span><span class=p>:</span><span class=n>mutableReqeust</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>[</span><span class=n>mutableReqeust</span> <span class=k>copy</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>这个方法是针对我们筛选出来网络请求进行重新构造，<code>NSURLProtocol</code>提供了一些方法让我们来操作 request 的 metadata，如代码中所示，设置了一个 bool 值为 yes 的特殊属性，将这个属性添加到 request 中去了。因为在接下来我们还要使用这个 request 发起请求，所以需要添加一个标记，表示这个请求已经被处理过了不用在<code>canInitWithRequest</code>处理了，在<code>canInitWithRequest</code>方法中我们对 <code>request</code>中设置了特殊属性的请求不拦截，不然的话会使得这个请求在<code>canInitWithRequest</code>和<code>canonicalRequestForRequest</code>形成死循环。</p><h2 id=startloading>startLoading</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=line><span class=cl><span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>startLoading</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl> <span class=n>NSURLSession</span> <span class=o>*</span><span class=n>session</span> <span class=o>=</span> <span class=p>[</span><span class=n>NSURLSession</span> <span class=nl>sessionWithConfiguration</span><span class=p>:[</span><span class=n>NSURLSessionConfiguration</span> <span class=n>defaultSessionConfiguration</span><span class=p>]</span> <span class=nl>delegate</span><span class=p>:</span><span class=nb>self</span> <span class=nl>delegateQueue</span><span class=p>:</span><span class=nb>nil</span><span class=p>];</span>
+</span></span><span class=line><span class=cl> <span class=n>NSURLSessionDataTask</span> <span class=o>*</span><span class=n>task</span> <span class=o>=</span> <span class=p>[</span><span class=n>session</span> <span class=nl>dataTaskWithRequest</span><span class=p>:</span><span class=nb>self</span><span class=p>.</span><span class=n>request</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=nb>self</span><span class=p>.</span><span class=n>dataTask</span>  <span class=o>=</span> <span class=n>task</span><span class=p>;</span>
+</span></span><span class=line><span class=cl> <span class=p>[</span><span class=nb>self</span><span class=p>.</span><span class=n>dataTask</span> <span class=n>resume</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>这个是开始加载网络请求的方法，我们可以在这个方法里对协议对象持有的<code>request</code>对象进行转发。我们可以使用<code>NSURLSession</code>，<code>NSURLConnection</code>或者第三方的网络库，这里我使用了<code>NSURLsession</code>来进行转发这个请求。我们可以在这个请求里面记录当前的时间。后面再网络请求结束的时候再一次记录时间，就可以计算出网络加载的耗时了。</p><h2 id=stoploading>stopLoading</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=line><span class=cl><span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>stopLoading</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=nb>self</span><span class=p>.</span><span class=n>dataTask</span> <span class=n>cancel</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=nb>self</span><span class=p>.</span><span class=n>dataTask</span>           <span class=o>=</span> <span class=nb>nil</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 解析 response，流量统计，网络耗时等
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></code></pre></div><h2 id=client>client</h2><p>每个  <code>NSURLProtocol</code>  的子类实例都有一个  <code>client</code>  属性，该属性对 URL 加载系统进行相关操作。它不是  <code>NSURLConnection</code>，但看起来和一个实现了  <code>NSURLConnectionDelegate</code>  协议的对象非常相似 。你需要在合适的时期调用<code>client</code>方法，将数据传回给<code>client</code>就行。<code>client</code>相当于这个网络的发起者，我们需要将网络中加载的情况返回给调用者。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=line><span class=cl><span class=cp>#pragma mark - NSURLSessionTaskDelegate
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>URLSession:</span><span class=p>(</span><span class=n>NSURLSession</span> <span class=o>*</span><span class=p>)</span><span class=nv>session</span> <span class=nf>task:</span><span class=p>(</span><span class=n>NSURLSessionTask</span> <span class=o>*</span><span class=p>)</span><span class=nv>task</span> <span class=nf>didCompleteWithError:</span><span class=p>(</span><span class=n>NSError</span> <span class=o>*</span><span class=p>)</span><span class=nv>error</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>error</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=p>[</span><span class=nb>self</span><span class=p>.</span><span class=n>client</span> <span class=nl>URLProtocolDidFinishLoading</span><span class=p>:</span><span class=nb>self</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>([</span><span class=n>error</span><span class=p>.</span><span class=n>domain</span> <span class=nl>isEqualToString</span><span class=p>:</span><span class=n>NSURLErrorDomain</span><span class=p>]</span> <span class=o>&amp;&amp;</span> <span class=n>error</span><span class=p>.</span><span class=n>code</span> <span class=o>==</span> <span class=n>NSURLErrorCancelled</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=p>[</span><span class=nb>self</span><span class=p>.</span><span class=n>client</span> <span class=nl>URLProtocol</span><span class=p>:</span><span class=nb>self</span> <span class=nl>didFailWithError</span><span class=p>:</span><span class=n>error</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nb>self</span><span class=p>.</span><span class=n>dataTask</span> <span class=o>=</span> <span class=nb>nil</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cp>#pragma mark - NSURLSessionDataDelegate
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>URLSession:</span><span class=p>(</span><span class=n>NSURLSession</span> <span class=o>*</span><span class=p>)</span><span class=nv>session</span> <span class=nf>dataTask:</span><span class=p>(</span><span class=n>NSURLSessionDataTask</span> <span class=o>*</span><span class=p>)</span><span class=nv>dataTask</span>
+</span></span><span class=line><span class=cl>    <span class=nf>didReceiveData:</span><span class=p>(</span><span class=n>NSData</span> <span class=o>*</span><span class=p>)</span><span class=nv>data</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=nb>self</span><span class=p>.</span><span class=n>client</span> <span class=nl>URLProtocol</span><span class=p>:</span><span class=nb>self</span> <span class=nl>didLoadData</span><span class=p>:</span><span class=n>data</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>URLSession:</span><span class=p>(</span><span class=n>NSURLSession</span> <span class=o>*</span><span class=p>)</span><span class=nv>session</span> <span class=nf>dataTask:</span><span class=p>(</span><span class=n>NSURLSessionDataTask</span> <span class=o>*</span><span class=p>)</span><span class=nv>dataTask</span> <span class=nf>didReceiveResponse:</span><span class=p>(</span><span class=n>NSURLResponse</span> <span class=o>*</span><span class=p>)</span><span class=nv>response</span> <span class=nf>completionHandler:</span><span class=p>(</span><span class=kt>void</span> <span class=p>(</span><span class=o>^</span><span class=p>)(</span><span class=n>NSURLSessionResponseDisposition</span><span class=p>))</span><span class=nv>completionHandler</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=p>[[</span><span class=nb>self</span> <span class=n>client</span><span class=p>]</span> <span class=nl>URLProtocol</span><span class=p>:</span><span class=nb>self</span> <span class=nl>didReceiveResponse</span><span class=p>:</span><span class=n>response</span> <span class=nl>cacheStoragePolicy</span><span class=p>:</span><span class=n>NSURLCacheStorageAllowed</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=n>completionHandler</span><span class=p>(</span><span class=n>NSURLSessionResponseAllow</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nb>self</span><span class=p>.</span><span class=n>response</span> <span class=o>=</span> <span class=n>response</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>URLSession:</span><span class=p>(</span><span class=n>NSURLSession</span> <span class=o>*</span><span class=p>)</span><span class=nv>session</span> <span class=nf>task:</span><span class=p>(</span><span class=n>NSURLSessionTask</span> <span class=o>*</span><span class=p>)</span><span class=nv>task</span> <span class=nf>willPerformHTTPRedirection:</span><span class=p>(</span><span class=n>NSHTTPURLResponse</span> <span class=o>*</span><span class=p>)</span><span class=nv>response</span> <span class=nf>newRequest:</span><span class=p>(</span><span class=n>NSURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nv>request</span> <span class=nf>completionHandler:</span><span class=p>(</span><span class=kt>void</span> <span class=p>(</span><span class=o>^</span><span class=p>)(</span><span class=n>NSURLRequest</span> <span class=o>*</span> <span class=n>_Nullable</span><span class=p>))</span><span class=nv>completionHandler</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>response</span> <span class=o>!=</span> <span class=nb>nil</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=nb>self</span><span class=p>.</span><span class=n>response</span> <span class=o>=</span> <span class=n>response</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>[[</span><span class=nb>self</span> <span class=n>client</span><span class=p>]</span> <span class=nl>URLProtocol</span><span class=p>:</span><span class=nb>self</span> <span class=nl>wasRedirectedToRequest</span><span class=p>:</span><span class=n>request</span> <span class=nl>redirectResponse</span><span class=p>:</span><span class=n>response</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h2 id=registerclass>registerClass</h2><p>当然写完这些还是不够的，需要在 app 启动的地方注册我们写好的<code>NSURLProtocol</code>的子类:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=line><span class=cl><span class=p>[</span><span class=n>NSURLProtocol</span> <span class=nl>registerClass</span><span class=p>:[</span><span class=n>MyURLProtocol</span> <span class=k>class</span><span class=p>]];</span>
+</span></span></code></pre></div><p>这相当于向 url 加载系统进行注册。URL protocol 会被以注册顺序的反序访问，所以当在  <code>-application:didFinishLoadingWithOptions:</code>  方法中调用  <code>[NSURLProtocol registerClass:[MyURLProtocol class]];</code>  时，你自己写的 protocol 比其他内建的 protocol 拥有更高的优先级。</p><h2 id=问题>问题</h2><h3 id=url-无法拦截>URL 无法拦截</h3><p>基本的使用也就上述讲的那么多了，但是在使用的时候发现即使我注册了<code>NSURLProtocol</code>的子类，我还是无法拦截自己的网络请求。但是一些第三方库的请求拦截住了。在网上查找资料发现：</p><p>如果说需要支持自定义的<code>NSURLProtocol</code>，需要将自定义的<code>NSURLProtocol</code>子类赋给<code>NSURLSessionConfiguration</code>的<code>protocolClassess</code>属性。所以，如果需要<code>NSURLProtocol</code>来截获<code>NSURLSession</code>发出的请求，需要每一个<code>NSURLSession</code>在创建时配置的<code>NSURLSessionConfiguration</code>类的<code>protocolClasses</code>属性附上自定义的<code>NSURLProtocol</code>。</p><p>查看<code>AFNetworking</code>的代码发现，它创建的<code>session</code>关联的<code>NSURLSessionConfiguration</code>为<code>defaultSessionConfiguration</code> 。所以我们在不能直接修改第三方的源码的时候只能使用<code>method swizzling</code>的方法去 hook 住<code>defaultSessionConfiguration</code> 的方法，然后将我们自定义的<code>NSURLProtocol</code>的子类注册到 url 加载系统里面去了。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=k>@implementation</span> <span class=nc>NSURLSessionConfiguration</span> <span class=nl>(UrlProtocolSwizzling)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>+(</span><span class=kt>void</span><span class=p>)</span><span class=nf>load</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> <span class=p>[</span><span class=nb>self</span> <span class=nl>jr_swizzleClassMethod</span><span class=p>:</span><span class=k>@selector</span><span class=p>(</span><span class=n>defaultSessionConfiguration</span><span class=p>)</span> <span class=nl>withClassMethod</span><span class=p>:</span><span class=k>@selector</span><span class=p>(</span><span class=n>my_defaultSessionConfiguration</span><span class=p>)</span> <span class=nl>error</span><span class=p>:</span><span class=nb>nil</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> <span class=p>[</span><span class=n>NSURLProtocol</span> <span class=nl>registerClass</span><span class=p>:[</span><span class=n>TrackNetWorkURLProtocol</span> <span class=k>class</span><span class=p>]];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>+(</span><span class=n>NSURLSessionConfiguration</span> <span class=o>*</span><span class=p>)</span><span class=nf>my_defaultSessionConfiguration</span><span class=p>{</span>
+</span></span><span class=line><span class=cl> <span class=n>NSURLSessionConfiguration</span> <span class=o>*</span><span class=n>configuration</span> <span class=o>=</span> <span class=p>[</span><span class=nb>self</span> <span class=n>my_defaultSessionConfiguration</span><span class=p>];</span>
+</span></span><span class=line><span class=cl> <span class=n>NSArray</span> <span class=o>*</span><span class=n>protocolClasses</span> <span class=o>=</span> <span class=l>@[</span><span class=p>[</span><span class=n>TrackNetWorkURLProtocol</span> <span class=k>class</span><span class=p>]</span><span class=l>]</span><span class=p>;</span>
+</span></span><span class=line><span class=cl> <span class=n>configuration</span><span class=p>.</span><span class=n>protocolClasses</span> <span class=o>=</span> <span class=n>protocolClasses</span><span class=p>;</span>
+</span></span><span class=line><span class=cl> <span class=k>return</span> <span class=n>configuration</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h3 id=post-请求-body-为空>POST 请求 body 为空</h3><p>通过拦截请求时，在<code>stoploading</code>方法里面想对请求做一些操作时发现有些<code>post</code>请求的<code>body</code>为空，这个时候发现网上也有人碰到这个问题，初步判断是苹果的 bug，这个时候我们只能通过将<code>HTTPBodyStream</code>中得到的数据写入到<code>HTTPBody</code>中了。写一个<code>NSURLRequest</code>的分类，将<code>HTTPBodyStream</code>的数据写入到<code>HTTPBody</code>中，在<code>canonicalRequestForRequest</code>方法中调用写入操作，然后返回这个<code>request</code>。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-objectivec data-lang=objectivec><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>@implementation</span> <span class=nc>NSURLRequest</span> <span class=nl>(RequestIncludeBody)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>-(</span><span class=n>NSURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nf>getPostRequestIncludeBody</span><span class=p>{</span>
+</span></span><span class=line><span class=cl> <span class=k>return</span> <span class=p>[[</span><span class=nb>self</span> <span class=n>getMutablePostRequestIncludeBody</span><span class=p>]</span> <span class=k>copy</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>-(</span><span class=n>NSMutableURLRequest</span> <span class=o>*</span><span class=p>)</span><span class=nf>getMutablePostRequestIncludeBody</span><span class=p>{</span>
+</span></span><span class=line><span class=cl> <span class=n>NSMutableURLRequest</span> <span class=o>*</span><span class=n>request</span> <span class=o>=</span> <span class=p>[</span><span class=nb>self</span> <span class=n>mutableCopy</span><span class=p>];</span>
+</span></span><span class=line><span class=cl> <span class=k>if</span> <span class=p>([</span><span class=nb>self</span><span class=p>.</span><span class=n>HTTPMethod</span> <span class=nl>isEqualToString</span><span class=p>:</span><span class=s>@&#34;POST&#34;</span><span class=p>])</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nb>self</span><span class=p>.</span><span class=n>HTTPBody</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>   <span class=n>NSInteger</span> <span class=n>maxLength</span> <span class=o>=</span> <span class=mi>1024</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>   <span class=n>uint8_t</span> <span class=n>d</span><span class=p>[</span><span class=n>maxLength</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>   <span class=n>NSInputStream</span> <span class=o>*</span><span class=n>stream</span> <span class=o>=</span> <span class=nb>self</span><span class=p>.</span><span class=n>HTTPBodyStream</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>   <span class=n>NSMutableData</span> <span class=o>*</span><span class=n>data</span> <span class=o>=</span> <span class=p>[[</span><span class=n>NSMutableData</span> <span class=n>alloc</span><span class=p>]</span> <span class=n>init</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>   <span class=p>[</span><span class=n>stream</span> <span class=n>open</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>   <span class=kt>BOOL</span> <span class=n>endOfStreamReached</span> <span class=o>=</span> <span class=nb>NO</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>   <span class=k>while</span> <span class=p>(</span><span class=o>!</span><span class=n>endOfStreamReached</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>NSInteger</span> <span class=n>bytesRead</span> <span class=o>=</span> <span class=p>[</span><span class=n>stream</span> <span class=nl>read</span><span class=p>:</span><span class=n>d</span> <span class=nl>maxLength</span><span class=p>:</span><span class=n>maxLength</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>bytesRead</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span> <span class=c1>//文件读取到最后
+</span></span></span><span class=line><span class=cl><span class=c1></span>     <span class=n>endOfStreamReached</span> <span class=o>=</span> <span class=nb>YES</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>bytesRead</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span> <span class=p>{</span> <span class=c1>//文件读取错误
+</span></span></span><span class=line><span class=cl><span class=c1></span>     <span class=n>endOfStreamReached</span> <span class=o>=</span> <span class=nb>YES</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>stream</span><span class=p>.</span><span class=n>streamError</span> <span class=o>==</span> <span class=nb>nil</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>     <span class=p>[</span><span class=n>data</span> <span class=nl>appendBytes</span><span class=p>:(</span><span class=kt>void</span> <span class=o>*</span><span class=p>)</span><span class=n>d</span> <span class=nl>length</span><span class=p>:</span><span class=n>bytesRead</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>   <span class=p>}</span>
+</span></span><span class=line><span class=cl>   <span class=n>request</span><span class=p>.</span><span class=n>HTTPBody</span> <span class=o>=</span> <span class=p>[</span><span class=n>data</span> <span class=k>copy</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>   <span class=p>[</span><span class=n>stream</span> <span class=n>close</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl> <span class=p>}</span>
+</span></span><span class=line><span class=cl> <span class=k>return</span> <span class=n>request</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=k>@end</span>
+</span></span></code></pre></div><h2 id=无法拦截-wkwebview-中的请求>无法拦截 wkwebview 中的请求</h2><p>无论是  <code>NSURLProtocol</code>、<code>NSURLConnection</code>  还是  <code>NSURLSession</code>  都会走底层的 <code>socket</code>，但是  <code>WKWebView</code>  可能由于基于 <code>WebKit</code>，并不会执行 <code>C socket</code> 相关的函数对 <code>HTTP</code> 请求进行处理。所以如果要拦截<code>WKWebview</code>中的请求只能通过<code>WKWebview</code>对应的代理方法进行处理了。</p><blockquote><p><a class=link href=https://github.com/aozhimin/iOS-Monitor-Platform target=_blank rel=noopener>GitHub - aozhimin/iOS-Monitor-Wedjat（华狄特）开发过程的调研和整理</a>Platform: iOS 性能监控 SDK ——</p><p><a class=link href=https://segmentfault.com/a/1190000013991357 target=_blank rel=noopener>NSURLProtocol 拦截 NSURLSession 请求时 body 丢失问题解决方案探讨 - 个人文章 - SegmentFault 思否</a></p><p><a class=link href=https://zhongwuzw.github.io/2016/08/31/NSURLProtocol%E6%97%A0%E6%B3%95%E6%88%AA%E8%8E%B7NSURLSession%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/ target=_blank rel=noopener>NSURLProtocol 无法截获 NSURLSession 解决方案 钟武的技术博客</a></p><p><a class=link href=https://zeeyang.com/2017/09/09/debug-tool-base-on-NSURLProtocol/ target=_blank rel=noopener>https://zeeyang.com/2017/09/09/debug-tool-base-on-NSURLProtocol/</a></p><p><a class=link href="https://developer.apple.com/documentation/foundation/url_loading_system?language=objc" target=_blank rel=noopener>https://developer.apple.com/documentation/foundation/url_loading_system?language=objc</a></p><p><a class=link href=https://nshipster.cn/nsurlprotocol/ target=_blank rel=noopener>NSURLProtocol - NSHipster</a></p><p><a class=link href=https://github.com/mattt/NSEtcHosts target=_blank rel=noopener>GitHub - mattt/NSEtcHosts: /etc/hosts with NSURLProtocol</a></p><p><a class=link href=https://blog.newrelic.com/engineering/right-way-to-swizzle/ target=_blank rel=noopener>https://blog.newrelic.com/engineering/right-way-to-swizzle/</a></p></blockquote></section><footer class=article-footer><section class=article-tags><a href=/tags/ios/>iOS</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>相关文章</h2><div class=related-contents><div class="flex article-list--tile"><article class=has-image><a href=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/><div class=article-image><img src=/posts/ios-%E5%9C%B0%E7%90%86%E5%9B%B4%E6%A0%8F%E6%A3%80%E6%B5%8B/location.f9081d31606c3167b99e20f35f5c45b8_hu7358e48ec7fab56fb014470e607bbef7_2070633_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 地理围栏检测" data-hash="md5-+QgdMWBsMWe5niDzX1xFuA=="></div><div class=article-details><h2 class=article-title>iOS 地理围栏检测</h2></div></a></article><article class=has-image><a href=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/><div class=article-image><img src=/posts/ios-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/iOS.00d7ed117accc12ab2c99bcadc3e8c35_hu1b1250c20efcffab4aa4d281da507795_1979685_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post iOS 自动化打包发布" data-hash="md5-ANftEXrMwSqyyZvK3D6MNQ=="></div><div class=article-details><h2 class=article-title>iOS 自动化打包发布</h2></div></a></article><article><a href=/posts/ios%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/><div class=article-details><h2 class=article-title>iOS 开发学习</h2></div></a></article><article><a href=/posts/ios%E5%9B%9B%E7%A7%8D%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/><div class=article-details><h2 class=article-title>iOS四种本地存储</h2></div></a></article><article class=has-image><a href=/posts/http-%E5%88%86%E4%BA%AB/><div class=article-image><img src=/posts/http-%E5%88%86%E4%BA%AB/http.795f402cf482b4d368f3a387e4a861d5_huf55f4c848f32680b02046e5b16dd77de_210597_250x150_fill_box_smart1_3.png width=250 height=150 loading=lazy alt="Featured image of post Http 不完全指南" data-hash="md5-eV9ALPSCtNNo86OH5Khh1Q=="></div><div class=article-details><h2 class=article-title>Http 不完全指南</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//vae.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{DISQUS&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
 2020 -
-2022 摩卡的小窝
-</section>
-<section class=powerby>
-Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.6.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
-<div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
-<div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2022 摩卡的小窝</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.6.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-<div class=pswp__preloader>
-<div class=pswp__preloader__icn>
-<div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-</button>
-<div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
-<section class="widget archives">
-<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
-<nav id=TableOfContents>
-<ol>
-<li><a href=#nsurlprotocol>NSURLProtocol</a></li>
-<li><a href=#caninitwithrequest>canInitWithRequest</a></li>
-<li><a href=#canonicalrequestforrequest>canonicalRequestForRequest</a></li>
-<li><a href=#startloading>startLoading</a></li>
-<li><a href=#stoploading>stopLoading</a></li>
-<li><a href=#client>client</a></li>
-<li><a href=#registerclass>registerClass</a></li>
-<li><a href=#问题>问题</a>
-<ol>
-<li><a href=#url-无法拦截>URL 无法拦截</a></li>
-<li><a href=#post-请求-body-为空>POST 请求 body 为空</a></li>
-</ol>
-</li>
-<li><a href=#无法拦截-wkwebview-中的请求>无法拦截 wkwebview 中的请求</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#nsurlprotocol>NSURLProtocol</a></li><li><a href=#caninitwithrequest>canInitWithRequest</a></li><li><a href=#canonicalrequestforrequest>canonicalRequestForRequest</a></li><li><a href=#startloading>startLoading</a></li><li><a href=#stoploading>stopLoading</a></li><li><a href=#client>client</a></li><li><a href=#registerclass>registerClass</a></li><li><a href=#问题>问题</a><ol><li><a href=#url-无法拦截>URL 无法拦截</a></li><li><a href=#post-请求-body-为空>POST 请求 body 为空</a></li></ol></li><li><a href=#无法拦截-wkwebview-中的请求>无法拦截 wkwebview 中的请求</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
